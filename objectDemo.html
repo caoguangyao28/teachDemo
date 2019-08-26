@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象以及包装类</title>
+    <script type="text/javascript">
+        //对象直接量
+        var obj = {
+            name:'张三',
+            age:18
+        };
+
+        // new Object
+        var obj2 = new Object();
+        obj2.name = '';
+
+        // Object(obj) RegExp()
+        var obj3 =new Object(obj);
+        console.log(obj3,obj);
+
+        //
+        function Teacher(optios) {
+            this.name = 'lisi';
+            this.smoke = function () {
+                console.log('I am smoking');
+            }
+        }
+
+        var teacher = new Teacher();
+        console.log(teacher);
+
+        var obj4 = Object.create(null);
+        obj4.name = 123;
+        console.log(obj4);
+
+        // 包装类
+        var a = '12455';
+        var b = new String('ddddd');
+        console.log(a,b);
+
+        // 原始值 -- 加属性-- new String（原始值）-- .length ,  删除
+
+
+    </script>
+</head>
+<body>
+<h1>对象以及包装类</h1>
+
+</body>
+</html>

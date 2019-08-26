@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组使用，案例分析</title>
+    <script type="text/javascript">
+        // 按字节数排序
+        var arrSortByByte = ['你好','hello','ok','程序员'];
+
+        function getBytes(str){
+            var bytes = str.length;
+            for(var i = 0;i<str.length;i++){
+                if(str.charCodeAt(i) > 255){
+                    bytes++;
+                }
+            }
+            return bytes;
+        }
+
+        arrSortByByte.sort(function (a,b) {
+            return getBytes(a)-getBytes(b);
+        });
+
+        console.log(arrSortByByte);
+
+        //数组去重 Array
+        var arrSimple = [0,9,0,1,1,3,4,5,5,4,2,1,6,8,9,4,6];
+        Array.prototype.unique = function(){
+            var temp = {},resArr = [];
+            for(var i=0;i<this.length;i++){
+                if(!temp[this[i]]){ //!temp.hasOwnProperty(this[i])
+                    temp[this[i]] = 1;
+                    resArr.push(this[i]);
+                }
+            }
+            return resArr;
+        }
+        console.log(arrSimple.unique());
+
+        // 重写 unshift (-1,-2)
+        // [1,2,3] = [-1,1,2,3] => [-2,-1]
+        Array.prototype.myunshift = function(){
+            console.log(arguments);
+            var pos = 0;
+            for (var i=0;i<arguments.length;i++){
+                this.splice(pos,0,arguments[i]);
+                pos++;
+            }
+            return this.length;
+        }
+        var arrTest = [1,2,3];
+        // arrTest.myunshift(-1,-2);
+        // console.log(arrTest);
+
+        // concat
+        Array.prototype.myunshift2 = function(){
+            var pos = 0;
+            var arr = Array.prototype.slice.call(arguments);
+            return arr.concat(this);
+        };
+
+        var res = arrTest.myunshift2(-1,0);
+        console.log(res);
+        console.log(arrTest);
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

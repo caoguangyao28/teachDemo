@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串正则</title>
+    <script type="text/javascript">
+        // 子表达式 ()
+        // 反向代理
+        // var reg = /(\w)\1(\d)\2/g; // ii
+        // var str = "ijidj9jijfidj89388djidjaa";
+        // // 我需要匹配出 连续重复2次的字符
+        // console.log(str.match(reg));
+
+        // xxyy ==> yyxx
+        // var str1 = 'aabb656ccdd90eeff';//bbaa656ddcc90ffee
+        // var reg1 = /(\w)\1(\w)\2/g;
+        // console.log(str1.match(reg1));
+        // str1.replace(reg1,'$2$2$1$1');
+        // console.log(str1.replace(reg1,'$2$2$1$1'));
+        // var resultStr = str1.replace(reg1,function($,$1,$2){
+        //    return $2+$2+$1+$1;
+        // });
+        // console.log(resultStr);
+
+        // js-plug-plug  ==> jsPlugPlug
+        // var str = 'js-plug-plug';
+        // var reg = /-([A-Za-z])/g;
+        // var rest = str.replace(reg,function(node,$1){
+        //     return $1.toUpperCase();
+        // });
+        // console.log(rest);
+
+        // 100002000000000 => 100,002,000,000,000
+        // \b \B
+        var hello = 'Hello world';
+        var rest = hello.match(/\B/g);
+        console.log(rest);
+        var reg = /(?=\B(\d{3})+$)/g;
+        var numbers = '1000000000000000000000'; //1,000,000,000,000,000,000,000
+        console.log(numbers.replace(reg,','));
+
+
+
+    </script>
+</head>
+<body>
+</body>
+
+</html>
