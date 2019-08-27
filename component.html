@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件化</title>
+    <script src="plugs/jquery-1.9.1.min.js" ></script>
+    <script>
+        // 面向对象方式
+        var Class = (function() {
+            var _mix = function(r, s) {
+                for (var p in s) {
+                    if (s.hasOwnProperty(p)) {
+                        r[p] = s[p]
+                    }
+                }
+            };
+            var _extend = function() {
+                //开关 用来使生成原型时,不调用真正的构成流程init
+                this.initPrototype = true;
+                var prototype = new this();
+                this.initPrototype = false;
+                var items = Array.prototype.slice.call(arguments) || [];
+                var item;
+                //支持混入多个属性，并且支持{}也支持 Function
+                while (item = items.shift()) {
+                    _mix(prototype, item.prototype || item)
+                }
+                // 这边是返回的类，其实就是我们返回的子类
+                function SubClass() {
+                    if (!SubClass.initPrototype && this.init)
+                        this.init.apply(this, arguments)//调用init真正的构造函数
+                }
+                // 赋值原型链，完成继承
+                SubClass.prototype = prototype;
+                // 改变constructor引用
+                SubClass.prototype.constructor = SubClass;
+                // 为子类也添加extend方法
+                SubClass.extend = _extend;
+                return SubClass;
+            };
+            //超级父类
+            var Class = function() {};
+            //为超级父类添加extend方法
+            Class.extend = _extend;
+            // Class.prototype.extend = _extend;
+            //错误1
+            return Class;
+        })();
+
+        //继承超级父类，生成个子类Animal，并且混入一些方法。这些方法会到Animal的原型上。
+        //另外这边不仅支持混入{}，还支持混入Function
+        var Animal = Class.extend({
+            init:function(opts){
+                this.msg = opts.msg;
+                this.type = "animal";
+            },
+            say:function(){
+                alert(this.msg+":i am a "+this.type);
+            }
+        });
+        console.log(Animal.prototype);
+        // new Animal({msg:'hello'}).say();
+        //继承Animal，并且混入一些方法
+        var Dog = Animal.extend({
+            init:function(opts){
+                //并未实现super方法，直接简单使用父类原型调用即可
+                Animal.prototype.init.call(this,opts);
+                //修改了type类型
+                this.type = "dog"
+            }
+        });
+        //new Animal({msg:'hello'}).say()
+        // new Dog({msg:'hi'}).say();
+
+        // var TextCount = Class.extend({
+        //     init:function(config){
+        //         this.input = $(config.id);
+        //         this._bind();
+        //         this.render();
+        //     },
+        //     render:function() {
+        //         var num = this._getNum();
+        //
+        //         if ($('#countContainer').length == 0) {
+        //             this.input.after('<span id="countContainer"></span>');
+        //         };
+        //
+        //         $('#countContainer').html(num+'个字');
+        //
+        //     },
+        //     _getNum:function(){
+        //         return this.input.val().length;
+        //     },
+        //     _bind:function(){
+        //         var self = this;
+        //         self.input.on('keyup',function(){
+        //             self.render();
+        //         });
+        //     }
+        // });
+
+        // $(function() {
+        //     // 这里是有问题的 实例中可以 调用 _bind,_getNum 方法
+        //     var test = new TextCount({
+        //         id:"#countInput"
+        //     });
+        // });
+        // base类主要把组件的一般性内容都提取了出来，这样我们编写组件时可以直接继承base类，覆盖里面的bind和render方法。
+        // 于是我们可以这么写代码
+        var Base = Class.extend({
+            init:function(config){
+                //自动保存配置项
+                this.__config = config;
+                this.bind();
+                this.render();
+            },
+            //可以使用get来获取配置项
+            get:function(key){
+                return this.__config[key];
+            },
+            //可以使用set来设置配置项
+            set:function(key,value){
+                this.__config[key] = value;
+            },
+            bind:function(){
+            },
+            render:function() {
+
+            },
+            //定义销毁的方法，一些收尾工作都应该在这里
+            destroy:function(){
+
+            }
+        });
+
+        var TextCount = Base.extend({
+            render:function() {
+                var num = this._getNum();
+
+                if ($('#countContainer').length == 0) {
+                    this.get('input').after(' <span id="countContainer"></span>');
+                };
+
+                $('#countContainer').html(num+'个字');
+
+            },
+            _getNum:function(){
+                return this.get('input').val().length;
+            },
+            bind:function(){
+                var self = this;
+                self.get('input').on('keyup',function(){
+                    self.render();
+                });
+            }
+        });
+
+        $(function() {
+            // 这里是有问题的 实例中可以 调用 _bind,_getNum 方法
+            var test = new TextCount({
+                input:$("#countInput")
+            });
+            console.log(test);
+        });
+
+    </script>
+</head>
+<body>
+<input type="text" id="countInput">
+</body>
+</html>
