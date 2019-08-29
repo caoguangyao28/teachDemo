@@ -18,6 +18,9 @@
         c(function (value) {
             a.push(value);
         });
+
+        // 控制反转 -- 低依赖注入 是 控制反转低一种实现
+        define(["demo"],function(_demo){ return new _demo(); });
     </script>
 </head>
 <body>
