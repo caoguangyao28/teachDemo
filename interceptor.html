@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拦截器的认知及定义</title>
+    <script>
+        // 看一下简单的代码 也是把部分的控制权交给了外部，而内部只是调用包含外部控制权的函数
+        let c = function (callback) {
+            let  b = 0;
+            setInterval(function(){
+                b += 1;
+                if(b % 3 === 0){
+                    callback.apply(this,[b*1000]);
+                }
+            },1000);
+        };
+        let a = [];
+        c(function (value) {
+            a.push(value);
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
