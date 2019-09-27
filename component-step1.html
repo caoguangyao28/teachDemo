@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件化</title>
+    <script src="plugs/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        //常见的 jquery 写法
+        // 最原始的方法
+        $(function () {
+            $('#countInput').on('input', function () {
+                var vualeL = $(this).val().length;
+                if ($('#countContainer').length == 0) {
+                    $(this).after(' <span id="countContainer"></span>');
+                }
+                ;
+                $('#countContainer').html(vualeL + '个字');
+            });
+
+        });
+        // 我们把 统计 渲染分开化(按功能函数化一下) 好一点的
+        // $(function () {
+        //     var input = $('#countInput');
+        //     input.on('input',function () {
+        //         render();
+        //     });
+        //     function getNum(){
+        //         return input.val().length;
+        //     }
+        //     function render(){
+        //         var num = getNum();
+        //         if($('#countContainer').length == 0) {
+        //             input.after(' <span id="countContainer"></span>');
+        //         };
+        //         $('#countContainer').html(num+'个字');
+        //     }
+        //
+        //     render();
+        // });
+    </script>
+</head>
+<body>
+<input type="text" id="countInput">
+</body>
+</html>

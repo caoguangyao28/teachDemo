@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件化</title>
+    <script src="plugs/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        // 放到一个对象中 分隔 作用域 使用单个变量模拟命名空间。
+        // var textCount = {
+        //     input:null,
+        //     init:function (config) {
+        //         this.input = $(config.id);
+        //         //绑定事件
+        //         this.bind();
+        //         return this;
+        //     },
+        //     bind:function(){
+        //         var self = this;
+        //         this.input.on('input',function () {
+        //             self.render();
+        //         })
+        //     },
+        //     getNum:function () {
+        //         return this.input.val().length;
+        //     },
+        //     render:function(){
+        //         var num  = this.getNum();
+        //         if($('#countContainer').length === 0) {
+        //             this.input.after(' <span id="countContainer"></span>');
+        //         };
+        //         $('#countContainer').html(num+'个字');
+        //     }
+        // };
+        // $(function () {
+        //     textCount.init({id:'#countInput'}).render();
+        // });
+
+        // 结合函数（自执行函数 形成私有属性等）
+        var TextCount = (function(){
+            //私有方法
+            var _bind = function(that){
+                that.input.on('input',function(){
+                    that.render();
+                });
+            };
+            var _getNum = function(that){
+                return  that.input.val().length;
+            };
+            var TextCountFun = function (config) {
+
+            };
+            TextCountFun.prototype.init = function(config){
+                this.input = $(config.id);
+                _bind(this);
+                return this;
+            };
+            TextCountFun.prototype.render = function(){
+                var num = _getNum(this);
+                if($('#countContainer').length === 0) {
+                    this.input.after(' <span id="countContainer"></span>');
+                };
+                $('#countContainer').html(num+'个字');
+            };
+
+            return TextCountFun;
+        })();
+        $(function () {
+            new TextCount().init({id:'#countInput'}).render();
+        });
+    </script>
+</head>
+<body>
+<input type="text" id="countInput">
+</body>
+</html>
