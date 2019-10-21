@@ -1,0 +1,26 @@
+{
+  "name": "teachdemo",
+  "version": "1.0.0",
+  "description": "教程使用",
+  "main": "index.js",
+  "dependencies": {
+    "cz-conventional-changelog": "^3.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caoguangyao28/teachDemo.git"
+  },
+  "keywords": [
+    "study"
+  ],
+  "author": "cao.guangyao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caoguangyao28/teachDemo/issues"
+  },
+  "homepage": "https://github.com/caoguangyao28/teachDemo#readme"
+}
