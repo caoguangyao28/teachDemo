@@ -1,77 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>数据结构和算法</title>
-  <script>
-    // 直插排序
-    let arr = [7, 6, 9, 3, 1, 5, 2, 4]
-    let n = 0;
-    let arr2 = [...arr]
-    let arr3 = [...arr]
-    for(let i = 1; i < arr.length; i++){
-      // console.log(i);
-      for(let j = i; j > 0; j-- ){ // 二次循环 第二个元素 向前逐一对比
-        n++; // 内部循环次数
-        if(arr[j] - arr[j-1] < 0){
-          // 交换数据
-          // console.log(n)
-          let t = arr[j];
-          arr[j] = arr[j-1];
-          arr[j-1] = t;
-        } else {
-          break
-        }
-      }
-    }
-
-    console.log(`直插排序：循环次数 ${n} , ${arr.join(',')}`);
-    // sort 方法不同浏览器底层实现算法不一样  火狐使用的是 直插排序 与上面算法循环次数一致
-    // chorme 不一样 数组长度不同 会 直插排序与快速排序结合使用···
-    arr2.sort((a, b) => {
-      console.log('time');// 循环次数
-      return a - b;
-    } )
-    console.log(`arry 默认 sort 方法： ${arr2.join(',')}`)
-
-    // 直插排序 优化 - 希尔排序 () 
-    /** 
-     *  sell sort
-     *  缩小增量的方式进行比对
-     *  初始间隔  gap = length/2 gap = gap/2
-     *  
-    **/
-    function shellSort(arr) {
-      debugger
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据结构和算法</title>
+    <script>
+      // 直插排序
+      let arr = [7, 6, 9, 3, 1, 5, 2, 4, 8, 10, 11, 16, 13, 20, 15];
+      let arrT = Array.from({length: 100}, (v, k) => Math.floor(Math.random() * 100)) 
+      // console.log(arrT)
       let n = 0;
-      for(let gap = Math.floor(arr.length/2); gap > 0; gap = Math.floor(gap/2) ){
-        // 内循环 基本与 插值排序写法基本一致 只是每次移动步长为gap
-        for(let i = gap; i < arr.length; i++) {
-          let j = i;
-          let temp = arr[j];
-          for(; j > 0; j-=gap ){ //只进行每个分组的首尾对比
-            n++
-            if(temp >= arr[j-gap]) { // 无需置换
-              break
+      let arr2 = [...arrT];
+      let arr3 = [...arrT];
+      let arr4 = [...arrT];
+      let arr5 = [...arrT];
+      // sort 方法不同浏览器底层实现算法不一样  火狐使用的是 直插排序 与上面算法循环次数一致
+      // chorme 不一样 数组长度不同 会 直插排序与快速排序结合使用···
+      console.time("Sort");
+      arrT.sort((a, b) => {
+        // console.log('time');// 循环次数
+        return a - b;
+      });
+      console.log(`arry 默认 sort 方法： ${arrT.join(",")}`);
+      console.timeEnd("Sort");
+
+      // 直接插值排序 一种插入排序
+      function insertSort(arr) {
+        for (let i = 1; i < arr.length; i++) {
+          // console.log(i);
+          for (let j = i; j > 0; j--) {
+            // 二次循环 第二个元素 向前逐一对比
+            // n++; // 内部循环次数
+            if (arr[j] - arr[j - 1] < 0) {
+              // 交换数据
+              // console.log(n)
+              let t = arr[j];
+              arr[j] = arr[j - 1];
+              arr[j - 1] = t;
+            } else {
+              break;
             }
-            arr[j] = arr[j-gap]
-            arr[j-gap] = temp;
           }
-          // arr[j] = temp
         }
+        console.log(`直插排序： ${arr.join(",")}`);
       }
-     
-      console.log(`shellSort: 排序循环次数：${n},${arr}`)
-    }
 
-    shellSort(arr3);
-    console.log(`sellsort 方法： ${arr3.join(',')}`)
+      console.time("insertSort");
+      insertSort(arr2);
+      console.timeEnd("insertSort");
 
-  </script>
-</head>
-<body>
-  
-</body>
+      // 直插排序 优化 - 希尔排序 ()
+      /**
+       *  sell sort
+       *  缩小增量的方式进行比对
+       *  初始间隔  gap = length/2 gap = gap/2
+       *
+       **/
+
+      function shellSort(arr) {
+        // let n = 0;
+        for (
+          let gap = Math.floor(arr.length / 2);
+          gap > 0;
+          gap = Math.floor(gap / 2)
+        ) {
+          // 内循环 基本与 插值排序写法基本一致 只是每次移动步长为gap
+          for (let i = gap; i < arr.length; i++) {
+            let j = i;
+            let temp = arr[j];
+            for (; j - gap >= 0; j -= gap) {
+              //只进行每个分组的首尾对比 这里循环条件 必须是 j-gap>= 0; 如果是 j > 0 会如何
+              // n++
+              // console.log(`数组下标：${j}`)
+              if (temp >= arr[j - gap]) {
+                // 无需置换
+                break;
+              }
+              arr[j] = arr[j - gap];
+              // console.log(`arr[${j}] is ${arr[j-gap]}, ${arr.join(',')} `)
+              // arr[j-gap] = temp;
+            }
+            // 这里应该交换
+            arr[j] = temp;
+          }
+        }
+        // console.log(`循环次数: ${n}`)
+        // console.log(`shellSort: 排序循环次数：${n},${arr}`)
+        console.log(`sellsort 方法： ${arr.join(",")}`);
+      }
+      console.time("shellSort");
+      shellSort(arr3);
+      console.timeEnd("shellSort");
+
+      //  通过它发现 shellSort 是有问题的 内循环的条件 导致 直接插值排序 比对 不对且arr 操作出问题
+      function shellSort2(arr) {
+        let len = arr.length;
+        // let n = 0
+        for (
+          let gap = Math.floor(len / 2);
+          gap > 0;
+          gap = Math.floor(gap / 2)
+        ) {
+          for (let i = gap; i < len; i++) {
+            let j = i;
+            let cureent = arr[j];
+            while (j - gap >= 0 && cureent < arr[j - gap]) {
+              // n++
+              arr[j] = arr[j - gap];
+              j = j - gap;
+            }
+            arr[j] = cureent;
+          }
+        }
+        // console.log(`循环次数: ${n}`)
+        console.log(`sellsort2 方法： ${arr.join(",")}`);
+      }
+
+      // shellSort(arr4)
+      console.time("shellSort2");
+      shellSort2(arr5);
+      console.timeEnd("shellSort2");
+
+      // 快速排序
+
+
+      // 冒泡排序
+      
+    </script>
+  </head>
+  <body></body>
 </html>
