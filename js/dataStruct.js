@@ -11,6 +11,7 @@ let arr3 = [...arrT];
 let arr4 = [...arrT];
 let arr5 = [...arrT];
 let arr6 = [...arrT];
+let arr7 = [...arrT];
 // sort 方法不同浏览器底层实现算法不一样  火狐使用的是 直插排序 与上面算法循环次数一致
 // chorme 不一样 数组长度不同 会 直插排序与快速排序结合使用···
 console.time("Sort");
@@ -83,17 +84,12 @@ console.timeEnd("insertSort");
 
 function shellSort(arr) {
   // let n = 0;
-  for (
-    let gap = Math.floor(arr.length / 2);
-    gap > 0;
-    gap = Math.floor(gap / 2)
-  ) {
+  for (let gap = Math.floor(arr.length / 2); gap > 0; gap = Math.floor(gap / 2)) {
     // 内循环 基本与 插值排序写法基本一致 只是每次移动步长为gap
     for (let i = gap; i < arr.length; i++) {
       let j = i;
       let temp = arr[j];
-      for (; j - gap >= 0; j -= gap) {
-        //只进行每个分组的首尾对比 这里循环条件 必须是 j-gap>= 0; 如果是 j > 0 会如何
+      for (; j - gap >= 0; j -= gap) { //只进行每个分组的首尾对比 这里循环条件 必须是 j-gap>= 0; 如果是 j > 0 会如何
         // n++
         // console.log(`数组下标：${j}`)
         if (temp >= arr[j - gap]) {
@@ -197,5 +193,45 @@ console.timeEnd("quickSort");
 
 /**
  * 归并排序
- * 
+ * 典型的分治法排序，用于 归并
+ * MergeSort
+ * 分解 divide 将n个元素分成含 n/2 个元素的子序列
+ * 解决 conquer 用合并排序法对两个子序列递归排序
+ * 合并 combine 合并两个已经排序的子序列得到排序结果
+ * 实现步骤
+ * 1， 将序列每组相邻两个进行归并操作，形成floor(n/2) 个序列，排序后每个序列包含两个元素
+ * 2， 将上诉序列再次归并，形成 floor(n/4)个序列， 每个序列包含4个元素
+ * 3， 重复步骤2 ，直到所有元素排序完毕
  */
+function mergeSort(arr) {
+  let len = arr.length
+  if(len < 2) return arr;
+  let mid = Math.floor(len / 2);
+  let left = arr.slice(0,mid);
+  let right = arr.slice(mid);
+
+  return merge(mergeSort(left), mergeSort(right))
+}
+
+function merge(left, right) {
+  let result = []
+  while(left.length > 0 && right.length >0){
+    if(left[0] <= right[0]) {
+      result.push(left.shift())
+    }else{
+      result.push(right.shift())
+    }
+  }
+  while (left.length) result.push(left.shift())
+  while (right.length) result.push(right.shift())
+  // console.log(result.join(','))
+  return result
+}
+
+// let arrm = [7, 6, 9, 3, 1, 5, 2, 4]
+// mergeSort(arrm)
+
+console.time("mergeSort");
+let arrr = mergeSort(arr7);
+console.timeEnd("mergeSort");
+console.log(`arr7 : ${arr7.join('，')} 排序结果：${arrr.join(',')} `)
