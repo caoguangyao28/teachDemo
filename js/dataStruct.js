@@ -194,3 +194,8 @@ function swap(arr, i, j){ // 交换元素
 console.time("quickSort");
 quickSort(arr);
 console.timeEnd("quickSort");
+
+/**
+ * 归并排序
+ * 
+ */
