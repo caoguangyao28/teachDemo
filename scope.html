@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>javascript scope</title>
+  <script>
+    // 画出作用域 连图
+    function foo(){
+      function bar(){
+        var inner = 234;
+        outer = 0;
+        console.log(inner);
+      }
+      var outer = 123;
+      bar();
+      console.log(outer);
+      console.log(glob);
+    }
+    var glob = 100;
+    foo();
+  </script>
+</head>
+<body>
+
+</body>
+</html>

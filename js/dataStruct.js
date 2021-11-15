@@ -177,7 +177,7 @@ function partition(arr, left, right) { // 分区操作
       index++
     }
   }
-  swap(arr, pivot, index - 1) // 通过 上面的 对吧及排序 得到2个分区，需要将 基准值（及 pviot 位置的元素 和 index-1 做替换 ！！！ 此时 index 对应的数据是大于等于 基准值的）
+  swap(arr, pivot, index - 1) // 通过 上面的 对比及排序 得到2个分区，需要将 基准值（及 pviot 位置的元素 和 index-1 做替换 ！！！ 此时 index 对应的数据是大于等于 基准值的）
   return index -1 // 将排序后的 arr 基准值 索引 返回
 }
 
@@ -234,4 +234,17 @@ function merge(left, right) {
 console.time("mergeSort");
 let arrr = mergeSort(arr7);
 console.timeEnd("mergeSort");
-console.log(`arr7 : ${arr7.join('，')} 排序结果：${arrr.join(',')} `)
+// console.log(`arr7 : ${arr7.join('，')} 排序结果：${arrr.join(',')} `)
+
+/**
+ * 堆排序
+ * 近似完全二叉树的结构
+ * 1， 大顶堆：每个节点的值都大于或等于其子节点，在堆排序算法中用作升序排序
+ * 2， 小顶堆：每个节点的值都小于或等于其子节点，在堆排序算法中用作降序排序
+ * 堆排序的平均时间复杂度为O(nlogn)
+ * 算法拆解
+ * 1，创建一个堆 H[0....n-1]
+ * 2, 把堆首（最大值）和堆尾互换
+ * 3, 把堆的尺寸缩小 1，并调用 shift_down(0)，目的是把新的数组顶端数据调整到相应位置
+ * 4, 重复步骤 2，直到堆的尺寸为 1
+ */
