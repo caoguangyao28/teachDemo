@@ -6,10 +6,10 @@
     <script type="text/javascript">
         // 子表达式 ()
         // 反向代理
-        // var reg = /(\w)\1(\d)\2/g; // ii
-        // var str = "ijidj9jijfidj89388djidjaa";
-        // // 我需要匹配出 连续重复2次的字符
-        // console.log(str.match(reg));
+        var reg = /(\w)\1(\d)\2/g; // wwdd
+        var str = "ijidj9jijfidj89388djidjaa11";
+        // 我需要匹配出 连续重复2次的字符
+        console.log(str.match(reg));
 
         // xxyy ==> yyxx
         // var str1 = 'aabb656ccdd90eeff';//bbaa656ddcc90ffee
@@ -32,12 +32,18 @@
 
         // 100002000000000 => 100,002,000,000,000
         // \b \B
-        var hello = 'Hello world';
-        var rest = hello.match(/\B/g);
-        console.log(rest);
-        var reg = /(?=\B(\d{3})+$)/g;
-        var numbers = '1000000000000000000000'; //1,000,000,000,000,000,000,000
-        console.log(numbers.replace(reg,','));
+        // var hello = 'Hello world';
+        // var restB = hello.match(/\B/g);
+        // console.log('非单词边界匹配结果：')
+        // console.log(restB);
+        // let restb = hello.match(/\b/g);
+        // console.log(`单词边界匹配结果`);
+        // console.log(restb);
+        // var reg = /(?=\B(\d{3})+$)/g;
+        // let reg2 = /(?=\B(\d{3})$)/g;
+        // var numbers = '10000000000000000000000'; //1,000,000,000,000,000,000,000
+        // console.log(numbers.replace(reg,','));
+        // console.log(numbers.replace(reg2,'-'))
 
 
 
