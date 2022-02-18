@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常见数据结构-js的实现</title>
+  <script>
+    // 栈的实现， 后进先出 LIFO
+    class Stack{
+      constructor(...args){
+        // 使用数组模拟
+        this.stack = [...args];
+      }
+      // 入栈
+      push(...items){
+        return this.stack.push(...items);
+      }
+      // 出栈
+      pop(){
+        return this.stack.pop();
+      }
+      // 栈的末端
+      peek(){
+        return this.isEmpty()? undefined : this.stack[this.size() - 1]
+      }
+      isEmpty(){
+        return this.size() == 0
+      }
+      size(){
+        return this.stack.length
+      }
+
+    }
+    // 测试
+    let stackone = new Stack(0);
+    console.log(stackone.stack);
+    stackone.push(1);
+    console.log(stackone.stack);
+    console.log(stackone.pop());// 0
+    console.log(stackone.stack); 
+    console.log(stackone.peek());// 1
+
+    // 队列的实现 先进先出
+    class Queue{
+      constructor(...args){
+        this.queue = [...args];
+      }
+      // 入队
+      enqueue(...items){
+        return this.queue.push(...items)
+      }
+      // 出对
+      dequeue(){
+        return this.queue.shift()
+      }
+      front(){
+        return this.isEmpty()? undefined : this.queue[0];
+      }
+      back(){
+        return this.isEmpty()? undefined : this.queue[this.size()-1];
+      }
+      isEmpty(){
+        return this.size() == 0
+      }
+      size(){
+       return this.queue.length
+      }
+    }
+    // 测试队列
+    console.log('队列测试')
+    let queueone = new Queue(0);
+    console.log(queueone.queue);
+    queueone.enqueue(1,2);
+    console.log(queueone.queue);
+    queueone.dequeue();
+    console.log(queueone.queue);
+    // 链表 由节点组成线性结构
+    // 节点
+    class Node{
+      constructor(data){
+        // 当前节点的数据
+        this.data = data;
+        // 指向下一个节点
+        this.next = null;
+        // 指向前一个
+        this.prev = null;
+      }
+    }
+    // var testnode = new Node('test');
+    // console.log(testnode)
+    class DoublyLinkedList{
+      constructor(){
+        // 链表开头
+        this.head = null;
+        // 结尾
+        this.tail = null;
+      }
+      // 在链表尾部添加新节点
+      add(item){
+        // 实例化一个节点
+        let node = new Node(item)
+        // 如果链表没有 head
+        if(!this.head){
+          this.head = node
+          this.tail = node
+        }else{
+          // 已有头部 当前的尾部作为新节点的prev
+          node.prev = this.tail
+          // 当前的尾部的next指向新节点
+          this.tail.next = node
+          this.tail = node
+        }
+      }
+      // 在链表指定位置添加一个新的节点
+      addAt(index,item){
+        let current = this.head
+        // 维护当前节点的索引
+        let counter = 1
+        let node = new Node(item)
+
+        // 如果在头部添加
+        if(index === 0){
+          this.head.prev = node
+          node.next = this.head
+          this.head = node
+        }else{
+          // 非头部添加
+          while(current){
+            current = current.next
+            if(counter === index){
+              node.prev = current.prev
+              current.prev.next = node
+              node.next = current
+              current.prev = node
+            }
+            counter++
+          }
+        }
+      }
+      // 删除链表指定数据项节点
+      remove(item){
+        let current = this.head
+        while(current){
+          // 找到目标节点
+          if(current.data === item){
+            // 目标链表只有当前目标项 
+            if(current == this.head && current == this.tail){
+              this.head = null
+              this.tail = null
+
+            }else if(current == this.head){
+              // 目标节点为链表头
+              this.head = this.head.next
+              this.head.prev = null
+            }else if(current == this.tail){
+              // 目标为链表尾部
+              this.tail = this.tail.prev
+              this.tail.next = null
+            }else{
+              // 在收尾之间
+              current.prev.next = current.next
+              current.next.prev = current.prev
+            }
+          }
+          current = current.next
+        }
+
+      }
+      // 删除指定位置节点
+      removeAt(index){
+        // 都是从头 “开始遍历”
+        let current = this.head
+        let counter = 1
+        // 目标就是 头部
+        if(index === 0){
+          this.head = this.head.next
+          this.head.prev = null
+        }else{
+          while(current){
+            current = current.next
+            // 如果目标在链表尾部
+            if(current == this.tail){
+              this.tail = this.tail.prev
+              this.tail.next = null
+            }else if(counter === index){
+              current.prev.next = current.next
+              current.next.prev = current.prev
+              break
+            }
+            counter++
+          }
+        }
+
+      }
+      // 链表长度
+      length(){
+        let current = this.head
+        let counter = 0
+        // 完整的遍历
+        while(current !== null){
+          counter++
+          current = current.next
+        }
+        return counter
+      }
+      // 查询链表是否为空
+      isEmpty(){
+        return this.length() < 1
+      }
+    }
+    // 测试链表
+    console.log('创建空 linkedlist')
+    let linkedlist = new DoublyLinkedList()
+    console.log('linkedlist 的大小为' + linkedlist.length() +'  是否为空：'+linkedlist.isEmpty())
+    linkedlist.add('fistNode')
+    console.log('添加第一个节点后（firstNode）')
+    console.log(linkedlist)
+    linkedlist.add('secondNode')
+    linkedlist.add('threeNode')
+    linkedlist.add('fourNode')
+    console.log('连续末尾添加 secondNode threeNode fourNode')
+    console.log(linkedlist)
+    console.log('linkedlist 的大小为' + linkedlist.length() +'  是否为空：'+linkedlist.isEmpty()) 
+    linkedlist.addAt(0,'zeroNode')
+    linkedlist.addAt(2,'1.5Node')
+    linkedlist.addAt(4,'2.5Node')
+    console.log(linkedlist)
+    linkedlist.remove('2.5Node')
+    console.log(linkedlist)
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
