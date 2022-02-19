@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>微任务demo</title>
+</head>
+<body>
+  <button id="btn">click me</button>
+  <script>
+    let btn = document.querySelector('#btn');
+    // dom 事件是宏任务（任务）
+    btn.addEventListener('click',function(){
+      // 向微任务队列中添加
+      queueMicrotask(()=>{
+        console.log("microtask 1")
+      })
+      console.log(1)
+    })
+    // 注册第二个click 事件
+    btn.addEventListener('click', ()=>{
+      queueMicrotask(()=>{
+        console.log("microtask 2")
+      })
+      console.log(2)
+    })
+  </script>
+</body>
+</html>
