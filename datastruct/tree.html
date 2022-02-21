@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> js 中 tree 的实现</title>
+  <script>
+    // 非线性 除跟节点所有节点都有父节点  无子节点为叶节点
+    // 二叉树搜索树 -- 最基本的树 每个节点最多包含 连个子节点
+    // 二叉搜索树 BST  平衡二叉搜素树 AVL  红黑树 R/B Tree
+    /**
+     * 节点类
+     */
+    class Node{
+      constructor(data){
+        this.left = null
+        this.right = null
+        this.value = data
+      }
+    }
+    class BST{
+      constructor(){
+        // 跟节点
+        this.root = null;
+      }
+      // 根据父节点插入子节点
+      _intertNode(root, newNode){
+        if(newNode.value < root.value){// 左侧 递归调用
+          (!root.left)?root.left = newNode : this._intertNode(root.left,newNode)
+        }else{
+          // 右侧  递归调用
+          (!root.right)? root.right = newNode : this._intertNode(root.right, newNode)
+        }
+      }
+      insert(value){
+        let newNode = new Node(value)
+        // 判断是否是根节点
+        if(!this.root){
+          this.root = newNode
+        }else{
+          // 不是根节点 直接调用 insertNode -查找递归插入
+          this._intertNode(this.root, newNode)
+        }
+      }
+      // 根据一个父节点，移除一个字节点
+      _removeNode(root,value){
+        if(!root){
+          return null;
+        }
+        if(value < root.value){
+          // 左侧递归查找
+          root.left = this._removeNode(root.left, value)
+          return root;
+        }else if(value > root.value){
+          // 右侧递归查找
+          root.right =this._removeNode(root.right, value)
+          return root;
+        }else{
+          // 找到了需要删除的节点
+          // 如果当前root节点无左右节点
+          if(!root.left && !root.right){
+            root = null
+            return root
+          }else if(root.left && !root.right){
+            // 只有左节点
+            root = root.left
+            return root
+          }else if(!root.left && root.right){
+            // 只有右节点
+            root = root.right
+            return root
+          }
+          // 有左右两个子节点
+          let minRight = this._findMinNode(root.right)
+          root.value = minRight.value
+          root.right = this._removeNode(root.right,minRight.value)
+          return root;
+        }
+
+      }
+      // 移除一个节点
+      remove(value){
+        if(this.root){
+          this._removeNode(this.root, value)
+        }
+      }
+      // 找到最小节点  该方法不断递归 直到找到最左叶子
+      _findMinNode(root){
+        if(!root.left){
+          return root
+        }else{
+          return this._findMinNode(root.left)
+        }
+
+      }
+      // 根据一个父节点，查找子节点
+      _serachNode(root,value){
+        if(!root){
+          return null;
+        }
+        if(value < root.value){
+          return this._serachNode(root.left, value)
+        }else if(value > root.value){
+          return this._serachNode(root.right, value)
+        }
+        return root;
+      }
+      // 查找子节点
+      search(value){
+        if(!this.root){
+          return false
+        }
+        return this._serachNode(this.root, value)
+      }
+      // 前序遍历
+      preOrder(root){
+        if(root){
+          console.log(root.value)
+          this.preOrder(root.left)
+          this.preOrder(root.right)
+        }
+      }
+      // 中序遍历
+      inOrder(root){
+        if(root){
+          this.inOrder(root.left)
+          console.log(root.value)
+          this.inOrder(root.right)
+        }
+      }
+      // 后续遍历
+      postOrder(root){
+        if(root){
+          this.postOrder(root.left)
+          this.postOrder(root.right)
+          console.log(root.value)
+        }
+      }
+    }
+    // 测试
+    let bst = new BST();
+    bst.insert(9);
+    bst.insert(5);
+    bst.insert(4);
+    bst.insert(7);
+    bst.insert(3);
+    bst.insert(6);
+    bst.insert(8);
+    bst.insert(13);
+    bst.insert(11);
+    bst.insert(14);
+    bst.insert(10);
+    bst.insert(12);
+    // console.log(bst)
+    // bst.remove(7)
+    // console.log(bst)
+    console.log(bst.search(7))
+    console.log(bst._serachNode(bst.search(5),7))
+    console.log('前序遍历')
+    bst.preOrder(bst.root)
+    console.log('中序遍历')
+    bst.inOrder(bst.root)
+    console.log('后序遍历')
+    bst.postOrder(bst.root)
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
