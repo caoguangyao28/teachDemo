@@ -208,6 +208,70 @@
       isEmpty(){
         return this.length() < 1
       }
+      // 翻转链表
+      reverse(){
+        let current = this.head;
+        let prev = null;
+        while(current){
+          let next = current.next
+          // 前后颠倒
+          current.next = prev
+          current.prev = next
+          prev = current
+          current = next
+        }
+        this.tail = this.head
+        this.head = prev
+      }
+      // 交换节点数据
+      swap(index1,index2){
+        // 使 index1 始终小于 index2，方便后面查找交换
+        if(index1 > index2){
+          return this.swap(index2,index1);
+        }
+        let current = this.head
+        let counter = 0
+        let firstNode
+
+        while (current !== null) {
+          // 先找到第一个节点，缓存起来
+          if(counter === index1){
+            firstNode = current
+          }else if(counter == index2){
+            // 继续找到第二个节点，交换数据
+            let temp = current.data
+            current.data = firstNode.data
+            firstNode.data = temp
+            return true
+          }
+          current = current.next
+          counter++
+        }
+        return false
+      }
+      // 遍历节点 每个节点处理 fn
+      traverse(fn){
+        let current = this.head
+        
+        while(current !== null){
+          fn(current)
+          current = current.next
+        }
+        return true
+      }
+      // 更加节点data查找某个节点的索引
+      find(item){
+        let current = this.head
+        let counter = 0
+         while(current){
+           if(current.data == item){
+             return counter
+           }
+           current = current.next
+           counter++
+          }
+          return false
+      }
     }
     // 测试链表
     console.log('创建空 linkedlist')
@@ -226,8 +290,18 @@
     linkedlist.addAt(2,'1.5Node')
     linkedlist.addAt(4,'2.5Node')
     console.log(linkedlist)
-    linkedlist.remove('2.5Node')
-    console.log(linkedlist)
+    // console.log('移除2.5Node');
+    // linkedlist.remove('2.5Node')
+    // console.log(linkedlist);
+    // console.log('翻转链表');
+    // console.log 机制打印对象时 “不准确”
+    // linkedlist.reverse();
+    // console.log(linkedlist);
+    // console.log('交换 index 0， 1 节点的 data')
+    // linkedlist.swap(0,1)
+    // console.log(linkedlist.swap(8,9))
+    // console.log(linkedlist)
+    console.log(linkedlist.find('1.5Node'))
   </script>
 </head>
 <body>
