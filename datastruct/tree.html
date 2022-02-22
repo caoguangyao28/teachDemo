@@ -137,6 +137,26 @@
           console.log(root.value)
         }
       }
+      // 最大值 == 最右侧的值
+      getMax(){
+        let root = this.root
+        let max;
+        while(root){
+          max = root.value
+          root = root.right
+        }
+        return max;
+      }
+      // 最小值 == 最左侧的值
+      getMin() {
+        let root = this.root
+        let min;
+        while(root){
+          min = root.value
+          root = root.left
+        }
+        return min
+      }
     }
     // 测试
     let bst = new BST();
@@ -163,9 +183,11 @@
     bst.inOrder(bst.root)
     console.log('后序遍历')
     bst.postOrder(bst.root)
+    console.log(`最大值：${bst.getMax()}`)
+    console.log(`最小值： ${bst.getMin()}`)
   </script>
 </head>
 <body>
-  
+  数据结构-tree（二叉搜索树） js的实现
 </body>
 </html>
