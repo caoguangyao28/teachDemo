@@ -33,13 +33,18 @@
 
     }
     // 测试
+    console.log('初始化 stackone new Stack(0)');
     let stackone = new Stack(0);
+    console.log('stackone : ')
     console.log(stackone.stack);
+    console.log('stackone.push(1) 后');
     stackone.push(1);
     console.log(stackone.stack);
+    console.log('首个出栈：')
     console.log(stackone.pop());// 0
+    console.log(`首个出栈后：`)
     console.log(stackone.stack); 
-    console.log(stackone.peek());// 1
+    // console.log(stackone.peek());// 1
 
     // 队列的实现 先进先出
     class Queue{
@@ -305,6 +310,6 @@
   </script>
 </head>
 <body>
-  
+  堆栈，队列的实现
 </body>
 </html>
