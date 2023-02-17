@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据结构-graph js的实现</title>
+  <script>
+    /**
+     * 基本元素
+     * 节点： Node
+     * 边 ： Edge
+     * |V|: 顶点的总数
+     * |E|: 图中连接总数
+     * 
+     * 有向图 Graph 类
+     */
+    class Graph {
+      constructor(){
+        // 使用map 数据结构表述图中顶点关系
+        this.AdjList = new Map()
+
+      }
+      // 创建顶点
+      addVertex(vertex){
+        if(!this.AdjList.has(vertex)){
+          this.AdjList.set(vertex,[]) //[] 存取边
+
+        }else{
+          throw `${vertex} already exist!`
+        }
+      }
+      // 添加边
+      addEdge(vertex,node){
+        if(this.AdjList.has(vertex)){
+          if(this.AdjList.has(node)){
+            let arr = this.AdjList.get(vertex)
+            if(!arr.includes(node)){
+              arr.push(node)
+            }else{
+              throw `can't add has-exisiting node -> ${node}`
+            }
+          }else{
+            throw `can't add non-exisiting vertex -> ${node}`
+          }
+        }else{
+          throw `you should add ${vertex} first`
+        }
+      }
+      // 打印图
+      print() {
+        // for of 
+        for(let [key, value] of this.AdjList) {
+          console.log(key,value)
+        }
+      }
+      // 广度优先算法遍历 -- 利用搜索队列 实现 
+      createVisitedObject(){
+        let map = {}
+        for (let key of this.AdjList.keys()){
+          map[key] = false
+        }
+        return map
+      }
+      // 未进行 是否所有顶点 访问判断
+      bfs(initialNode){
+        // 创建一个已访问节点的map
+        let visited = this.createVisitedObject()
+        // 模拟一个队列
+        let queue = []
+        // 第一个已访问的节点
+        visited[initialNode] = true
+        // 入队列
+        queue.push(initialNode)
+        console.log(Object.keys(visited));
+        while(queue.length){
+          let current = queue.shift()
+          console.log(current)
+          // 获得该顶点与其他点的关系
+          let arr = this.AdjList.get(current)
+          for(let elem of arr){
+            if(!visited[elem]){
+              // 如果当前点没有访问过
+              visited[elem] = true
+              queue.push(elem)
+            }
+          }
+          // 是否所有顶点都已访问
+          for(let key in visited){
+            if(!visited[key]){
+              visited[key] = true
+              queue.push(key)
+            }
+          }
+
+        }
+      }
+      // 未进行 是否所有顶点 访问判断
+      dfs(initialNode){
+        let visited = this.createVisitedObject()
+        this.dfsHelper(initialNode, visited)
+      }
+      dfsHelper(node, visited){
+        visited[node] = true
+        console.log(node)
+
+        let arr = this.AdjList.get(node)
+        // 遍历节点调用 this.dfsHelper
+        for(let elem of arr){
+          if(!visited[elem]){
+            this.dfsHelper(elem, visited)
+          }
+        }
+        // 是否所有顶点都已访问
+        for(let key in visited){
+          if(!visited[key]){
+            visited[key] = true
+            queue.push(key)
+          }
+        }
+
+
+      }
+
+    }
+    let graph = new Graph()
+    graph.addVertex('A')
+    graph.addVertex('B')
+    graph.addVertex('C')
+    graph.addVertex('D')
+    // console.log(graph)
+    graph.addEdge('A','B')
+    graph.addEdge('A','C')
+    graph.addEdge('A','D')
+    graph.addEdge('B','C')
+    graph.addEdge('B','D')
+    graph.addEdge('C','D')
+    graph.addEdge('D','A')
+    // graph.print()
+    // graph.bfs('B')
+    graph.dfs('B')
+  </script>
+</head>
+<body>
+ 图的实现 
+</body>
+</html>

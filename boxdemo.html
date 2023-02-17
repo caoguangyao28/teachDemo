@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒模型 demo</title>
+  <style>
+    html,body{
+      padding: 0;
+      margin: 0;
+    }
+    .commonbox{
+      background-color: aquamarine;
+      width: 500px;
+      height: 500px;
+      padding: 20px;
+      border: 5px solid bisque;
+      margin: 20px;
+    }
+    .commonbox-r{
+      width: 500px;
+      height: 500px;
+      background-color: aquamarine;
+      position: relative;
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+    }
+    .hv-center{
+      width: 200px;
+      height: 200px;
+      background-color: bisque;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="commonbox">
+
+  </div>
+  <!-- <div class="commonbox-r">
+    <div class="hv-center">
+      
+    </div>
+  </div> -->
+  <!-- <br>
+  <div class="flex">
+    <div class="flex-item one">one</div>
+    <div class="flex-item">two</div>
+    <div class="flex-item">three</div>
+    <div class="flex-item">four</div>
+    <div class="flex-item">five</div>
+  </div> -->
+</body>
+</html>

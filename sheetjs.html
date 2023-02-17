@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sheetjs demo</title>
+  <!-- use the latest version -->
+  <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <!-- <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.18.10/package/dist/xlsx.full.min.js"></script> -->
+</head>
+<body>
+  <div id="execel-show">
+
+  </div>
+  <script>
+    (async() => {
+      /* fetch JSON data and parse */
+      const url = "https://sheetjs.com/executive.json";
+      const raw_data = await (await fetch(url)).json();
+    
+      /* filter for the Presidents */
+      const prez = raw_data.filter(row => row.terms.some(term => term.type === "prez"));
+    
+      /* flatten objects */
+      const rows = prez.map(row => ({
+        name: row.name.first + " " + row.name.last,
+        birthday: row.bio.birthday
+      }));
+    
+      /* generate worksheet and workbook */
+      const worksheet = XLSX.utils.json_to_sheet(rows);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Dates");
+    
+      /* fix headers */
+      XLSX.utils.sheet_add_aoa(worksheet, [["Name", "Birthday"]], { origin: "A1" });
+    
+      /* calculate column width */
+      const max_width = rows.reduce((w, r) => Math.max(w, r.name.length), 10);
+      worksheet["!cols"] = [ { wch: max_width } ];
+
+      // XLSX.utils.sheet_to_html()  const ws = wb.Sheets[wb.SheetNames[0]];
+      console.log('转换成table string 开始：'+ new Date().getTime())
+      const htmls = XLSX.utils.sheet_to_html(workbook.Sheets["Dates"], {editable: true, id: "test-table"})
+      console.log('转换成table string 结束：'+ new Date().getTime())
+      
+      console.log('筛选table：'+ new Date().getTime())
+      fragment = document.createRange().createContextualFragment(htmls)
+      const childtable = fragment.querySelector("#test-table")
+      // console.log(htmls)
+      document.getElementById('execel-show').appendChild(childtable)
+      console.log('插入table：'+ new Date().getTime())
+      /* create an XLSX file and try to save to Presidents.xlsx */
+      // XLSX.writeFile(workbook, "Presidents.xlsx");
+    })();
+    </script>
+</body>
+</html>
