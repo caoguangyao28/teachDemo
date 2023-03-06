@@ -26,13 +26,14 @@ function run(func) {
   let cache = []
 
   let i = 0;
+  let j = 0;
 
   const _originalfetch = window.fetch
 
   window.fetch = (...args) => {
     // 发送请求
     // 判断是否有缓存 缓存是否是promise
-    console.log(i)
+    console.log(++j)
     if(cache[i]) {
       // 交付缓存结果
       console.log('命中缓存：', cache[i])
