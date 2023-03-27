@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CustomEvent 自定义事件</title>
+</head>
+<body>
+  CustomEvent 自定义事件 与 Event 的区别，可以自定义更多的参数
+  <form>
+    <textarea name="test" id="test" cols="30" rows="10"></textarea>
+  </form>
+  <script>
+    const form = document.querySelector('form');
+    const textarea = document.querySelector('textarea');
+    form.addEventListener('awesome', e => console.log(e.detail.text()));
+
+    textarea.addEventListener('input', function() {
+      // Create and dispatch/trigger an event on the fly
+      // Note: Optionally,
+      // we've also leveraged the "function expression" 
+      // (instead of the "arrow function expression") so "this" will represent the element
+      const evnet = new CustomEvent('awesome', { bubbles: true, detail: { text: () => textarea.value } }) 
+      this.dispatchEvent(evnet)
+    });
+  </script>
+</body>
+</html>
