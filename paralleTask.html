@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>paralleTask 并发控制</title>
+  <script src="./js/paralleTask.js"></script>
+  <script>
+    const task = () => new Promise((resolve) => {
+      const taskList = [800, 1000, 900, 1200, 1800, 1100];
+      timeout = taskList[parseInt(Math.random() * 5)]
+      setTimeout(() => {
+        console.log('请求成功:task', timeout)
+        resolve(timeout);
+      }, timeout)
+    })
+
+    const tasks = new Array(10)
+    for(let i =0; i< tasks.length; i++){
+      tasks[i] = task
+    }
+    paralleTask(tasks, 4)
+
+  </script>
+</head>
+<body>
+  并发控制
+</body>
+</html>

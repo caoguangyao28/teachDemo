@@ -1,4 +1,7 @@
 # teachDemo
-教学演示
-测试git
-修改为ssh验证是否还需要 ssh密码
+# 演示
+
+## 每周一讲
+- ES6 class 降级 ES5 [classDemo.html](./classDemo.html)
+- 高阶函数引用-并发队列控制 [paralleTask.html](./paralleTask.html)
+- 参数归一化 [dateFormat.html](./dateFormat.html)
