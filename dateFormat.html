@@ -8,9 +8,36 @@
   <script src="./js/dateFormat.js"></script>
 </head>
 <body>
-  dateFormat[参数归一化]
-  <code>
-    var test = 'ddd'
-  </code>
+  [参数归一化]-dateFormat
+  <xmp>
+    // 2023-4-8
+    formate(new Date(), 'date')
+
+    // 2023-4-8 19:9:13
+    formate(new Date(), 'datetime')
+
+    // 2023-04-08
+    formate(new Date(), 'date', true)
+
+    // 2023-04-08 17:20:33
+    formate(new Date(), 'datetime', true)
+
+    // 2023年4月8日 17:4:23.22
+    formate(new Date(), 'yyyy年MM月dd日 HH:mm:ss.ms')
+
+    // 2023年4月8日 17:4:23.229  
+    // 场景最灵活 最强大  考虑其他情况转换成函数 -- 参数归一
+    formate(new Date('2022/1/1'), (dateinfo) => {
+      const {year} = dateinfo
+      const thisyear = new Date().getFullYear()
+      if(year < thisyear) {
+        return `${thisyear - year}年前`
+      } else if(year > thisyear) {
+        return `${year - thisyear}年后`
+      } else {
+        return '今年'
+      }
+    })
+  </xmp>
 </body>
 </html>

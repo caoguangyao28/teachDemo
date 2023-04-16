@@ -103,4 +103,4 @@ formate(new Date('2022/1/1'), (dateinfo) => {
   } else {
     return '今年'
   }
-},true)
+})
