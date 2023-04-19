@@ -5,15 +5,6 @@ async function getUserInfo() {
   ).then((res) => res.json())
 }
 
-function getUserInfo2() {
-  // return await fetch(
-  //   'https://my-json-server.typicode.com/typicode/demo/profile'
-  // ).then((reasp) => {reasp.json()})
-
-  return fetch(
-    'https://my-json-server.typicode.com/typicode/demo/profile'
-  )
-}
 
 async function m1() {
   return await getUserInfo()
