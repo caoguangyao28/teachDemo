@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTCPeerConnection getUserIPs</title>
+  <script>
+    //  改示例缺少可用的 services，目前新版浏览器 无法正常获取外网的ip地址 且还需要设置浏览器配置项
+    function getUserIP() {
+
+      // const RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
+      // console.log("TCL: RTCPeerConnection", RTCPeerConnection)
+      // if (RTCPeerConnection) (() => {
+      //   var rtc = new RTCPeerConnection()
+      //   rtc.createDataChannel(''); //创建一个可以发送任意数据的数据通道
+      //   rtc.createOffer((offerDesc) => { //创建并存储一个sdp数据
+      //     rtc.setLocalDescription(offerDesc)
+      //   }, (e) => { console.log(e) })
+      //   rtc.onicecandidate = (evt) => { //监听candidate事件
+      //     if (evt.candidate) {
+      //       let ip_rule = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/
+      //       // var ip_addr = ip_rule.exec(evt.candidate.candidate)[1]
+      //       var ip_addr = evt.candidate.address
+      //       // this.test(ip_addr);//调用方法把ip地址的值传出去
+      //       localStorage.setItem('ipInfo', ip_addr)
+      //       console.log('ipInfo', ip_addr)
+      //       // func(ip_addr)
+      //     }
+      //   }
+      // })()
+
+      //  空的 iceServers 获取不到外网地址
+      // let conn = new RTCPeerConnection({
+      //   iceServers: []
+      // })
+      // let noop = function () { }
+      // conn.onicecandidate = function (ice) {
+      //   if (ice.candidate) {
+      //     //使用正则获取ip
+      //     let ip_regex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/
+      //     let ip_addr = ip_regex.exec(ice.candidate.candidate)[1];
+      //     console.log(ip_addr);
+      //     conn.onicecandidate = noop
+      //   }
+      // }
+      // //随便创建一个叫狗的通道(channel)
+      // conn.createDataChannel('dog')
+      // //创建一个SDP协议请求
+      // conn.createOffer(conn.setLocalDescription.bind(conn), noop)
+    }
+    // getUserIP()
+
+    const iceServers = [
+      // { urls: 'stun:stun.l.google.com:19302' },
+      { urls: 'stun:stun1.l.google.com:19302' }, // 返回2次，一个 加密的local，一个ip4
+      // {urls: 'stun:stun.xten.com'},
+      // { urls: 'stun:stun2.l.google.com:19302' }, // 无效
+      // { urls: 'stun:stun3.l.google.com:19302' }, // 无效
+      // { urls: 'stun:stun4.l.google.com:19302' }, // 无效
+    ];
+    // getUserIPs function
+    function getUserIPs(callback) {
+      const myPeerConnection = new RTCPeerConnection({ iceServers });
+      myPeerConnection.createDataChannel("");
+      myPeerConnection.createOffer().then(offer => myPeerConnection.setLocalDescription(offer));
+
+      myPeerConnection.onicecandidate = function (event) {
+        if (event.candidate) {
+          // console.log(event.candidate)
+          const parts = event.candidate.candidate.split(' ');
+          const ip = parts[4];
+          callback(ip);
+        }
+      };
+    }
+
+    getUserIPs((ip) => {
+      const ipv4Regex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+      const ipv6Regex = /^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}(([0-9a-fA-F]{1,4}:){1,4}|((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/;
+      if(ipv4Regex.test(ip) || ipv6Regex.test(ip)){
+        console.log(ip)
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <h1>RTCPeerConnection</h1> 
+  <span>利用 RTCPeerConnection 获取real 外网ip4</span>
+</body>
+
+</html>
