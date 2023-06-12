@@ -7,3 +7,10 @@
 - 高阶函数应用-并发队列控制 [paralleTask.html](./paralleTask.html)
 - 参数归一化 [dateFormat.html](./dateFormat.html)
 - 分时函数-高阶函数，参数归一[分时函数.html](./%E5%88%86%E6%97%B6%E5%87%BD%E6%95%B0.html)
+- 跨窗口标签页通信-BroadCast chanel[broadCastChanel.html](./broadCastChanel.html)
+- js函数重载 - functionOverload[functionOverload.html](./functionOverload.html)
+- 一种在不同浏览器上下文之间通信的重量级方案：[ServiceWorker](./serviceWorker.html)
+
+## 实用小方法
+- 利用RTCPeerConnection获取用户ip [getRealIpWithRTC.html](./getRealIpWithRTC.html)
+- 字符串截取导致的BUG-特殊字符 [specialString.html](./specialString.html)
