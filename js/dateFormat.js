@@ -1,43 +1,10 @@
 /**
  * 格式化一个日期
- * @param {date} date 日期对象
- * @param {formate} formate 格式化
- * 
+ * @param {Date} date 日期对象
+ * @param {String | Function} formatter 格式化
+ * @param {Boolean} isPad 是否补充0
+ * @returns {String} datesting 符合 formatter 要求的字符串
  */
-
-// fu辅助函数
-function _formateNormalize(formatter) {
-  if(typeof formatter === 'function') {
-    return formatter
-  }
-  if(typeof formatter !== 'string') {
-    return new TypeError('formatter must be a string or function')
-  }
-
-  // 固定的字符串 ‘date’ 'datetime' 转换成 不固定的 yyyy年MM月dd日 HH:mm:ss.ms
-  // 后者涵盖 前两种
-  if(formatter === 'date'){
-    formatter = 'yyyy-MM-dd'
-  } else if(formatter === 'datetime') {
-    formatter = 'yyyy-MM-dd HH:mm:ss'
-  }
-  // yyyy-MM-dd HH:mm:ss 将这种转换成函数 
-  const formatterFun = (dateinfo) => {
-    const {yyyy, MM, dd, HH, mm, ss, ms} = dateinfo
-    return formatter
-    .replaceAll('yyyy', yyyy)
-    .replaceAll('MM', MM)
-    .replaceAll('dd', dd)
-    .replaceAll('HH', HH)
-    .replaceAll('mm', mm)
-    .replaceAll('ss', ss)
-    .replaceAll('ms', ms)
-  }
-
-
-  return formatterFun
-}
-
 function formate(date, formatter, isPad = false) {
   formatter = _formateNormalize(formatter)
   // console.log(formatter) // 都转成函数了
@@ -73,6 +40,42 @@ function formate(date, formatter, isPad = false) {
   const result = formatter(dateinfo)
   console.log(result)
   return result
+}
+
+/**
+ * 内部辅助函数
+ * @param {String | Function} formatter 格式化要求的字符串 或者 自定义函数
+ */ 
+function _formateNormalize(formatter) {
+  if(typeof formatter === 'function') {
+    return formatter
+  }
+  if(typeof formatter !== 'string') {
+    return new TypeError('formatter must be a string or function')
+  }
+
+  // 固定的字符串 ‘date’ 'datetime' 转换成 不固定的 yyyy年MM月dd日 HH:mm:ss.ms
+  // 后者涵盖 前两种
+  if(formatter === 'date'){
+    formatter = 'yyyy-MM-dd'
+  } else if(formatter === 'datetime') {
+    formatter = 'yyyy-MM-dd HH:mm:ss'
+  }
+  // yyyy-MM-dd HH:mm:ss 将这种转换成函数 
+  const formatterFun = (dateinfo) => {
+    const {yyyy, MM, dd, HH, mm, ss, ms} = dateinfo
+    return formatter
+    .replaceAll('yyyy', yyyy)
+    .replaceAll('MM', MM)
+    .replaceAll('dd', dd)
+    .replaceAll('HH', HH)
+    .replaceAll('mm', mm)
+    .replaceAll('ss', ss)
+    .replaceAll('ms', ms)
+  }
+
+
+  return formatterFun
 }
 // 可能调用的方式
 
