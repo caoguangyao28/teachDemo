@@ -22,49 +22,23 @@
     // }
 
     // 不能减少总时间 但可以避免卡顿
-    // const consumer = (item, i) => {
-    //   const div = document.createElement('div');
-    //   div.textContent = i;
-    //   document.body.appendChild(div)
-    // }
+    const consumer = (item, i) => {
+      const div = document.createElement('div');
+      div.textContent = i;
+      document.body.appendChild(div)
+    }
     // performchunk(datas, consumer)
     // performchunk(100000, consumer)
 
-    // const chunkSplitor = (task) => {
-    //   setTimeout(()=>{
-    //     task((time) => time < 16)
-    //   },30)
-    // }
-    // performchunk3(100000, consumer, chunkSplitor)
+    const chunkSplitor = (task) => {
+      setTimeout(()=>{
+        task((time) => time < 16)
+      },30)
+    }
+    performchunk3(100000, consumer, chunkSplitor)
   }
 
   // 将任务分段
-  // function performchunk(datas) {
-  //   if(datas.length === 0) {
-  //     return;
-  //   }
-  //   let i = 0;// 任务下标
-
-  //   function _run() {
-  //     if( i === datas.length) {
-  //       return
-  //     }
-  //     // 渲染 帧都会执行的函数n
-  //     requestIdleCallback(idle=>{
-  //       // idle.timeRemaining 空闲时间
-  //       while (idle.timeRemaining() > 0 && i < datas.length) {
-  //         const item = datas[i]
-  //         const div = document.createElement('div');
-  //         div.textContent = item;
-  //         document.body.appendChild(div)
-  //         i++
-  //       }
-  //       console.log('渲染数据量:', i)
-  //       _run() // 递归执行
-  //     })
-  //   }
-  //   _run() // 启动执行
-  // }
   // 优化分时函数 - 提升通用性, 1. 把分时需要执行的任务交给传入 consumer
   function performchunk(datas, consumer) {
     // datas 有可能只是 一个数字：某人函数执行多少次  参数归一
@@ -121,7 +95,9 @@
       // 兼容性处理 node 环境 老的浏览器等
       chunkSplitor((hastime)=>{
         // idle.timeRemaining 空闲时间
-        const now = Date.now()
+        const now = Date.now() // 一组内 循环启动开始时间
+
+        // 跟进 hastime 函数规则判断 持续时间是否超限
         while (hastime(Date.now()-now) && i < datas.length) {
           const item = datas[i]
           consumer(item, i)
