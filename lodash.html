@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lodash</title>
+  <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/lodash.js/4.17.21/lodash.min.js" type="application/javascript"></script>
+  <script>
+    var test = [{id: null,name: 'for',age: 27}, {name: 'tree',age: 23},{id:1,name:'tes',age: 20},{id: 2, name:'test',age: 30}];
+    try {
+      var arr = _.uniqBy(test, 'id')
+      console.log(arr)
+    } catch (error) {
+      console.log(error)
+    }
+
+  </script>
+</head>
+<body>
+  lodash 示例 内部异常是否暴露
+</body>
+</html>
