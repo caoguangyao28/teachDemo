@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 层叠规则</title>
+  <style>
+    * {
+      color: red;
+    }
+
+    a {
+      color: aqua;
+    }
+
+    div a[href='#001']:hover {
+      color: blue;
+    }
+
+    div.nav a:active{
+      color: blueviolet;
+    }
+
+    a:visited {
+      color: cadetblue;
+    }
+
+
+  </style>
+</head>
+<body>
+  <h1 id="001">CSS 层叠规则</h1>
+  <div class="nav">
+    <a class="link" style="font-size: 24px;" href="#001" rel="noopener noreferrer">测试</a>
+  </div>
+</body>
+</html>
