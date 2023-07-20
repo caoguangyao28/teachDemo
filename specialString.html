@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>specialString 截取</title>
   <script>
-    const str = '😈😭a😄😇b'; // 4个字符
-    console.log(str.length) // 长度为 8  取的是字符串的 码元的长度
+    const str = '𐏿😈😭😄😇'; // 5个字符
+    console.log(str.length) // 长度为 10  取的是字符串的 码元的长度
     console.log(str[0]) // 乱码 下标  码元 
     // console.log(str.slice(1,3)) // 乱码 下标  码元 
-
+    // encodeURI(str[0]) URI error
     
 
     // 重写字符串相关 方法
@@ -51,18 +51,19 @@
     }
 
     console.log(str.pointLength())
+    console.log(str.pointAt(0))
     console.log(str.pointAt(1))
     console.log(str.sliceByPoint(0,4))
   </script>
 </head>
 <body>
   <h1>specialString 截取</h1>
-  随着互联网的发展，特殊字符出现的频率变高，例如emo 表情，😈 😭 😄 😇,
+  随着互联网的发展，特殊字符出现的频率变高，例如emo 表情，𐏿 😈 😭 😄 😇,
   导致字符串长度获取，截取，下标等异于常规 <br/>
   <ul>
   <li>js 编码UTF-16，特殊字符1个字符编码范围超过2^16 范围，将拓展存储空间为 32位···</li>
   <li>每16位为一个存储单元-码元（code unit）</li>
-  <li>一个字符称为一个码点 code point（可能占有多个存储单元</li>
+  <li>一个字符称为一个码点 code point（可能占有多个存储单元）</li>
   </ul>
 </body>
 </html>
