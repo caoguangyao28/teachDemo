@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS 层叠规则</title>
   <style>
-    * {
+    /* * {
       color: red;
-    }
+    } */
     
     body {
       color: red;
@@ -16,6 +16,7 @@
     /* a.link:hover {
       color: blue;
     } */
+
     a:hover{
       color: blue;
     }
@@ -45,18 +46,29 @@
 <body>
   <h1 id="001">CSS 层叠规则示例</h1>
   <div class="nav">
-    <a class="link" style="font-size: 24px;" href="#001" rel="noopener noreferrer">我是超链接</a>
+    <a class="link" 
+      style="font-size: 24px;" 
+      href="#001" 
+      rel="noopener noreferrer">
+      我是超链接
+    </a>
   </div>
 
-  <!-- <h1 id="002">继承示例</h1>
+  <h1 id="002">继承示例</h1>
   <p>字体大小，颜色 继承自body</p>
-  <div style="font-size: 18px;color: aquamarine;height: 200px;background: #000;">
-    <p style="height: inherit; background-color: blueviolet;">字体大小，颜色继承自 父元素 div, 字体家族默认</p>
+  <div style="
+    font-size: 18px;
+    color: aquamarine;
+    height: 200px;
+    background: #000;">
+    <p style="
+      height: inherit; 
+      background-color: blueviolet;">
+        字体大小，颜色继承自 父元素 div, 字体家族默认
+    </p>
     <div style=" background-color: antiquewhite;">
       <span>字体大小，颜色，继承 祖先元素 div</span>
     </div>
-  </div> -->
-
-  
+  </div>
 </body>
 </html>
