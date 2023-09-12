@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iframe</title>
+  <title>iframe 内嵌云帐房</title>
   <script>
     // 这里需要集成 本地系统的跨窗口通讯，动态修改 iframe的 src 链接地址···
     // 账套外 路径：https://daizhang99.yunzhangfang.com/open/dataapi/partner/home?accessToken=**&refreshToken=**&homepage=**
     // 账套内 路径：https://daizhang99.yunzhangfang.com/open/dataapi/partner/company.do?qyid=**&accessToken=**&refreshToken=**
   </script>
 </head>
-
 <body>
   测试- iframe 嵌套云帐房 代账系统， 注意 应用不可以多开
   <!-- 
     必要参数：accessToken refreshToken homepage
     两个token 才能确保登录状态正常访问 
     homepage 是为了跳转到指定路由页面
-
     如果只是跳转代账系统首页，则 homepage 不用传递
 
+    注意：
     跳转账套内首页方法（帐薄内 只支持跳转到首页）
     https://daizhang99.yunzhangfang.com/open/dataapi/partner/home 替换为
     /open/dataapi/partner/company.do
@@ -36,5 +34,4 @@
    frameborder="0">
 </iframe>
 </body>
-
 </html>
