@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文件夹操作api</title>
+</head>
+<body>
+  <h2>文件夹操作api</h2>
+
+  <button id="btn">open</button> <br>
+  <button id="save">save</button>
+  <script>
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', async () => {
+      // 打开文件夹选择器
+      // showDirectoryPicker().then( async handle => {
+      //   for await (let item of handle.entries()) {
+      //     console.log(item);
+      //   } 
+      // });
+
+      // 打开文件
+      // showOpenFilePicker().then( async handle => {
+      //   console.log(handle[0])
+      // }
+    })
+    const saveBtn = document.getElementById('save');
+    saveBtn.addEventListener('click', async () => {
+      const opts = {
+        types: [
+          {
+            description: "Text file",
+            accept: { "text/plain": [".txt"] },
+          },
+        ],
+      }
+      const writable = await showSaveFilePicker(opts);
+      const writableStream = await writable.createWritable(); 
+      await writableStream.write('Hello, all world!');
+      await writableStream.close();
+    })
+  </script>
+</body>
+</html>
