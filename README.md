@@ -17,5 +17,5 @@
 - 利用RTCPeerConnection获取用户ip [getRealIpWithRTC.html](./getRealIpWithRTC.html)
 - 字符串截取导致的BUG-特殊字符 [specialString.html](./specialString.html)
 - DNS 解析及其优化 [dnsparseperf.html](./dnsparseperf.html)
-- 文件夹文件操作api-[showdirectorypicker.html](./showdirectorypicker.html)
+- 文件夹文件操作api [showdirectorypicker.html](./showdirectorypicker.html)
 - 测试切换git仓库
