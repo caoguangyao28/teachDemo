@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>测试</title>
+    <title>数字转中文</title>
     <script>
       // 只到千亿
       const smalltoBIG = (n) => {
@@ -50,8 +50,10 @@
             .replace(/^整$/, "零元整")
         );
       };
-      console.log(smalltoBIG(2645008))
+      console.log(smalltoBIG(2645008.24))
     </script>
   </head>
-  <body></body>
+  <body>
+    <h2>数字转中文 最大单位 千亿，最小分</h2>
+  </body>
 </html>
