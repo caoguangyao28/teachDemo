@@ -1,4 +1,9 @@
 // 将数字替换成name的promise 函数
+/**
+ * 模拟一个异步处理函数
+ * @param {number} num 
+ * @returns Promise
+ */
 function getName(num) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -8,14 +13,13 @@ function getName(num) {
 }
 
 // console.log(getName(1))
-
 // getName(1).then((name) => {
 //   console.log(name);
 // })
 
 // 用getName 替换字符串中的每个数字
 const template = '15,1,2-3_12--13--';
-
+// 第一反应 是字符串的 replace
 // const result = template.replace(/\d+/g, (match) => {
 //   return getName(match); 
 // });
@@ -96,12 +100,10 @@ String.prototype.asynicReplaceAll = async function(regexp,asyncFn){
   return result.join('');
 }
 
-template.asynicReplaceAll(/\d+/g,getName);// Name15,Name1,Name2-Name3_Name12--Name13--
+// template.asynicReplaceAll(/\d+/g,getName).then(res => console.log(res));// Name15,Name1,Name2-Name3_Name12--Name13--
 
-(async()=>{
-  // const template = '15,1,2-3_12--13--';
-  console.log('sss', template)
+;(async() => {
   const res = await template.asynicReplaceAll(/\d+/g,getName)
   console.log(res);
-})()
+})();
 
