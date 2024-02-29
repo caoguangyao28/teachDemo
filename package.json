@@ -7,10 +7,6 @@
     "spark-md5": "^3.0.2"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.0.2",
-    "ghooks": "^2.0.4",
-    "minimist": ">=1.2.6",
-    "validate-commit-msg": "^2.14.0"
   },
   "scripts": {
     "test": "test",
