@@ -13,10 +13,10 @@
 <!-- - js函数重载 - functionOverload - 未完成[functionOverload.html](./functionOverload.html) -->
 <!-- - 一种在不同浏览器上下文之间通信的重量级方案 - 未完成：[ServiceWorker](./serviceWorker.html) -->
 
-## 实用小方法
+## 实用代码
 - 利用RTCPeerConnection获取用户ip [getRealIpWithRTC.html](./getRealIpWithRTC.html)
 - 字符串截取导致的BUG-特殊字符 [specialString.html](./specialString.html)
 - DNS 解析及其优化 [dnsparseperf.html](./dnsparseperf.html)
 - 文件夹文件操作api [showdirectorypicker.html](./showdirectorypicker.html)
 - 字符串异步替换封装 [stringAsyncReplace.html](./stringAsyncReplace.html)
-- 数字转中文 [money.html](./money.html)
+- 金额转中文 [money.html](./money.html)

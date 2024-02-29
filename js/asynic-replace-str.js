@@ -54,12 +54,13 @@ const template = '15,1,2-3_12--13--';
 
 
 /**
- * asynicReplaceAll
- * 
- * @param asyncFn:string | function 可以是字符串或者异步函数
+ * asynicReplaceAll 异步替换
+ * @param {RegExp|String} regexp 
+ * @param {String|Function} asyncFn 
+ * @returns 
  */
-
-String.prototype.asynicReplaceAll = async function(regexp,asyncFn){
+String.prototype.asynicReplaceAll = async function(regexp,asyncFn) {
+  // 将参数归一 处理
   if (typeof asyncFn === 'string') {
     // 如果替换目标是字符串 直接 replaceAll 替换
     return this.replaceAll(regexp,asyncFn);
