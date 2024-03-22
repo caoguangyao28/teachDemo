@@ -17,7 +17,7 @@ export async function cultfile(file) {
   // result = await Promise.all(proms);
   return result;
 }
-// 多线程分割
+// 多线程分割 worker
 export async function cultfileMulti(file) {
   return new Promise((resolve, reject) => {
     const THREAD_COUNT = navigator.hardwareConcurrency || 4;

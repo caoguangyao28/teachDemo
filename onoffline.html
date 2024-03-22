@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>online or offline</title>
+</head>
+<body>
+  <h1>网络状态监听</h1>
+  <script>
+    window.addEventListener('online',  (e) => {
+      console.log('网络已连接');
+    })
+
+    window.addEventListener('offline',  (e) => {
+      console.log('网络已断开');
+    })
+  </script>
+</body>
+</html>

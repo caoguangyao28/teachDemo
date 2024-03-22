@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM event</title>
+</head>
+<body>
+    <h1>DOM event </h1>
+    <button id="testbtn">点我</button>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            console.log('DOM fully loaded and parsed');
+            // btn.click();
+        })
+        const btn = document.getElementById('testbtn');
+        btn.addEventListener('click',function(){
+            console.log('button clicked');
+        })
+        // 并不会执行，说明 addEventListener 本身是异步注册事件
+        btn.click();
+        console.log('script executed');
+    </script>
+</body>
+</html>
