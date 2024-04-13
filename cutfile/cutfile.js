@@ -17,7 +17,12 @@ export async function cultfile(file) {
   // result = await Promise.all(proms);
   return result;
 }
-// 多线程分割 worker
+
+/**
+ * 多线程分割文件 worker 
+ * @param {File} file 文件
+ * @returns promise
+ */
 export async function cultfileMulti(file) {
   return new Promise((resolve, reject) => {
     const THREAD_COUNT = navigator.hardwareConcurrency || 4;
@@ -54,9 +59,7 @@ export async function cultfileMulti(file) {
       }
       
       worker.onerror = (e) => {
-        console.log([
-          'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message
-        ].join(''));
+        reject()
       }
     }
   })
