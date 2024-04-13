@@ -27,11 +27,37 @@
 
   -->
 
-  <iframe
+  <!-- <iframe
    width="100%"
    height="100%"
    src="https://daizhang99.yunzhangfang.com/open/dataapi/partner/home?accessToken=&refreshToken=&homepage=/home/batchtax/over-view"
    frameborder="0">
+</iframe> -->
+<!-- src="https://www.baidu.com/" -->
+
+<iframe
+   width="100%"
+   height="100%"  
+   src="https://www.baidu.com/"
+   frameborder="0" id="iframeTest">
 </iframe>
+<script>
+  // 获取 iframe 元素，添加加载完成监听
+  var iframe = document.querySelector('iframe');
+  iframe.onload = function() {
+    // 检查 iframe 的页面是否正常加载 或者 dns 异常 页面丢失
+    console.log("iframe 加载完成,但可能异常")
+    // 如果出现 chorme-error: 则代表网络或者DNS出现问题 
+    // todo 了解sentry 主动上报该错误，用于分析 dns 异常时 特殊性分析
+    try {
+      console.log(iframe.contentDocument, iframe.contentWindow)
+      if(!iframe.contentDocument){
+        console.log("iframe 加载异常 没有实体内容，是浏览器内置错误提示页面")
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+</script>
 </body>
 </html>
