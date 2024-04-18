@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/lodash.js/4.17.21/lodash.min.js" type="application/javascript"></script>
   <title>Document</title>
 </head>
 <body>
@@ -10,7 +11,20 @@
   <!-- <div id="exports">我的id 是 exports</div> -->
   <script src="./js/template.js"></script>
   <script>
+    const deboundF5 = _.debounce(() => {
+      console.log('防抖')
+      window.location.reload(true)
+    }, 500)
     // console.log(exports)
+    // 监听 键盘 输入F5
+    window.addEventListener('keydown', (e) => {
+      if(e.keyCode === 116){
+        // e.preventDefault();
+        console.log('F5')
+        // 刷新页面加防抖 
+        deboundF5()
+      }
+    })
   </script>
 </body>
 </html>
