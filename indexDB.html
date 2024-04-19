@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>indexDB demo</title>
+  <script src="./plugs/localforage.min.js"></script>
+</head>
+<body>
+  <h1>indexDB demo</h1>
+  <script>
+    localforage.config({
+      name: 'yzfIndexDB',
+      driver: localforage.INDEXEDDB
+    })
+
+    const usrerarr = [{name: 'yzf', age: 18} , {name: 'yzf1', age: 19}]
+    localforage.setItem('usrerarr', usrerarr);
+  </script>
+</body>
+</html>
