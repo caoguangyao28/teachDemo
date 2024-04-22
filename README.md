@@ -21,3 +21,7 @@
 - 文件夹文件操作api [showdirectorypicker.html](./showdirectorypicker.html)
 - 字符串异步替换封装 [stringAsyncReplace.html](./stringAsyncReplace.html)
 - 金额转中文 [money.html](./money.html)
+
+## 实验性代码
+- indexDB-localForage轻量级封装 [indexDB.html](./indexDB.html)
+- 利用iframe onload 捕获页面异常情况 [yzfiframe.html](./yzfiframe.html)
