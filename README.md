@@ -25,3 +25,4 @@
 ## 实验性代码
 - indexDB-localForage轻量级封装 [indexDB.html](./indexDB.html)
 - 利用iframe onload 捕获页面异常情况 [yzfiframe.html](./yzfiframe.html)
+- 利用zoom属性调整windows下系统缩放导致分辨率问题[htmlzoom.html](./htmlZoom.html)
