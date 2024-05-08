@@ -1,0 +1,50 @@
+.title
+  {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@function getShadows($n) {
+  $shadows: '#{random(100)}vw #{random(100)}vh #fff';
+  @for $i from 2 through $n {
+    $shadows: '#{$shadows}, #{random(100)}vw #{random(100)}vh #fff'
+  }
+  @return unquote($shadows);
+}
+$duration: 400s;
+$count: 1000;
+@for $i from 1 through 5 {
+  $duration: $duration/2;
+  $count: floor($count/2);
+  .layer#{$i} {
+    $size: #{$i}px;
+    position: fixed;
+    width: $size;
+    height: $size;
+    animation: moveUp $duration linear infinite; 
+    // background-color: red;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    box-shadow: getShadows($count);
+    &::after{
+      content: '';
+      position: fixed;
+      width: inherit;
+      height: inherit;
+      border-radius: inherit;
+      left: 0;
+      top: 100vh;
+      box-shadow: inherit;
+    }
+  }
+}
+
+
+
+@keyframes moveUp {
+  to {
+    transform: translateY(-100vh);
+  }
+}
