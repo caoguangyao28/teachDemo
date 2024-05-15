@@ -33,5 +33,7 @@
 ## 开脑洞的方式
 - 利用sass实现星空动画效果
   - [sass-star.html](./sass-star.html)
-- 利用sass实现烟花效果
-  - [sass-firework.html](./sass-firework.html)
+
+## typescript 
+- 从字段推导类型 [从字段推导类型.ts](./ts/从字段推导类型.ts)
+- 实现GetOptionals [GetOptionals.ts](./ts/getOptions.ts)
