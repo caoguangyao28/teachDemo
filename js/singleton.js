@@ -25,8 +25,11 @@ const MyVideoSingleton = singleton(MyVideo);
 
 const video1 = new MyVideoSingleton();
 const video2 = new MyVideoSingleton();
+const video4 = new MyVideo();
 
 console.log(video1 === video2); // true
 const video3 = new video1.constructor();
 
 console.log(video3 === video1); // true
+
+console.log(video1 === video4);
