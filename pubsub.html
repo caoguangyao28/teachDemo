@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布订阅者模式</title>
+  <script src="./js/eventEmitter.js"></script>
+  <script>
+    const eventbus = new EventEmitter()
+
+    function test(data) {
+      console.log('test2', data)
+    }
+
+    eventbus.on('test', (...data) => {
+      console.log('test', ...data)
+    })
+
+    eventbus.on('test', test)
+
+    eventbus.emit('test', 'string', 'string2')
+
+    // 
+    eventbus.off('test', test)
+
+    eventbus.emit('test', '1', '2')
+
+    eventbus.once('oncetest', (...data) => {
+      console.log('oncetest', ...data)
+    })
+
+    eventbus.emit('oncetest', '3', '4')
+    eventbus.emit('oncetest', '5', '6')
+
+  </script>
+</head>
+<body>
+  <h1>发布订阅者模式</h1>
+</body>
+</html>
