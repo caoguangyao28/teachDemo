@@ -25,16 +25,17 @@ const template = '15,1,2-3_12--13--';
 // });
 
 // replace 是不支持 异步的 promise
-// console.log(result);
+// console.log(result);// 全是 Promise{<pending>}
 
 // 即如何进行异步替换
 
 // (async()=>{
 //   let result = template;
 //   const matches = template.match(/\d+/g);
+//   console.log(matches);
 //   for (const match of matches) {
 //     const name = await getName(match);
-//     // 在前一次基础上进行匹配替换 =》 存在匹配后出现数字会重复匹配的问题
+//     // 在前一次基础上进行匹配替换 => 存在匹配后出现数字会重复匹配的问题
 //     result = result.replace(match, name);
 //   }
 //   console.log(result);// NameName15,1,Name2-Name3_Name12--Name13
@@ -49,9 +50,21 @@ const template = '15,1,2-3_12--13--';
 //   let result2 = matches.map(m=>/^\d+$/.test(m)? getName(m):m);
 //   // console.log(result2);// [ 'Name15', 'Name1', 'Name2-Name3_Name12', '--', 'Name13' ]
 //   result = await Promise.all(result2)
+//   // 还原成字符串
 //   console.log(result.join(''));// Name15,Name1,Name2-Name3_Name12--Name13--
 // })();
 
+// const regex = /hello/g;
+// const str = 'hello hello world hello!';
+
+// let matchs;
+
+// while ((matchs = regex.exec(str)) !== null) {
+//   console.log('dddd');
+//   console.log(matchs);
+// }
+
+// 抽象封装 通用函数
 
 /**
  * asynicReplaceAll 异步替换
@@ -96,6 +109,7 @@ String.prototype.asynicReplaceAll = async function(regexp,asyncFn) {
   }
   // 补全尾部非数字字符
   result.push(this.slice(lastindex));
+  // console.log(result,'异步处理完成前')
   result = await Promise.all(result)
   // console.log(result.join(''));
   return result.join('');
