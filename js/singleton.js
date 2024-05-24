@@ -25,6 +25,7 @@ const MyVideoSingleton = singleton(MyVideo);
 
 const video1 = new MyVideoSingleton();
 const video2 = new MyVideoSingleton();
+// 直接通过构造函数创建实例
 const video4 = new MyVideo();
 
 console.log(video1 === video2); // true
@@ -32,4 +33,5 @@ const video3 = new video1.constructor();
 
 console.log(video3 === video1); // true
 
-console.log(video1 === video4);
+// 不等
+console.log(video1 === video4); // false

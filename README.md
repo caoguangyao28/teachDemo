@@ -31,6 +31,7 @@
 - indexDB-localForage轻量级封装 [indexDB.html](./indexDB.html)
 - 利用iframe onload 捕获页面异常情况 [yzfiframe.html](./yzfiframe.html)
 - 利用zoom属性调整windows下系统缩放导致分辨率问题[htmlzoom.html](./htmlZoom.html)
+- 同步的方式实现事件监听[syniceventlistener.html](./syniceventlistener.html)
 
 ## 开脑洞的方式
 - 利用sass实现星空动画效果

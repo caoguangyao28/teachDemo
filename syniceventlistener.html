@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>同步方式实现事件监听</title>
+</head>
+<body>
+  <h1>同步方式实现事件监听</h1>
+  <p>只是一种思路，参考</p>
+  <button>按钮</button>
+  <script>
+    function getElement(selector) {
+      const dom = document.querySelector(selector);
+      // 通过代理 拦截 dom 属性
+      const proxy = new Proxy(dom, {
+        get(target, key) {
+          if (!key.startsWith('wait')){
+            return Reflect.get(target, key);
+          }
+          return new Promise((resolve, reject) => {
+            const eventName = key.slice(4).toLowerCase();
+            target.addEventListener(eventName, resolve, {once: true})
+          })
+        }
+      })
+      return proxy;
+    }
+
+    (async ()=> {
+      const btn = getElement('button');
+      // while(1) {
+      //   await btn.waitClick;
+      //   console.log('click over');
+      // }
+      // 只同步执行10次
+      for(let i = 0; i < 10; i++) {
+        await btn.waitClick;
+        console.log('click over');
+      }
+    })()
+  </script>
+</body>
+</html>
