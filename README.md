@@ -25,7 +25,8 @@
 - 单列实现-代理方式 [singleton.html](./singleton.html)
 - 给fetch添加超时 [fetchTimeout.html](./fetchTimeout.html)
 - 发布订阅者模式实现 [pubsub.html](./pubsub.html)
-- 利用位运算实现权限控制 [permission.html](./permission.html)
+- 元素平滑上升-自定义vue指令+视口监听观察元素[smooth.html](./smooth.html)
+<!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 实验性代码
 - indexDB-localForage轻量级封装 [indexDB.html](./indexDB.html)
