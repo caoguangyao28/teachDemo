@@ -25,6 +25,7 @@
 - 单列实现-代理方式 [singleton.html](./singleton.html)
 - 给fetch添加超时 [fetchTimeout.html](./fetchTimeout.html)
 - 发布订阅者模式实现 [pubsub.html](./pubsub.html)
+- 首尾连接无缝轮播图组建实现 [carousel.html](./carousel.html)
 - 元素平滑上升-自定义vue指令+视口监听观察元素-代码已移动到vite4+vue3+demo
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 

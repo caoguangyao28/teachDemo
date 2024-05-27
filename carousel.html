@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轮播图效果</title>
+  <style>
+    /* 轮播图样式 */
+    .carousel {
+      width: 600px;
+      height: 300px;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+      outline: 10px solid #000;
+    }
+    .carousel-list {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      position: relative;
+      z-index: -1;
+    }
+    .carousel-arrow {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 25px;
+      color: #fff;
+      font-size: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    .carousel-arrow-left {
+      left: 10px;
+    }
+    .carousel-arrow-right {
+      right: 10px;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      display: flex;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .carousel-indicators span {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+
+    .carousel-indicators span.active {
+      background: #fff;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 图片轮播 结构 -->
+  <div class="carousel">
+    <div class="carousel-list">
+      <div class="carousel-item">
+        <img src="https://picsum.photos/id/237/600/300" alt="">
+      </div>
+      <div class="carousel-item">
+        <img src="https://picsum.photos/id/238/600/300" alt="">
+      </div>
+      <div class="carousel-item">
+        <img src="https://picsum.photos/id/239/600/300" alt="">
+      </div>
+    </div>
+    <div class="carousel-arrow carousel-arrow-left">
+      <!-- html 小于号 -->
+      &lt
+    </div>
+    <div class="carousel-arrow carousel-arrow-right">
+      <!-- html 大于号 -->
+      &gt
+    </div>
+    <div class="carousel-indicators">
+      <span class="active"></span>
+      <span class=""></span>
+      <span class=""></span>
+    </div>
+    <script src="./js/carousel.js"></script>
+</body>
+</html>
