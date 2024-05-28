@@ -25,6 +25,9 @@
       width: 50px;
       height: 50px;
       position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 25px;
       color: #fff;
@@ -32,8 +35,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      top: 50%;
-      transform: translateY(-50%);
       cursor: pointer;
     }
     .carousel-arrow-left {
@@ -82,11 +83,11 @@
     </div>
     <div class="carousel-arrow carousel-arrow-left">
       <!-- html 小于号 -->
-      &lt
+      <span>&lt;</span>
     </div>
     <div class="carousel-arrow carousel-arrow-right">
       <!-- html 大于号 -->
-      &gt
+      <span>&gt;</span>
     </div>
     <div class="carousel-indicators">
       <span class="active"></span>
