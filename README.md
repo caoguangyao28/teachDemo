@@ -9,7 +9,7 @@
 - 分时函数-高阶函数，参数归一[分时函数.html](./%E5%88%86%E6%97%B6%E5%87%BD%E6%95%B0.html)
 - 跨窗口标签页通信-BroadCast chanel[broadCastChanel.html](./broadCastChanel.html)
 - 层叠规则[cascadeRule.html](./cascadeRule.html)
-- ~~浏览器内存泄漏之游离节点 [freeNodeMemoryLeak.html](./freeNodeMemoryLeak.html)~~
+- 浏览器内存泄漏之游离节点 [freeNodeMemoryLeak.html](./freeNodeMemoryLeak.html)
 - 大文件分割[ cutfile.html](./cutfile/cutfile.html)
 <!-- - js函数重载 - functionOverload - 未完成[functionOverload.html](./functionOverload.html) -->
 <!-- - 一种在不同浏览器上下文之间通信的重量级方案 - 未完成：[ServiceWorker](./serviceWorker.html) -->
@@ -42,3 +42,5 @@
 ## typescript 
 - 从字段推导类型 [从字段推导类型.ts](./ts/从字段推导类型.ts)
 - 实现GetOptionals [GetOptionals.ts](./ts/getOptions.ts)
+- ts实现函数重载-顶层多函数 [tsreload.ts](./ts/tsreload.ts)
+- ts实现函数重载-对象内部的函数 [tsreload2.ts](./ts/tsreload2.ts)
