@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ajax 进度监控</title>
+</head>
+<body>
+  <h2>ajax 进度监控</h2>
+  <script>
+    // 响应的进度  XHR
+    function request(options = {}){
+      const {url, method = 'GET', onProgress, data = null } = options
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest()
+        xhr.addEventListener('readystatechange', () => {
+          if(xhr.readyState === xhr.DONE){
+            resolve(xhr.responseText)
+          }
+        });
+        xhr.addEventListener('progress', (e) => {
+          console.log(e.loaded, e.total);
+          onProgress && onProgress({
+            loaded: e.loaded,
+            total: e.total
+          })
+        })
+        xhr.open(method, url)
+        xhr.send(data)
+      })
+    }
+    // 响应进度 fetch 版
+    function requestFetch(options = {}) {
+      const {url, method = 'GET', onProgress, data = null } = options
+      return new Promise(async (resolve, reject) => {
+        const resp = await fetch(url,{
+          method,
+          body: data,
+        });
+        // 需要传输的总大小
+        const total = resp.headers.get('content-length')
+        const decoder = new TextDecoder();
+        let body = '';
+        const reader = resp.body.getReader();
+        let loaded = 0;
+        while(1){
+          const {done, value} = await reader.read();
+          if(done){
+            break;
+          }
+          body += decoder.decode(value, {stream: true});
+          loaded += value.length;
+          onProgress && onProgress({
+            loaded,
+            total: total
+          })
+        }
+      })
+    }
+  </script>
+</body>
+</html>
