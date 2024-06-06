@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>利用1ex 文字精准垂直居中</title>
+  <style>
+    .body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Emoji, Helvetica, Arial, sans-serif;
+    }
+
+    .demo {
+      padding: 0 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .box {
+      width: 300px;
+      margin: 0 auto;
+      line-height: 40px;
+    }
+
+    .text-32 {
+      font-size: 26px;
+    }
+
+    .icon-arrow {
+      display: inline-block;
+      width: 20px;
+      height: 1ex;
+      background: url(../img/arrow.svg) no-repeat center / 20px 20px;
+    }
+
+    .test1 {
+      font-size: 0;
+      line-height: 16px;
+      border: 1px solid #ccc;
+      background: #eee;
+    }
+
+    .test2 {
+      font-size: 16px;
+      line-height: 0;
+      border: 1px solid #ccc;
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <div class="test1">我的高度是？</div>
+    <div class="test2">我的高度是！</div>
+
+    <h3>文字+图标 垂直居中 且不受文字大小影响</h3>
+    <div class="box">
+      <p><strong>英文字符：</strong></p>
+      <div id="divTest1" style="font-family: 'SimSun';">
+        <span>zhangyuanyuan</span><i class="icon-arrow"></i>
+      </div>
+      <p><strong>中文字符：</strong></p>
+      <div id="divTest2" style="font-family: 'SimSun';">张媛媛x<i class="icon-arrow"></i></div>
+      <p><strong>修改字体和大小</strong></p>
+      <select id="selFontFamily">
+        <option value="SimSun">宋体</option>
+        <option value="Arial">Arial</option>
+        <option value="Tamoha">Tamoha</option>
+        <option value="Baoli SC">Baoli SC</option>
+        <option value="Songti SC">宋体2</option>
+      </select>
+      <select id="selFontSize">
+        <option value="14px">14px</option>
+        <option value="18px">18px</option>
+        <option value="24px">24px</option>
+        <option value="30px">30px</option>
+      </select>
+      <div>
+        <span>Sphinx</span>
+      </div>
+      <div>12</div>
+      <div style="line-height: 3ex;font-size: 16px;font-family: Arial;">
+        <span>xxxxx</span><i class="icon-arrow"></i>
+      </div>
+      <p style="font-family: SimSun;"><span>我是段落内容</span>我是段落内容 <em>em 文字</em></p>
+    </div>
+  </div>
+  <h3>支柱节点存在证明</h3>
+  <div style="background-color: antiquewhite;"><span style="display: inline-block;"></span></div>
+  <script>
+    const ff = document.getElementById('selFontFamily'),
+      fs = document.getElementById('selFontSize');
+
+    const div1 = document.getElementById('divTest1'),
+      div2 = document.getElementById('divTest2');
+
+    if (ff && fs && div1 && div2) {
+      ff.onchange = function () {
+        div1.style.fontFamily = this.value.replace('/', ',');
+        div2.style.fontFamily = this.value.replace('/', ',');
+      };
+      fs.onchange = function () {
+        div1.style.fontSize = this.value;
+        div2.style.fontSize = this.value;
+      };
+    }
+  </script>
+</body>
+
+</html>
