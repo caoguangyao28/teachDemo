@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单行文字垂直居中</title>
+  <style>
+    .box {
+      height: 800px;
+      background-color: #ccc;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: center; */
+      align-items: center;
+    }
+    .text-container {
+      font-family: 'SimSun';
+      background: goldenrod;
+      line-height: 100px;
+      /* font-size: 50px; */
+      /* display: inline-block; */
+      /* height: 100px; */
+    }
+    .text{
+      /* font-family: 'SimSun'; */
+      font-family: 微软雅黑;
+      font-size: 50px;
+      /* display: inline-block; */
+      /* vertical-align: middle; */
+      /* vertical-align: bottom; */
+    }
+    .text-containers{
+      width: 200px;
+      line-height: 120px;
+      background-color: antiquewhite;
+    }
+    .content{
+      display: inline-block;
+      line-height: 20px;
+      margin: 0 20px;
+      vertical-align: middle;
+    }
+    .box-demo{
+      line-height: 20px;
+      background-color: gold;
+    }
+    .box-demo span{
+      line-height: 90px;
+    }
+    .box-demo-2{
+      line-height: 90px;
+      background-color: blue;
+    }
+    .box-demo-2 span{
+      line-height: 20px;
+    }
+  </style></style>
+</head>
+<body>
+  <div class="box">
+    <div class="text-container">
+      x<span class="text">单行文字垂直居中x</span>
+    </div>
+    <h3 style="margin-top: 100px;">多行文本垂直居中</h3>
+    <div class="text-containers">
+      <span class="content">基于行高实现的多行文本垂直居中效果</span>
+    </div>
+    <h3>内联元素line-height 取大值特性</h3>
+    <div class="box-demo">
+      <span>我的行高是 20？</span>
+    </div>
+    
+    <div class="box-demo-2">
+      <span>我的行高是 90？</span>
+    </div>
+  </div>
+</body>
+</html>
