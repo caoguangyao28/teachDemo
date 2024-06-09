@@ -6,12 +6,13 @@
   <title>单行文字垂直居中</title>
   <style>
     .box {
-      height: 800px;
+      /* height: 800px; */
       background-color: #ccc;
       display: flex;
       flex-direction: column;
       /* justify-content: center; */
       align-items: center;
+      gap: 50px;
     }
     .text-container {
       font-family: 'SimSun';
@@ -61,17 +62,23 @@
     <div class="text-container">
       x<span class="text">单行文字垂直居中x</span>
     </div>
-    <h3 style="margin-top: 100px;">多行文本垂直居中</h3>
+    <h3 >多行文本垂直居中</h3>
     <div class="text-containers">
       <span class="content">基于行高实现的多行文本垂直居中效果</span>
     </div>
-    <h3>内联元素line-height 取大值特性</h3>
-    <div class="box-demo">
-      <span>我的行高是 20？</span>
+    <div style="width: 300px;">
+      <h3>内联元素line-height 取大值特性</h3>
+      <div class="box-demo">
+        <span>我的行高是 20？</span>
+      </div>
+      <div class="box-demo-2">
+        <span>我的行高是 90？</span>
+      </div>
     </div>
-    
-    <div class="box-demo-2">
-      <span>我的行高是 90？</span>
+
+    <h3>图片底部多余空白问题</h3>
+    <div class="img-box">
+      <img src="./img/1.jpg" alt="">
     </div>
   </div>
 </body>
