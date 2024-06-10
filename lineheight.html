@@ -13,13 +13,13 @@
       /* justify-content: center; */
       align-items: center;
       gap: 50px;
+      padding: 50px 0;
     }
     .text-container {
       font-family: 'SimSun';
       background: goldenrod;
       line-height: 100px;
-      /* font-size: 50px; */
-      /* display: inline-block; */
+      font-size: 50px;
       /* height: 100px; */
     }
     .text{
@@ -55,6 +55,26 @@
     .box-demo-2 span{
       line-height: 20px;
     }
+    .img-box{
+      width: 300px;
+      background-color: antiquewhite;
+      /* line-height: 0; */
+      /* vertical-align: 6px; */
+      /* font-size: 0; */
+    }
+    .img-box img{
+      height: 96px;
+      /* vertical-align: bottom | top | middle ; */
+      /* display: block; */
+      /* vertical-align: -5.5px; */
+      /* vertical-align: middle; */
+    }
+    .ib-baseline {
+      display: inline-block; 
+      width: 150px; height: 150px;
+      border: 1px solid red;
+      background-color: #f0f3f9;
+    }
   </style></style>
 </head>
 <body>
@@ -78,7 +98,12 @@
 
     <h3>图片底部多余空白问题</h3>
     <div class="img-box">
-      <img src="./img/1.jpg" alt="">
+      <img src="./img/shilie.png" alt="">
+    </div>
+    <!-- 存在不完整部分 对于inline-block 元素 vertical-align: middle | top | bottom 都是将元素自身当作计算依据 而不是 文本内容元素 -->
+    <div class="demo">
+      x
+      <span class="ib-baseline"></span><span class="ib-baseline">我有内容</span>
     </div>
   </div>
 </body>
