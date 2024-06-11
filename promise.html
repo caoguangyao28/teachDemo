@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promise</title>
+  <script src="./js/MyPromise.js"></script>
   <script>
     // new promise 构造执行 输出 "最外侧 promise"  -> resolve 执行完 -> 执行外部第一个then 
     // 外部第一个then 返回了 一个 promise ，这个 return 代表外部第二个then 需要等待 return 之后 promise的结果
@@ -109,32 +110,32 @@
     // })
 
     // promise 终极面试题 分析
-    Promise.resolve()
-    .then(() => {
-      console.log(0)
-      // 这里是关键 如何理解
-      return Promise.resolve('4')
-    })
-    .then((res) => {
-      console.log(res)
-    })
+    // Promise.resolve().then(() => {
+    //     console.log(0)
+    //     // 这里是关键 如何理解
+    //     return Promise.resolve('4')
+    //     // return 4
+    //   })
+    //   .then((res) => {
+    //     console.log(4)
+    //     // console.log(res)
+    //   })
 
-    Promise.resolve()
-    .then(() => {
-      console.log(1)
-    })
-    .then(() => {
-      console.log(2)
-    })
-    .then(() => {
-      console.log(3)
-    })
-    .then(() => {
-      console.log(5)
-    })
-    .then(() => {
-      console.log(6)
-    })
+    // Promise.resolve().then(() => {
+    //     console.log(1)
+    //   })
+    //   .then(() => {
+    //     console.log(2)
+    //   })
+    //   .then(() => {
+    //     console.log(3)
+    //   })
+    //   .then(() => {
+    //     console.log(5)
+    //   })
+    //   .then(() => {
+    //     console.log(6)
+    //   })
     console.log("主线程执行结束")
 
   </script>
