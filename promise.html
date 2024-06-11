@@ -9,13 +9,22 @@
     // new promise 构造执行 输出 "最外侧 promise"  -> resolve 执行完 -> 执行外部第一个then 
     // 外部第一个then 返回了 一个 promise ，这个 return 代表外部第二个then 需要等待 return 之后 promise的结果
     // 所以内部的 promise 都是优先 外部第二个then 执行完
+    /**
+     * 同一个promis 可以有多个 then(), 按先后顺序依次触发
+     * 如果 then 中存在 return promise 则会等待promis执行完
+     * 
+     */
     // new Promise((resolve, reject) => {
     //   console.log("最外侧 promise")
     //   resolve()
     // }).then(() => { // 外部第一个then
+    //   console.log("外部第一个then")
     //   return new Promise((resolve, reject ) => {
     //     console.log("内部 promise");
-    //     resolve()
+    //     setTimeout(() => {
+    //       console.log("内部 promise setTimeout")
+    //       resolve()
+    //     }, 1000)
     //   }).then(() => {
     //     console.log("内部第一个then")
     //   }).then(() => {
@@ -79,23 +88,51 @@
     // })
 
     // 第五种情况
-    new Promise((resolve, reject) => {
-      console.log("最外侧 promise")
-      resolve()
-    }).then(() => { // 外部第一个then
-      new Promise((resolve, reject ) => {
-        console.log("内部 promise");
-        resolve()
-      }).then(() => {
-        console.log("内部第一个then")
-        return Promise.resolve()
-      }).then(() => {
-        console.log("内部第二个then")
-      })
-    }).then(() => { // 外部第二个 then
-      console.log("外部第二个then")
-    }).then(() => {
-      console.log("外部第三个then")
+    // new Promise((resolve, reject) => {
+    //   console.log("最外侧 promise")
+    //   resolve()
+    // }).then(() => { // 外部第一个then
+    //   new Promise((resolve, reject ) => {
+    //     console.log("内部 promise");
+    //     resolve()
+    //   }).then(() => {
+    //     console.log("内部第一个then")
+    //     return Promise.resolve()
+    //   }).then(() => {
+    //     console.log("内部第二个then")
+    //   })
+    // }).then(() => { // 外部第二个 then
+    //   console.log("外部第二个then")
+    // }).then(() => {
+    //   console.log("外部第三个then")
+    // })
+
+    // promise 终极面试题 分析
+    Promise.resolve()
+    .then(() => {
+      console.log(0)
+      // 这里是关键 如何理解
+      return Promise.resolve('4')
+    })
+    .then((res) => {
+      console.log(res)
+    })
+
+    Promise.resolve()
+    .then(() => {
+      console.log(1)
+    })
+    .then(() => {
+      console.log(2)
+    })
+    .then(() => {
+      console.log(3)
+    })
+    .then(() => {
+      console.log(5)
+    })
+    .then(() => {
+      console.log(6)
     })
 
   </script>
