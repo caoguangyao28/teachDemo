@@ -35,12 +35,12 @@
       line-height: 120px;
       background-color: antiquewhite;
     }
-    .content{
+    /* .content{
       display: inline-block;
       line-height: 20px;
       margin: 0 20px;
       vertical-align: middle;
-    }
+    } */
     .box-demo{
       line-height: 20px;
       background-color: #9c956c;
@@ -58,9 +58,9 @@
       line-height: 20px;
     }
     .img-box{
-      width: 300px;
+      width: 160px;
       background-color: antiquewhite;
-      /* line-height: 0; */
+      line-height: 0;
       /* vertical-align: 6px; */
       /* font-size: 0; */
     }
@@ -76,6 +76,61 @@
       width: 150px; height: 150px;
       border: 1px solid red;
       background-color: #f0f3f9;
+    }
+    .right{
+      line-height: 0;
+    }
+    .multiple-line{
+      width: 300px;
+      text-align: justify;
+      background-color: aliceblue;
+      /* line-height: 0; */
+      font-size: 0;
+    }
+    .justify-fix{
+      display: inline-block;
+      width: 96px;
+      outline: 1px solid red;
+    }
+    .demo{
+      font-family: 'SimSun';
+    }
+
+
+
+/* 最后一个 弹窗布局 的水平垂直居中 */
+    .container {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 14px;
+      background-color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      font-size: 0;
+    }
+    .dialog {
+      display: inline-block;
+      border-radius: 6px;
+      background-color: #fff;
+      text-align: left;
+      white-space: normal;
+      width: 240px;
+      height: 120px;
+      vertical-align: middle;
+    }
+    .container::after {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .content{
+      width: 240px;
+      height: 120px;
+      padding: 20px;
+      font-size: 14px;
     }
   </style></style>
 </head>
@@ -100,13 +155,29 @@
 
     <h3>图片底部多余空白问题</h3>
     <div class="img-box">
-      <img src="./img/shilie.png" alt="">
+      x<img src="./img/shilie.png" alt="">xxxxxxx<i class="justify-fix"></i>
     </div>
     <!-- 存在不完整部分 对于inline-block 元素 vertical-align: middle | top | bottom 都是将元素自身当作计算依据 而不是 文本内容元素 -->
     <div class="demo">
-      x
-      <span class="ib-baseline"></span><span class="ib-baseline">我有内容</span>
+      <span class="ib-baseline"></span>
+      <span class="ib-baseline right">xx我有内容</span>
+    </div>
+    <div class="multiple-line">
+      <img src="./img/shilie.png" width="96" alt="" srcset="">
+      <img src="./img/shilie.png" width="96" alt="" srcset="">
+      <img src="./img/shilie.png" width="96" alt="" srcset="">
+      <img src="./img/shilie.png" width="96" alt="" srcset="">
+      <i class="justify-fix"></i>
+      <i class="justify-fix"></i>
+      <i class="justify-fix"></i>
     </div>
   </div>
+  <!-- <div class="container">
+    <span style="font-size: 14px;">xx</span>
+    <div class="dialog">
+      <div class="content">我的内容</div>
+    </div>
+    </div>
+  </div> -->
 </body>
 </html>
