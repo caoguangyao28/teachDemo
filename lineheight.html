@@ -35,12 +35,12 @@
       line-height: 120px;
       background-color: antiquewhite;
     }
-    /* .content{
+    .content{
       display: inline-block;
       line-height: 20px;
       margin: 0 20px;
       vertical-align: middle;
-    } */
+    }
     .box-demo{
       line-height: 20px;
       background-color: #9c956c;
@@ -126,7 +126,7 @@
       display: inline-block;
       vertical-align: middle;
     }
-    .content{
+    .dilog-content{
       width: 240px;
       height: 120px;
       padding: 20px;
@@ -160,7 +160,10 @@
     <!-- 存在不完整部分 对于inline-block 元素 vertical-align: middle | top | bottom 都是将元素自身当作计算依据 而不是 文本内容元素 -->
     <div class="demo">
       <span class="ib-baseline"></span>
-      <span class="ib-baseline right">xx我有内容</span>
+      <span class="ib-baseline right">
+        我是文本内容
+        <!-- <img width="90" src="./img/shilie.png" alt=""> -->
+      </span>
     </div>
     <div class="multiple-line">
       <img src="./img/shilie.png" width="96" alt="" srcset="">
@@ -175,7 +178,7 @@
   <!-- <div class="container">
     <span style="font-size: 14px;">xx</span>
     <div class="dialog">
-      <div class="content">我的内容</div>
+      <div class="dilog-content">我的内容</div>
     </div>
     </div>
   </div> -->
