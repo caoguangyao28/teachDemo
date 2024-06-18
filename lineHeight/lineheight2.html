@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片底部多余空白问题</title>
+  <style>
+    .box {
+      background-color: #ccc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      padding: 50px 0;
+    }
+
+    .img-box{
+      width: 160px;
+      background-color: antiquewhite;
+      font-size: 0;
+      /* line-height: 0; 或者是这个 */
+    }
+    .img-box img{
+      height: 96px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="img-box">
+      x<img src="../img/shilie.png" alt=""></i>
+    </div>
+  </div>
+</body>
+</html>
