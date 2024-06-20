@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vertical-align 具体值</title>
+  <style>
+    .box {
+      background-color: #ccc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      padding: 50px 0;
+    }
+    .demo{
+      font-family: 'SimSun';
+    }
+
+    .ib-baseline {
+      display: inline-block; 
+      width: 150px; height: 150px;
+      border: 1px solid red;
+      background-color: #f0f3f9;
+    }
+    .right{
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="demo">
+      普通文本
+      <span class="ib-baseline"></span>
+      <span class="ib-baseline right">
+        <div>
+          我是有内容的inline-block
+          <!-- <img width="90" src="../img/shilie.png" alt=""> -->
+        </div>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

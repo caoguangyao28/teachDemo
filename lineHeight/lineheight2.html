@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>图片底部多余空白问题</title>
+  <title>vertical-align 文本属性值</title>
   <style>
     .box {
       background-color: #ccc;
@@ -13,23 +13,45 @@
       gap: 50px;
       padding: 50px 0;
     }
-
-    .img-box{
-      width: 160px;
+    .content-box{
+      width: 350px;
       background-color: antiquewhite;
-      font-size: 0;
-      /* line-height: 0; 或者是这个 */
+      font-size: 20px;
     }
-    .img-box img{
-      height: 96px;
+    .content-box span {
+      background-color: blueviolet;
+    }
+    .fs20 {
+      font-size: 20px;
+    }
+    .fs32 {
+      font-size: 32px;
+    }
+    .fs50{
+      font-size: 50px;
+    }
+    .vertical-t-top {
+      vertical-align: text-top;
+    }
+    .vertical-t-bottom{
+      vertical-align: text-bottom;
+    }
+    span.inline-block {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: aqua;
     }
   </style>
 </head>
 
 <body>
   <div class="box">
-    <div class="img-box">
-      x<img src="../img/shilie.png" alt=""></i>
+    <div class="content-box">
+      xx<span class="inline-block vertical-t-top"></span>
+      <span class="fs20">20px</span>
+      <span class="fs32">32px</span>
+      <span class="fs50">50px</span>
     </div>
   </div>
 </body>
