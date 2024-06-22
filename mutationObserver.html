@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>元素变化监听</title>
+</head>
+<body>
+  <h1>元素变化监听</h1>
+  <p>提供了监视对 DOM 树所做更改的能力。它被设计为旧的 Mutation Events 功能的替代品，该功能是 DOM3 Events 规范的一部分。</p>
+  <div class="observe-node">
+    <div class="child">
+      <span>child</span>
+    </div>
+    <div class="child-two">
+      <span name="chlid">child two</span>
+    </div>
+  </div>
+  <script>
+    const observeNode = document.querySelector('.observe-node')
+
+    const callback = (mutationsList, observer) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          if(mutation.addedNodes.length > 0){
+            console.log('A child node has been added.');
+          }
+          if(mutation.removedNodes.length > 0){
+            console.log('A child node has been removed.');
+          }
+        } else if (mutation.type === 'attributes') {
+          console.log('The ' + mutation.attributeName + ' attribute was modified.');
+        }else if(mutation.type === 'characterData'){
+          console.log('The node data was modified.');
+        }
+        // 详细的变更数据
+        console.log(mutation)
+      }
+    }
+    const observer = new MutationObserver(callback);
+
+    observer.observe(observeNode, {
+      childList: true, // 监测子节点变化
+      attributes: true, // 监测属性变化
+      subtree: true, // 监测子节点变化
+      characterData: true,// 监测节点内容变化
+      attributeOldValue: true,// 可以获取到旧值
+      characterDataOldValue: true,//
+    });
+
+    setTimeout(() => {
+      const child = document.querySelector('.child')
+      child.remove();
+      const childTwo = document.querySelector('.child-two')
+      childTwo.setAttribute('name', 'child-two');
+      childTwo.innerHTML = 'child two new';
+      const childThree = document.createElement('div');
+      childThree.innerHTML = 'child three';
+      observeNode.appendChild(childThree);
+    }, 2000)
+  </script>
+</body>
+</html>

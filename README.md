@@ -30,6 +30,7 @@
 - ajax进度监控 [ajaxProgress.html](./ajaxProgress.html)
 - 手写promise，彻底理解promise机制[promise.html](./promise.html)
 - 元素平滑上升-自定义vue指令+视口监听观察元素-代码已移动到vite4+vue3+demo
+- mutationObserver 元素变化监听 [mutationObserver.html](./mutationObserver.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 实验性代码
