@@ -21,9 +21,10 @@
       </span>
     </div>
   </div>
+  <button onclick="stopObserver()">停止监听</button>
   <script>
+    // 监听目标节点
     const observeNode = document.querySelector('.observe-node')
-
     // 监听回调
     const callback = (mutationsList, observer) => {
       for (const mutation of mutationsList) {
@@ -31,22 +32,22 @@
         if (mutation.type === 'childList') {
           // 添加节点
           if(mutation.addedNodes.length > 0){
-            console.log('A child node has been added.');
+            console.log('A child node has been added.', mutation.type);
           }
           // 删除节点
           if(mutation.removedNodes.length > 0){
-            console.log('A child node has been removed.');
+            console.log('A child node has been removed.', mutation.type);
           }
         }
 
         if (mutation.type === 'attributes') {
           // 属性修改
-          console.log('The ' + mutation.target.className +' ' + mutation.attributeName + ' attribute was modified.');
+          console.log('The ' + mutation.target.className +' ' + mutation.attributeName + ' attribute was modified.', mutation.type);
         }
 
         // 后代节点内容修改
         if(mutation.type === 'characterData') {
-          console.log('The node data was modified.');
+          console.log('The node data was modified.', mutation.type);
         }
         
         if(mutation.type === 'subtree'){ 
@@ -54,7 +55,7 @@
           console.log('The node data was modified.', 'subtree');
         }
         // 详细的变更数据
-        console.log(mutation)
+        // console.log(mutation)
       }
     }
     // 创建监听器
@@ -63,10 +64,10 @@
     // 添加监听元素 监听配置参数
     observer.observe(observeNode, {
       childList: true, // 监测子节点变化 只对 delete add 感知
-      attributes: true, // 监测属性变化
+      // attributes: true, // 监测属性变化
       attributeFilter: ['class', 'name'], // 监测属性变化时，只对 class name 属性进行监听
       subtree: true, // 监测 范围为后代元素
-      characterData: true,// 监测节点内容变化
+      // characterData: true,// 监测节点内容变化
       attributeOldValue: true,// 可以获取到旧值
       characterDataOldValue: true,//
     });
@@ -74,10 +75,11 @@
     // 模拟变化
     setTimeout(() => {
       // 元素一删除
-      const child = document.querySelector('.child')
-      child.remove();
+      // const child = document.querySelector('.child')
+      // child.remove();
       // 元素二修改
       const childTwo = document.querySelector('.child-two')
+
       childTwo.setAttribute('name', 'child-two');
       // 元素儿 text 修改（html 中 text node 其实也是一个节点，有自己的类型）
       // childTwo.innerHTML = 'child two new';
@@ -85,7 +87,11 @@
       const childThree = document.createElement('div');
       childThree.innerHTML = 'child three';
       observeNode.appendChild(childThree);
-    }, 2000)
+    }, 2000);
+
+    function stopObserver() {
+      observer.disconnect()
+    }
   </script>
 </body>
 </html>
