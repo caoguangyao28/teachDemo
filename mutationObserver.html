@@ -6,54 +6,82 @@
   <title>元素变化监听</title>
 </head>
 <body>
-  <h1>元素变化监听</h1>
+  <h1>元素突变监听</h1>
   <p>提供了监视对 DOM 树所做更改的能力。它被设计为旧的 Mutation Events 功能的替代品，该功能是 DOM3 Events 规范的一部分。</p>
   <div class="observe-node">
     <div class="child">
-      <span>child</span>
+      子元素一
+      <span>child 下的 span node</span>
     </div>
     <div class="child-two">
-      <span name="chlid">child two</span>
+      <span name="chlid">
+        grandson 
+        <i>我是斜体</i> 
+        <strong>字体加粗</strong>
+      </span>
     </div>
   </div>
   <script>
     const observeNode = document.querySelector('.observe-node')
 
+    // 监听回调
     const callback = (mutationsList, observer) => {
       for (const mutation of mutationsList) {
+        // 子元素变动
         if (mutation.type === 'childList') {
+          // 添加节点
           if(mutation.addedNodes.length > 0){
             console.log('A child node has been added.');
           }
+          // 删除节点
           if(mutation.removedNodes.length > 0){
             console.log('A child node has been removed.');
           }
-        } else if (mutation.type === 'attributes') {
-          console.log('The ' + mutation.attributeName + ' attribute was modified.');
-        }else if(mutation.type === 'characterData'){
+        }
+
+        if (mutation.type === 'attributes') {
+          // 属性修改
+          console.log('The ' + mutation.target.className +' ' + mutation.attributeName + ' attribute was modified.');
+        }
+
+        // 后代节点内容修改
+        if(mutation.type === 'characterData') {
           console.log('The node data was modified.');
+        }
+        
+        if(mutation.type === 'subtree'){ 
+          // 节点内容修改
+          console.log('The node data was modified.', 'subtree');
         }
         // 详细的变更数据
         console.log(mutation)
       }
     }
+    // 创建监听器
     const observer = new MutationObserver(callback);
 
+    // 添加监听元素 监听配置参数
     observer.observe(observeNode, {
-      childList: true, // 监测子节点变化
+      childList: true, // 监测子节点变化 只对 delete add 感知
       attributes: true, // 监测属性变化
-      subtree: true, // 监测子节点变化
+      attributeFilter: ['class', 'name'], // 监测属性变化时，只对 class name 属性进行监听
+      subtree: true, // 监测 范围为后代元素
       characterData: true,// 监测节点内容变化
       attributeOldValue: true,// 可以获取到旧值
       characterDataOldValue: true,//
     });
 
+    // 模拟变化
     setTimeout(() => {
+      // 元素一删除
       const child = document.querySelector('.child')
       child.remove();
+      // 元素二修改
       const childTwo = document.querySelector('.child-two')
       childTwo.setAttribute('name', 'child-two');
-      childTwo.innerHTML = 'child two new';
+      // 元素儿 text 修改（html 中 text node 其实也是一个节点，有自己的类型）
+      // childTwo.innerHTML = 'child two new';
+      // 元素儿添加
       const childThree = document.createElement('div');
       childThree.innerHTML = 'child three';
       observeNode.appendChild(childThree);
