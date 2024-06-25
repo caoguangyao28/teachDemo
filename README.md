@@ -31,6 +31,7 @@
 - 手写promise，彻底理解promise机制[promise.html](./promise.html)
 - 元素平滑上升-自定义vue指令+视口监听观察元素-代码已移动到vite4+vue3+demo
 - mutationObserver 元素突变监听 [mutationObserver.html](./mutationObserver.html)
+- ResizeObserver 边界变化 [resizeObserver.html](./resizeObserver.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 实验性代码
