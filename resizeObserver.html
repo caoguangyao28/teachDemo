@@ -115,7 +115,8 @@
         console.log('Size changed');
       });
 
-      resizeObserver.observe(divElem);
+      // options , box 配置后没什么特殊作用 信息还是都可以获取到
+      resizeObserver.observe(divElem, {box:"border-box"});
       // resizeObserver.observe(divDemoElem);
 
       checkbox.addEventListener('change', () => {
