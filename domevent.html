@@ -9,16 +9,20 @@
     <h1>DOM event </h1>
     <button id="testbtn">点我</button>
     <script>
+        function wait(number) {
+            const start = Date.now();
+            while(Date.now() - start < number){}
+        }
         document.addEventListener('DOMContentLoaded',function(){
             console.log('DOM fully loaded and parsed');
-            // btn.click();
         })
         const btn = document.getElementById('testbtn');
         btn.addEventListener('click',function(){
             console.log('button clicked');
         })
-        // 并不会执行，说明 addEventListener 本身是异步注册事件
         btn.click();
+        wait(3000);
+        // 并不会执行，说明 addEventListener 本身是异步注册事件
         console.log('script executed');
     </script>
 </body>
