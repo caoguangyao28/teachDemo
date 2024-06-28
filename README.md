@@ -41,6 +41,9 @@
 - 同步的方式实现事件监听[syniceventlistener.html](./syniceventlistener.html)
 - 行高line-height实现文字垂直居中[lineheight.html](./lineheight.html)
 
+## CSS 较新的特性
+- css 滚动驱动动画-顶部滚动进度条[top-progress-scroll.html](./css-study/animation-scroller/top-progress-scroll.html)
+
 ## 开脑洞的方式
 - 利用sass实现星空动画效果
   - [sass-star.html](./sass-star.html)

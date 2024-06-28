@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scroll Progress Timeline: Progress Visualization</title>
+	<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html, body {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				display: grid;
+				place-content: safe center;
+				overscroll-behavior: none;
+				gap: 2em;
+			}
+			:root {
+				--scrollbox-border-size: 1em;
+				--scrollbox-height: 40vmax;
+				--scrollbox-width: calc(var(--scrollbox-height) * 16 / 9);
+			}
+
+			.scroller {
+				border: var(--scrollbox-border-size) solid lightblue;
+				height: var(--scrollbox-height);
+				width: var(--scrollbox-width);
+				overflow: auto;
+				max-width: 90vw;
+				margin: 0 auto;
+
+				position: relative;
+				box-shadow:
+					inset 0px 0px 1em 0px rgb(0 0 0 / 0.5),
+					0px 0px 1em 0px rgb(0 0 0 / 0.5);
+				border-radius: 0.5em;
+			}
+
+			.scroller-content {
+				height: 400%;
+				position: relative;
+				background-color: aliceblue;
+				background-image: linear-gradient(to right, rgb(0 0 0 / 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgb(0 0 0 / 0.05) 1px, transparent 1px);
+				background-size: 10vh 10vh;
+				z-index: -1;
+			}
+
+			.scroll-progress {
+				position: fixed;
+				inset: 0;
+
+				display: grid;
+				place-content: center;
+				pointer-events: none;
+
+				font-size: 4rem;
+			}
+
+
+			@keyframes the-animation {
+				from {
+					background-color: #ccc;
+				}
+				to {
+					background-color: #fff;
+				}
+			}
+
+			.scroller {
+				/* scroll-timeline: --the-scroller; */
+        scroll-timeline-name: --the-scroller;
+			}
+
+
+			.scroller-content {
+				animation: the-animation 1s linear forwards;
+				animation-timeline: --the-scroller;
+			}
+	</style>
+	<script type="module">
+		const animation = document.querySelector('.scroller-content').getAnimations()[0];
+		const output = document.querySelector('.scroll-progress');
+		let curVal = 0;
+		const updateValue = () => {
+      // console.log(animation)
+			if (animation && animation.currentTime) {
+				const newVal = animation.currentTime.value;
+				if (newVal != curVal) {
+					output.innerText = `${newVal.toFixed(0)}%`;
+					curVal = newVal;
+				}
+			}
+			requestAnimationFrame(updateValue);
+		}
+		requestAnimationFrame(updateValue);
+	</script>
+
+</head>
+<body>
+	<!-- metabox -->
+	<div class="scroller">
+		<div class="scroller-content">
+
+		</div>
+		<div class="scroll-progress">0%</div>
+	</div>
+</body>
+</html>

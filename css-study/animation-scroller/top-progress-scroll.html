@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css animation-time</title>
+  <style>
+    html,
+    body {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background-color: #f44336;
+      transform-origin: 0 50%;
+      animation: grow-progress 1s linear;
+      animation-timeline: scroll();
+      /* 与滚动元素并级 不生效 */
+      /* animation-timeline: --the-scroller; */
+    }
+
+    main {
+      padding: 10px;
+    }
+
+    /* .content >  */
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      margin: 10px;
+      background-color: beige;
+      color: coral;
+      font-size: 80px;
+    }
+
+    /* .content {
+      height: 800px;
+      overflow: auto;
+      scroll-timeline-name: --the-scroller;
+    } */
+
+    /* .content > div:nth-child(odd) {
+      background-color: wheat;
+    } */
+    div:nth-child(odd) {
+      background-color: wheat;
+    }
+
+
+    .back {
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+      background-color: royalblue;
+      border-radius: 4px;
+      width: 40px;
+      height: 40px;
+      animation: back-progress 1s linear forwards;
+      animation-timeline: scroll();
+      /* animation-range: entry 0 100px; */
+    }
+
+    @keyframes grow-progress {
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes back-progress {
+      from {
+        transform: translateY(150%);
+      }
+
+      to {
+        transform: translateY(0%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="content"> -->
+    <div>进</div>
+    <div>击</div>
+    <div>的</div>
+    <div>前</div>
+    <div>端</div>
+    <div>之</div>
+    <div>Css</div>
+    <div>···</div>
+  <!-- </div> -->
+  <a class="back" href="#"></a>
+</body>
+
+</html>
