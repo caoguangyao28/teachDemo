@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM event</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DOM event</title>
 </head>
+
 <body>
-    <h1>DOM event </h1>
-    <button id="testbtn">点我</button>
-    <script>
-        function wait(number) {
-            const start = Date.now();
-            while(Date.now() - start < number){}
-        }
-        document.addEventListener('DOMContentLoaded',function(){
-            console.log('DOM fully loaded and parsed');
-        })
-        const btn = document.getElementById('testbtn');
-        btn.addEventListener('click',function(){
-            console.log('button clicked');
-        })
-        btn.click();
-        wait(3000);
-        // 并不会执行，说明 addEventListener 本身是异步注册事件
-        console.log('script executed');
-    </script>
+	<h1>DOM event </h1>
+	<button id="testbtn">点我</button>
+	<script>
+		function wait(number) {
+			const start = Date.now();
+			while (Date.now() - start < number) { }
+		}
+		// document.addEventListener('DOMContentLoaded', function () {
+		// 	console.log('DOM fully loaded and parsed');
+		// })
+		const btn = document.getElementById('testbtn');
+		btn.addEventListener('click', function () {
+			console.log('button clicked');
+		})
+		// btn.click();
+		// wait(3000);
+		// 并不会执行，说明 addEventListener 本身是异步注册事件
+		// console.log('script executed');
+
+
+		console.log('开始执行');
+		console.log('start');
+		// setTimeout 执行时间不确定 0-4ms 且当前 帧执行栈 没执行完将排到下一次 循环
+		setTimeout(() => {
+			console.log('setTimeout');
+		}, 0);
+		// 
+
+
+		// 一定是在当前帧 当前循环内完成 所以有时后早于 setTimeout
+		requestAnimationFrame(() => {
+			console.log('requestAnimationFrame');
+		});
+
+		new Promise((resolve, reject) => {
+			console.log('Promise');
+			resolve('promise resolved');
+		}).then((res) => console.log(res))
+		// 追加微任务
+		queueMicrotask(()=>{
+      console.log("microtask 1")
+    })
+		// 浏览器空闲时执行 执行时间不确定 相当于优先级最低
+		requestIdleCallback(() => {
+			console.log('requestIdleCallback');
+		});
+
+		(async function asyncFunction() {
+			console.log(await 'asyncFunction');
+		})();
+
+		setTimeout(() => {
+			console.log('setTimeout 2');
+		}, 0);
+
+
+		console.log('执行结束');
+		// 开始执行
+		// Promise
+		// 执行结束
+		// promise resolved
+		// asyncFunction
+		// setTimeout
+		// requestAnimationFrame
+		// requestIdleCallback
+	</script>
 </body>
+
 </html>
