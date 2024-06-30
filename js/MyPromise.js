@@ -113,6 +113,27 @@ class MyPromise {
       this.#run();
     })
   }
+  // Promise.all 
+  static all(promises){
+    return new MyPromise((resolve, reject) => { 
+      let count = 0;
+      promises.forEach((promise, index) => {
+        promise.then(res => {
+          count++;
+          if(count === promises.length){
+            resolve(res)
+            console.log('all 状态切换')
+          }
+        },
+        err => {
+          reject(err)
+          console.log('all 状态切换 err', err)
+        })
+        console.log(promise, index, 'promise')
+        
+      })
+    })
+  }
 }
 // PROMISE 异步的异常是捕获不到的，无法影响 promis 的状态
 
