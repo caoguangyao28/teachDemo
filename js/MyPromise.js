@@ -52,6 +52,7 @@ class MyPromise {
     this.#runMicroTask(() => {
       // 如果不是函数 默认调用 resolve 或者 reject
       if(typeof callback !== 'function') {
+        // callback 为非函数时透传当前的结果值 给 resolve 或者 reject
         const setted = this.#state === FULFILLED? resolve: reject;
         setted(this.#result)
         return;
@@ -63,6 +64,9 @@ class MyPromise {
           // 将 resolve reject 透传给 promise
           data.then(resolve,reject)
         }else {
+          // 默认调用 触发订阅者的（即then 创建的promise） resolve
+          //  data 可能为 undefined ,因为 callback 不一定有返回值
+          //  且无论 当前的状态是fulfilled 还是 rejected 下一个 promise 的状态 都是 fulfilled （通过 resolve(data) 触发的）
           resolve(data)
           console.log('返回值情况完全看回掉函数自己是否 return', data)
         }
@@ -74,17 +78,18 @@ class MyPromise {
   }
   #run(){
     // 当前状态是挂起什么都不用做
-    console.log(this.handlers.length, 'run 开始前')
+    // console.log(this.handlers.length, 'run 开始前')
     if(this.#state === PENDING){
       return;
     }
-    console.log(this.#state === FULFILLED, 'run 执行中')
     // 查看 #handlers 队列 是否有需要执行的 this.#handlers 不会出现 大于1个多情况，每次 then 都会创建新的promise 实列
     while(this.handlers.length > 0){
       // 一个一个依次执行
       const {onFulfilled, onRejected, resolve, reject} = this.handlers.shift();
       if(this.#state === FULFILLED){
         // 获取 then 方法的参数
+        // debugger
+        console.log(onFulfilled,resolve.toString(), reject.toString())
         this.#runone(onFulfilled, resolve, reject)
       }else{
         this.#runone(onRejected, resolve, reject)
@@ -97,7 +102,6 @@ class MyPromise {
     // then 方法的返回值是一个promise
     console.log(this.handlers, 'then 订阅产生 新的 promise')
     return new MyPromise((resolve, reject) => {
-      console.log(this.onlykey.toString(), '通过then 链式调用产生的 promise 实例')
       this.handlers.push({
         onFulfilled,
         onRejected,
@@ -114,33 +118,35 @@ class MyPromise {
 
 const p = new MyPromise((resolve, reject) => {
   setTimeout(() => {
-    // resolve(222);
+    reject(222);
   }, 1000);
 })
 
 
-// p.then(123, (err)=>{
-//   console.log('promise 失败1', err);
-// }).then(res => {
-//   console.log('最后一个 promise 结果 来自第一个 透传而来',res)
-// })
-
-
-
-p.then((res)=>{
-  console.log(p.handlers, 'hha')
-  return new Promise((ref, rej) => {
-    console.log('我的插入promise 但一直未完成')
-    console.log(p.handlers, 'aaa')
-    setTimeout(() => {
-      console.log('我的插入promise 马上结束')
-      ref(res)
-    }, 1000);
-  })
-}, (err) => {
+p.then(123, (err)=>{
   console.log('promise 失败1', err);
-  // return 456
+  // return err
+}).then(res => {
+  console.log('最后一个 promise 结果 来自第一个 透传而来',res)
+  return res
 })
+
+
+
+// p.then((res)=>{
+//   console.log(p.handlers, 'res', res)
+//   return new Promise((ref, rej) => {
+//     console.log('我的插入promise 但一直未完成')
+//     console.log(p.handlers, 'aaa')
+//     setTimeout(() => {
+//       console.log('我的插入promise 马上结束')
+//       ref(res)
+//     }, 1000);
+//   })
+// }, (err) => {
+//   console.log('promise 失败1', err);
+//   // return 456
+// })
 // .then((res) => {
 //   console.log('插入的 promise 成功', res)
 //   // return res

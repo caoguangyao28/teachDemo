@@ -14,6 +14,9 @@
     body {
       margin: 0;
     }
+    /* html {
+      scroll-timeline-name: --html-scroll;
+    } */
 
     body::after {
       content: "";
@@ -28,6 +31,7 @@
       animation-timeline: scroll();
       /* 与滚动元素并级 不生效 */
       /* animation-timeline: --the-scroller; */
+      /* animation-timeline: --html-scroll; */
     }
 
     main {
