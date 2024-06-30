@@ -118,39 +118,48 @@ class MyPromise {
 
 const p = new MyPromise((resolve, reject) => {
   setTimeout(() => {
-    reject(222);
+    resolve(222);
   }, 1000);
 })
 
 
-p.then(123, (err)=>{
-  console.log('promise 失败1', err);
-  // return err
-}).then(res => {
-  console.log('最后一个 promise 结果 来自第一个 透传而来',res)
-  return res
-})
-
-
-
-// p.then((res)=>{
-//   console.log(p.handlers, 'res', res)
-//   return new Promise((ref, rej) => {
-//     console.log('我的插入promise 但一直未完成')
-//     console.log(p.handlers, 'aaa')
-//     setTimeout(() => {
-//       console.log('我的插入promise 马上结束')
-//       ref(res)
-//     }, 1000);
-//   })
-// }, (err) => {
+// p.then(123, (err)=>{
 //   console.log('promise 失败1', err);
-//   // return 456
+//   return err
+// }).then(res => {
+//   console.log('最后一个 promise 结果 来自第一个 透传而来',res)
+//   return res
 // })
-// .then((res) => {
-//   console.log('插入的 promise 成功', res)
-//   // return res
-// }, (err) => {})
+// // 二次 订阅
+// p.then(res => {
+//   console.log('promise 完成1',res)
+//   return res
+// }, (err) => {
+//   console.log('promise 失败1 订阅二', err);
+//   // return err
+// })
+
+
+//  resolve 中插入一个promise 情况
+p.then((res)=>{
+  console.log(p.handlers, 'res', res)
+  return new Promise((ref, rej) => {
+    console.log('我的插入promise 但一直未完成')
+    console.log(p.handlers, 'aaa')
+    setTimeout(() => {
+      console.log('我的插入promise 马上结束')
+      ref(res)
+    }, 1000);
+  })
+}, (err) => {
+  console.log('promise 失败1', err);
+  // return 456
+})
+.then((res) => {
+  console.log('插入的 promise 成功', res)
+  return res
+}, (err) => {})
+
 // p 多次调用 then 此时 应该出现 多个 #handles？？
 // p.then((res) => {
 //   console.log('promise 完成1-2',res)
