@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>intersectionObserver</title>
+  <style>
+    html,body {
+      margin: 0;
+    }
+
+    .conent {
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* 奇偶行样式 */
+    div:nth-child(odd) {
+      background-color: yellowgreen;
+      color: #Fff;
+    }
+
+    /* 第一个 div */
+    div:nth-child(1) {
+      height: 80px;
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      background-color: aquamarine;
+      color: #000;
+    }
+
+    div:nth-child(even) {
+      background-color: gold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <!-- intersectionObserver demo  -->
+  <div class="inviws">
+    <span>hello 我是元素：</span><span id="new-view-in"></span> <span>--我在响应变化</span>
+  </div>
+  <div class="conent">我是1</div>
+  <div class="conent">我是2</div>
+  <div class="conent">我是3</div>
+  <div class="conent">我是4</div>
+  <div class="conent">我是5</div>
+  <div class="conent">我是6</div>
+  <div class="conent">我是7</div>
+  <div class="conent">我是8</div>
+  <div class="conent">我是9</div>
+  <div class="conent">我是10</div>
+  <div class="conent">我是11</div>
+  <div class="conent">我是12</div>
+  <div class="conent">我是13</div>
+  <div class="conent">我是14</div>
+  <div class="conent">我是15</div>
+  <div class="conent">我是16</div>
+  <div class="conent">我是17</div>
+  <div class="conent">我是18</div>
+  <div class="conent">我是19</div>
+  <div class="conent">我是20</div>
+  <script>
+    // intersectionObserver demo 
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        console.log(entries.length);
+        entries.forEach((entry) => {
+          // 出现在 视口
+          console.log(entry);
+          if (entry.isIntersecting) {
+            console.log(entry.target);
+            document.getElementById("new-view-in").innerHTML = entry.target.innerHTML;
+            // observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,// 即默认为根 html 视窗
+        rootMargin: "0px",
+        threshold: [0, 0.5, 0.75, 1], // 
+      }
+    );
+    const doms = document.querySelectorAll(".conent");
+    doms.forEach((dom) => {
+      observer.observe(dom);
+    });
+  </script>
+</body>
+</html>
