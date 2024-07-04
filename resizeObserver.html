@@ -64,19 +64,25 @@
 
 <body>
   <div class="demo">
-    <h1>So what happened?</h1>
+    <h1>什么效果</h1>
     <p>
-      And remember, don't do anything that affects anything, unless it turns out you were supposed to, in which case,
-      for the love of God, don't not do it! Ow, my spirit! I don't want to be rescued. You guys aren't Santa! You're not
-      even robots. I've got to find a way to escape the horrible ravages of youth. Suddenly, I'm going to the bathroom
-      like clockwork, every three hours. And those jerks at Social Security stopped sending me checks. Now 'I' have to
-      pay 'them'!
+      《蝉》垂緌饮清露，流响出疏桐。居高声自远，非是藉秋风。
+      蝉的触须，形状好像下垂的冠缨，故说“垂緌”。古人认为蝉生性高洁，栖高饮露，故首句“垂緌饮清露”，
+      “緌”是古人结在颔下的帽带下垂部分，蝉的头部有伸出说“饮清露”。这一句表面上是写蝉的形状与食性，
+      实际上处处含比兴象征。“垂緌”暗示显宦身分（古代常以“冠缨”指代贵宦）。
+      这显贵的身分地位在一般人心目中，是和“清”有矛盾甚至不相容的，但在作者笔下，
+      却把它们统一在“垂緌饮清露”的形象中了。这“贵”与“清”的统一，
+      正是为三、四两句的“清”无须藉“贵”作反铺垫，笔意颇为巧妙。
+      这首托物寓意的小诗，是唐人咏蝉诗中年代最早的一首，很为后世人称道。
     </p>
     <form>
-      <div><label>Observer enabled:</label><input type="checkbox" checked></div>
-      <div><label>Adjust width:</label><input type="range" value="600" min="300" max="1300"></div>
+      <div><label>观察可用:</label><input type="checkbox" checked></div>
+      <div><label>调整宽度:</label><input type="range" value="600" min="300" max="1300"></div>
     </form>
   </div>
+  <!-- <div class="demo-two">
+    <p>我是测试内容</p>
+  </div> -->
   <script>
     if (window.ResizeObserver) {
       const h1Elem = document.querySelector('h1');
@@ -93,12 +99,11 @@
       })
 
       const resizeObserver = new ResizeObserver(entries => {
-        console.log(entries.length, entries[0])
+        console.log(entries.length, '默认就会执行，entries 是监听的元素中大小发生变化的元素集合')
         for (let entry of entries) {
           if (entry.contentBoxSize) {
-            // The standard makes contentBoxSize an array...
             if (entry.contentBoxSize[0]) {
-              console.log(entry.contentBoxSize[0].inlineSize / 200)
+              console.log(entry.contentBoxSize[0].inlineSize / 200, entry.contentBoxSize[0].inlineSize,entry)
               h1Elem.style.fontSize = Math.max(1.5, entry.contentBoxSize[0].inlineSize / 200) + 'rem';
               pElem.style.fontSize = Math.max(1, entry.contentBoxSize[0].inlineSize / 600) + 'rem';
             } else {
@@ -112,11 +117,10 @@
             pElem.style.fontSize = Math.max(1, entry.contentRect.width / 600) + 'rem';
           }
         }
-        console.log('Size changed');
       });
 
       // options , box 配置后没什么特殊作用 信息还是都可以获取到
-      resizeObserver.observe(divElem, {box:"border-box"});
+      resizeObserver.observe(divElem);
       // resizeObserver.observe(divDemoElem);
 
       checkbox.addEventListener('change', () => {
