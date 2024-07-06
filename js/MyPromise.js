@@ -114,10 +114,19 @@ class MyPromise {
     })
   }
   // Promise.all 
-  static all(promises){
+  all(promises){
     return new MyPromise((resolve, reject) => { 
       let count = 0;
+      let results = [];
       promises.forEach((promise, index) => {
+        if(!this.#isPromise(promise)){
+          results[index] = promise;
+          count++;
+          if(count === promises.length){
+            resolve(results)
+            console.log('all 状态切换')
+          }
+        }
         promise.then(res => {
           count++;
           if(count === promises.length){
@@ -130,7 +139,7 @@ class MyPromise {
           console.log('all 状态切换 err', err)
         })
         console.log(promise, index, 'promise')
-        
+
       })
     })
   }
