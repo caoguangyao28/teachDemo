@@ -56,3 +56,4 @@
 - 实现GetOptionals [GetOptionals.ts](./ts/getOptions.ts)
 - ts实现函数重载-顶层多函数 [tsreload.ts](./ts/tsreload.ts)
 - ts实现函数重载-对象内部的函数 [tsreload2.ts](./ts/tsreload2.ts)
+- ts实现深度不可变约束 [不可变类型.ts](./ts/不可变类型.ts)
