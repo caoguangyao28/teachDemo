@@ -22,12 +22,12 @@
       color: red;
     }
 
-    /* a.link:hover {
+    #nav a.link:hover {
       color: blue;
-    } */
+    }
 
     a:hover{
-      color: blue;
+      color: yellow;
     }
 
     a {
@@ -42,19 +42,19 @@
       color: cadetblue;
     }
 
-    /* div a[href='#001']:hover {
-      color: blue;
+    div a[href='#001']:hover {
+      color: red;
     }
 
     div.nav a:active{
       color: blueviolet;
-    } */
+    } 
 
   </style>
 </head>
 <body>
   <h1 id="001">CSS 层叠规则示例</h1>
-  <div class="nav">
+  <div id="nav" class="nav">
     <a class="link" 
       style="font-size: 24px;" 
       href="#001" 
@@ -63,7 +63,7 @@
     </a>
   </div>
 
-  <h1 id="002">继承示例</h1>
+  <!-- <h1 id="002">继承示例</h1>
   <p>字体大小，颜色 继承自body</p>
   <div style="
     font-size: 18px;
@@ -78,6 +78,6 @@
     <div style=" background-color: antiquewhite;">
       <span>字体大小，颜色，继承 祖先元素 div</span>
     </div>
-  </div>
+  </div> -->
 </body>
 </html>
