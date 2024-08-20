@@ -11,6 +11,7 @@
 - 层叠规则[cascadeRule.html](./cascadeRule.html)
 - 浏览器内存泄漏之游离节点 [freeNodeMemoryLeak.html](./freeNodeMemoryLeak.html)
 - 大文件分割[ cutfile.html](./cutfile/cutfile.html)
+- vue的nextick&异步渲染极致[./vue/asyncRender.html](./vue/asyncRender.html)
 <!-- - js函数重载 - functionOverload - 未完成[functionOverload.html](./functionOverload.html) -->
 <!-- - 一种在不同浏览器上下文之间通信的重量级方案 - 未完成：[ServiceWorker](./serviceWorker.html) -->
 
