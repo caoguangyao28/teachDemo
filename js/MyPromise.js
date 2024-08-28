@@ -87,7 +87,7 @@ class MyPromise {
           //  data 可能为 undefined ,因为 callback 不一定有返回值
           //  且无论 当前的状态是fulfilled 还是 rejected 下一个 promise 的状态 都是 fulfilled （通过 resolve(data) 触发的）
           resolve(data)
-          console.log('返回值情况完全看回掉函数自己是否 return', data)
+          // console.log('返回值情况完全看回掉函数自己是否 return', data)
         }
         //  这里resolve 其实是 then 产生的 promise 的 状态切换  相当于 结束自己 data 相当于 把 data 出入后续的 promise
       } catch (error) {

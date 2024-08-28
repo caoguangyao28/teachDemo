@@ -163,7 +163,7 @@
     // 二次 订阅
     p.then(res => {
       console.log('promise 成功2',res)
-      // return res // 这里是否return 不影响流程 但 子then 的返回值是 undefined
+      return res // 这里是否return 不影响流程 但 子then 的返回值是 undefined
     }, (err) => {
       console.log('promise 失败2 订阅二', err);
       return err // 这里是否return 不影响流程 但 子then 的返回值是 undefined
