@@ -46,7 +46,23 @@ class MyPromise {
     return value && typeof value.then === 'function';
   }
   #runMicroTask(func) {
-    setTimeout(func, 0);
+    // 应该放入微任务 通用写法
+    if(process && process.nextTick) { // 兼容 node 环境
+      process.nextTick(func);
+    }else if(typeof MutationObserver !== 'undefined'){
+      // 创建一个dom 节点
+      const textNode = document.createTextNode(1);
+      // 创建一个观察者
+      const observer = new MutationObserver(func);
+      // 观察这个节点
+      observer.observe(textNode, {
+        characterData: true
+      })
+      // 改变节点的值 触发回调
+      textNode.data = 2;
+    } else { // 很老的浏览器
+      setTimeout(func, 0);
+    }
   }
   #runone(callback, resolve, reject){
     this.#runMicroTask(() => {
