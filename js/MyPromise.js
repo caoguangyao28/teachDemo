@@ -11,9 +11,11 @@ class MyPromise {
   // 私有属性
   #state = PENDING;
   #result = undefined;
+  
   handlers = [];
-  constructor(executor){
+  constructor(executor, isThen = false){
     this.onlykey = Symbol('MyPromise');
+    this.isThen = isThen;
     const resolve = (value) => {
       // 状态值 存在 hard code
       this.#changeState(FULFILLED, value);
@@ -24,7 +26,7 @@ class MyPromise {
     }
     // 异常处理 -- 只能捕获同步错误
     try {
-      console.log('构造函数创建 promise 实例，马上调用构造传入函数，并回传 resolve, reject')
+      console.log('构造函数创建 promise 实例，马上调用构造传入函数，并回暴露用于处理当前实例的 resolve, reject', '是否有then调用构建：', this.isThen)
       executor(resolve, reject);
     } catch (error) {
       // 捕获异常
@@ -47,9 +49,10 @@ class MyPromise {
   }
   #runMicroTask(func) {
     // 应该放入微任务 通用写法
-    if(process && process.nextTick) { // 兼容 node 环境
-      process.nextTick(func);
-    }else if(typeof MutationObserver !== 'undefined'){
+    // if( process && process.nextTick ) { // 兼容 node 环境
+    //   process.nextTick(func);
+    // }else 
+    if(typeof MutationObserver !== 'undefined'){
       // 创建一个dom 节点
       const textNode = document.createTextNode(1);
       // 创建一个观察者
@@ -105,18 +108,18 @@ class MyPromise {
       if(this.#state === FULFILLED){
         // 获取 then 方法的参数
         // debugger
-        console.log(onFulfilled,resolve.toString(), reject.toString())
+        // console.log(onFulfilled,resolve.toString(), reject.toString())
         this.#runone(onFulfilled, resolve, reject)
       }else{
         this.#runone(onRejected, resolve, reject)
       }
     }
-    console.log(this.handlers.length, 'run 开始后')
+    // console.log(this.handlers.length, 'run 开始后')
   }
 
   then(onFulfilled, onRejected){  
     // then 方法的返回值是一个promise
-    console.log(this.handlers, 'then 订阅产生 新的 promise')
+    // console.log(this.handlers, 'then 订阅产生 新的 promise')
     return new MyPromise((resolve, reject) => {
       this.handlers.push({
         onFulfilled,
@@ -124,10 +127,10 @@ class MyPromise {
         resolve,
         reject
       })
-      console.log(this.handlers, '其实是链式调用的上一个mypromise 实例的 handlers 会加一')
+      // console.log(this.handlers, '其实是链式调用的上一个mypromise 实例的 handlers 会加一')
       // console.log(that, '其实是链式调用的上一个mypromise 实例的 handlers 会加一', that.handlers.length)
       this.#run();
-    })
+    }, true)
   }
   // Promise.all 
   all(promises){
@@ -160,70 +163,3 @@ class MyPromise {
     })
   }
 }
-// PROMISE 异步的异常是捕获不到的，无法影响 promis 的状态
-
-const p = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(222);
-  }, 1000);
-})
-
-
-// p.then(123, (err)=>{
-//   console.log('promise 失败1', err);
-//   return err
-// }).then(res => {
-//   console.log('最后一个 promise 结果 来自第一个 透传而来',res)
-//   return res
-// })
-// // 二次 订阅
-// p.then(res => {
-//   console.log('promise 完成1',res)
-//   return res
-// }, (err) => {
-//   console.log('promise 失败1 订阅二', err);
-//   // return err
-// })
-
-
-//  resolve 中插入一个promise 情况
-p.then((res)=>{
-  console.log(p.handlers, 'res', res)
-  return new Promise((ref, rej) => {
-    console.log('我的插入promise 但一直未完成')
-    console.log(p.handlers, 'aaa')
-    setTimeout(() => {
-      console.log('我的插入promise 马上结束')
-      ref(res)
-    }, 1000);
-  })
-}, (err) => {
-  console.log('promise 失败1', err);
-  // return 456
-})
-.then((res) => {
-  console.log('插入的 promise 成功', res)
-  return res
-}, (err) => {})
-
-// p 多次调用 then 此时 应该出现 多个 #handles？？
-// p.then((res) => {
-//   console.log('promise 完成1-2',res)
-// },(err) => {
-//   console.log('promise 失败1-2', err);
-// })
-// p.then((res) => {
-//   console.log('promise 完成2',res);
-// }, (err) => {
-//   console.log('promise 失败2', err);
-// })
-// p.then((res) => {
-//   console.log('promise 完成3',res);
-// }, (err) => {
-//   console.log('promise 失败3', err);
-// })
-// p.then((res) => {
-//   console.log('promise 完成4',res);
-// }, (err) => {
-//   console.log('promise 失败4', err);
-// })

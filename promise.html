@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
   <title>Promise</title>
   <script src="./js/MyPromise.js"></script>
   <script>
-    // new promise 构造执行 输出 "最外侧 promise"  -> resolve 执行完 -> 执行外部第一个then 
+// new promise 构造执行 输出 "最外侧 promise"  -> resolve 执行完 -> 执行外部第一个then 
     // 外部第一个then 返回了 一个 promise ，这个 return 代表外部第二个then 需要等待 return 之后 promise的结果
     // 所以内部的 promise 都是优先 外部第二个then 执行完
     /**
@@ -137,10 +138,95 @@
     //     console.log(6)
     //   })
     console.log("主线程执行结束")
+  </script>
+  <script>
+    console.log("mypromise demo start")
+    // 自定义的 promise 测试
+    // PROMISE 异步的异常是捕获不到的，无法影响 promis 的状态
+
+    const p = new MyPromise((resolve, reject) => {
+      // setTimeout(() => {
+      //   reject(222);
+      // }, 1000);
+      resolve(111)
+    })
+
+
+    p.then(123, (err)=>{
+      console.log('promise 失败1', err);
+      return err
+    }).then(res => {
+      console.log('最后一个 promise 结果 来自第一个 透传而来',res)
+      console.log('promise 完成1',res)
+      return res
+    })
+    // 二次 订阅
+    p.then(res => {
+      console.log('promise 成功2',res)
+      // return res // 这里是否return 不影响流程 但 子then 的返回值是 undefined
+    }, (err) => {
+      console.log('promise 失败2 订阅二', err);
+      return err // 这里是否return 不影响流程 但 子then 的返回值是 undefined
+    }).then(res => {  
+      console.log('then2-2 ',res) // undefined
+      return res // 尾部不返回 将有一个 undefined
+    })
+    // let p = new MyPromise((resolve, reject) => {
+    //   console.log("最外侧 promise")
+    //   resolve()
+    // })
+    // p.then(() => { // 外部第一个then
+    //   let p = new MyPromise((resolve, reject ) => {
+    //     console.log("内部 promise");
+    //     resolve()
+    //   })
+    //   p.then(() =>{})
+    // })
+    // p.then((res) => {
+    //   console.log(p.handlers, 'res', res)
+    //   return new Promise((ref, rej) => {
+    //     console.log('我的插入promise 但一直未完成')
+    //     console.log(p.handlers, 'aaa')
+    //     setTimeout(() => {
+    //       console.log('我的插入promise 马上结束')
+    //       ref(res)
+    //     }, 1000);
+    //   })
+    // }, (err) => {
+    //   console.log('promise 失败1', err);
+    //   // return 456
+    // })
+    //   .then((res) => {
+    //     console.log('插入的 promise 成功', res)
+    //     return res
+    //   }, (err) => { })
+    // p 多次调用 then 此时 应该出现 多个 #handles？？
+    // p.then((res) => {
+    //   console.log('promise 完成1-2',res)
+    // },(err) => {
+    //   console.log('promise 失败1-2', err);
+    // })
+    // p.then((res) => {
+    //   console.log('promise 完成2',res);
+    // }, (err) => {
+    //   console.log('promise 失败2', err);
+    // })
+    // p.then((res) => {
+    //   console.log('promise 完成3',res);
+    // }, (err) => {
+    //   console.log('promise 失败3', err);
+    // })
+    // p.then((res) => {
+    //   console.log('promise 完成4',res);
+    // }, (err) => {
+    //   console.log('promise 失败4', err);
+    // })
 
   </script>
 </head>
+
 <body>
   <h1>promice</h1>
 </body>
+
 </html>
