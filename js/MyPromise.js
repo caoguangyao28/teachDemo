@@ -26,7 +26,7 @@ class MyPromise {
     }
     // 异常处理 -- 只能捕获同步错误
     try {
-      console.log('构造函数创建 promise 实例，马上调用构造传入函数，并回暴露用于处理当前实例的 resolve, reject', '是否有then调用构建：', this.isThen)
+      console.log('构造函数创建 promise 实例，马上调用构造传入函数，并回暴露用于处理当前实例的 resolve, reject', '是否有then调用构建：', this.isThen, this.onlykey)
       executor(resolve, reject);
     } catch (error) {
       // 捕获异常
@@ -81,7 +81,9 @@ class MyPromise {
       // 还需要考虑到 callback 的返回值是一个promise 可能是一个promise的情况 ，此时 就是需要 将 promise 状态进行挂钩处理 拿后者的状态作为前面的 状态
         if( this.#isPromise(data)) {
           // 将 resolve reject 透传给 promise
-          data.then(resolve,reject)
+          console.log('then 的回调返回值是 promise', data)
+          // MyPromise.resolve(data).then(resolve,reject)
+          data.then().then(resolve,reject) // 这样才接近原生的 执行效果 原生针对 不同数据可能有分装逻辑导致 多一层嵌套
         }else {
           // 默认调用 触发订阅者的（即then 创建的promise） resolve
           //  data 可能为 undefined ,因为 callback 不一定有返回值
@@ -101,14 +103,14 @@ class MyPromise {
     if(this.#state === PENDING){
       return;
     }
-    // 查看 #handlers 队列 是否有需要执行的 this.#handlers 不会出现 大于1个多情况，每次 then 都会创建新的promise 实列
+    // 查看 #handlers 队列 是否有需要执行的 this.#handlers 
     while(this.handlers.length > 0){
+      // console.log(this.handlers)
       // 一个一个依次执行
       const {onFulfilled, onRejected, resolve, reject} = this.handlers.shift();
       if(this.#state === FULFILLED){
         // 获取 then 方法的参数
-        // debugger
-        // console.log(onFulfilled,resolve.toString(), reject.toString())
+        // debugger        
         this.#runone(onFulfilled, resolve, reject)
       }else{
         this.#runone(onRejected, resolve, reject)
@@ -161,5 +163,14 @@ class MyPromise {
 
       })
     })
+  }
+  static resolve(value){
+    return new MyPromise((resolve, reject) => {
+      resolve(value)
+    })
+  }
+  getStates(){
+    console.log(this.#state)
+    return this.#state;
   }
 }

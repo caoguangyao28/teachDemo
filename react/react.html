@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>reactjs 核心概念 技术实现</title>
-  <script src="./js/react.js"></script>
 </head>
 <body>
   <h1>React.createElement</h1>
@@ -15,5 +14,24 @@
     React.createTextElement: 用于处理文本节点，将字符串封装成虚拟 DOM 对象。
 
     React.render:将虚拟 DOM 转化为实际 DOM 元素。
+  <div id="root"></div>
+  <!-- <script src="./js/react.js"></script> -->
+  <script>
+    setTimeout(function(){
+      console.log(1)
+    }, 0)
+    
+    Promise.resolve(1).then(function(){
+      console.log(2)
+    }).then(()=>{
+      Promise.resolve(3).then(function(data){
+        console.log(data)
+        return data
+      })
+      return 'd'
+    }).then((data) => {
+      console.log(data)
+    })
+  </script>
 </body>
 </html>

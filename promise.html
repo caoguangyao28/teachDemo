@@ -109,34 +109,57 @@
     // }).then(() => {
     //   console.log("外部第三个then")
     // })
+    
+
 
     // promise 终极面试题 分析
-    // Promise.resolve().then(() => {
-    //     console.log(0)
-    //     // 这里是关键 如何理解
-    //     return Promise.resolve('4')
-    //     // return 4
-    //   })
-    //   .then((res) => {
-    //     console.log(4)
-    //     // console.log(res)
-    //   })
+    // const promisetemp = new Promise((resolve, reject) => {
+    //   console.log("最外侧 promise")
+    //   resolve(4)
+    // })
+    
+    Promise.resolve().then(() => {
+        console.log(0)
+        // 这里是关键 如何理解
+        // return Promise.resolve('4') 等效下面
+        const Pnew = new Promise((resolve, reject) => {
+          resolve(4)
+          // console.log('P0 内部Promise resolve 只是完成了状态变动')
+        })
 
-    // Promise.resolve().then(() => {
-    //     console.log(1)
-    //   })
-    //   .then(() => {
-    //     console.log(2)
-    //   })
-    //   .then(() => {
-    //     console.log(3)
-    //   })
-    //   .then(() => {
-    //     console.log(5)
-    //   })
-    //   .then(() => {
-    //     console.log(6)
-    //   })
+        // 状态塌陷，v8 引擎 分为 准备， 吸收 两部，且 都是放在微任务中执行
+        return Pnew // 这里的promise 是一个 pending 状态的 promise 且自动调用 then 函数 -> 又产生一个 promise
+    })
+    // .then((res)=>{
+    //   return res
+    // })
+    // .then((res) => res)
+    .then((res) => {
+      console.log(res, 'P0 完成 且 FA4 执行完成')      // console.log(res)
+    })
+
+    
+    // Promise.resolve({then: function(resolve, reject) {
+    //   console.log('res')
+    //   resolve('cgt')
+    //   // return 'cgt'
+    // }}).then(res => {console.log(res)})
+      
+    Promise.resolve().then(() => {
+        console.log(1)
+      })
+      .then(() => {
+        console.log(2)
+      })
+      .then(() => {
+        console.log(3)
+      })
+      .then(() => {
+        console.log(5)
+      })
+      .then(() => {
+        console.log(6)
+      })
     console.log("主线程执行结束")
   </script>
   <script>
