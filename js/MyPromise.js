@@ -83,7 +83,8 @@ class MyPromise {
           // 将 resolve reject 透传给 promise
           console.log('then 的回调返回值是 promise', data)
           // MyPromise.resolve(data).then(resolve,reject)
-          data.then().then(resolve,reject) // 这样才接近原生的 执行效果 原生针对 不同数据可能有分装逻辑导致 多一层嵌套
+          // promise 状态吸收处理 分为 准备 以及 吸收 连个微任务动作， 这里通过 2个then 模拟
+          data.then().then(resolve,reject)
         }else {
           // 默认调用 触发订阅者的（即then 创建的promise） resolve
           //  data 可能为 undefined ,因为 callback 不一定有返回值

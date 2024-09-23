@@ -130,12 +130,8 @@
         // 状态塌陷，v8 引擎 分为 准备， 吸收 两部，且 都是放在微任务中执行
         return Pnew // 这里的promise 是一个 pending 状态的 promise 且自动调用 then 函数 -> 又产生一个 promise
     })
-    // .then((res)=>{
-    //   return res
-    // })
-    // .then((res) => res)
     .then((res) => {
-      console.log(res, 'P0 完成 且 FA4 执行完成')      // console.log(res)
+      console.log(res)
     })
 
     
