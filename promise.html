@@ -133,13 +133,6 @@
     .then((res) => {
       console.log(res)
     })
-
-    
-    // Promise.resolve({then: function(resolve, reject) {
-    //   console.log('res')
-    //   resolve('cgt')
-    //   // return 'cgt'
-    // }}).then(res => {console.log(res)})
       
     Promise.resolve().then(() => {
         console.log(1)
@@ -156,7 +149,28 @@
       .then(() => {
         console.log(6)
       })
+
     console.log("主线程执行结束")
+
+      // 另一个例子
+      setTimeout(function(){
+        console.log(1)
+      }, 0)
+      
+      Promise.resolve(1).then(function(){
+        console.log(2)
+      }).then(()=>{
+        Promise.resolve(3).then(function(data){
+          console.log(data)
+          // return data
+        }).then(res => console.log(res))
+        return 'd'
+      }).then((data) => {
+        console.log(data)
+      })
+
+      //输出顺序  2,3,d, undefined,1
+
   </script>
   <script>
     console.log("mypromise demo start")
