@@ -37,6 +37,9 @@
 - intersectionObserver 边界变化 [intersectionObserver.html](./intersectionObserver.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
+## canvas
+- 画布实现电影票选票 [canvasSelectSeat.html](./canvas/canvasSelectSeat.html)
+- canvas 绘制和拖动 [canvasDrawDrag.html](./canvas/canvasDrawDrag.html)
 ## 实验性代码
 - indexDB-localForage轻量级封装 [indexDB.html](./indexDB.html)
 - 利用iframe onload 捕获页面异常情况 [yzfiframe.html](./yzfiframe.html)

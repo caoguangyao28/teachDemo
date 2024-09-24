@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas 实现电影选票</title>
+  <style>
+    #cinemaCanvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="cinemaCanvas" width="800" height="600"></canvas>
+  <script>
+    // canvas 实现电影选票
+    const cinemaCanvas = document.getElementById('cinemaCanvas');
+    const ctx = cinemaCanvas.getContext('2d');
+    const w = 800, h = 600;
+
+    // 需要保证 高清设备下 canvas 的清晰度
+    // const dpr = window.devicePixelRatio;
+    cinemaCanvas.width = w;
+    cinemaCanvas.height = h;
+    // 导致真实分辨率变动 大小不一致
+    // cinemaCanvas.style.width = w + 'px';
+    // cinemaCanvas.style.width = h + 'px';
+
+    const seatWidth = 39; //* dpr; // 座位宽度
+    const seatSpacing = 5.1; //* dpr; // 座位间距
+    const numRows = 13; // 行数
+    const numCols = 18;
+    const seats = []; // 座位数组
+    
+    class Seat {
+      constructor(row, col) {
+        this.row = row;
+        this.col = col;
+        this.x = (col * (seatWidth + seatSpacing)) + seatSpacing;
+        this.y = (row * (seatWidth + seatSpacing)) + seatSpacing;
+        this.selected = false;
+        this.status = 'available';
+      }
+
+      draw() {
+        ctx.fillStyle = this.getSelectedColor();
+        ctx.fillRect(this.x, this.y, seatWidth, seatWidth);
+      }
+      
+      getSelectedColor() {
+        switch (this.status) {
+          case 'available':
+            return 'green';
+          case 'selected':
+            return 'blue';
+          case 'unavailable':
+            return 'red';
+          default:
+            return 'gray';
+        }
+      }
+    }
+    
+    // 初始化座位
+    for (let row = 0; row < numRows; row++) {
+      for (let col = 0; col < numCols; col++) {
+        const seat = new Seat(row, col);
+        seats.push(seat);
+      }
+    }
+    
+    // 绘制座位
+    function drawSeats() {
+      // console.log(cinemaCanvas.width, cinemaCanvas.height)
+      ctx.clearRect(0, 0, cinemaCanvas.width, cinemaCanvas.height);
+      seats.forEach(seat => seat.draw());
+    }
+    // 监听点击事件
+    cinemaCanvas.addEventListener('click', (e) => {
+      const rect = cinemaCanvas.getBoundingClientRect();
+      // console.log(rect)
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const clickedSeat = seats.find(seat => {
+        return x >= seat.x && x <= seat.x + seatWidth && y >= seat.y && y <= seat.y + seatWidth;
+      });
+      if (clickedSeat) {
+        clickedSeat.selected = !clickedSeat.selected;
+        clickedSeat.status = clickedSeat.selected ? 'selected' : 'available';
+        drawSeats();
+      }
+    });
+
+    // 加上鼠标移入 移出 样式
+    cinemaCanvas.addEventListener('mousemove', (e) => {
+      const rect = cinemaCanvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      let tooltip = '';
+      const overseat = seats.find(seat => {
+        return x >= seat.x && x <= seat.x + seatWidth && y >= seat.y && y <= seat.y + seatWidth;
+      });
+      if(overseat) {
+        tooltip = overseat.status === 'available'? '点击选中' : '不可选';
+      }
+      
+      cinemaCanvas.title = tooltip;
+
+    })
+    
+    // 绘制座位
+    drawSeats();
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制和拖动</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+    #canvas {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <input style="margin-top: 10px;" type="color">
+  <canvas id="canvas" style="border: 1px solid #000;"></canvas>
+  <script>
+    // 获取颜色器
+    const colorInput = document.querySelector('input');
+    const canvas = document.querySelector('#canvas');
+    const ctx = canvas.getContext('2d');
+    
+    function init(){
+      let w = 500, h = 300;
+      
+      // 保证清晰度 与 devicePixelRatio 有关
+      const dpr = window.devicePixelRatio;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      //  样式上保留 原值
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      
+    }
+
+    const shapes = []; //放置图形
+
+    class Rectangle {
+      constructor(startX, startY, color) {
+        this.startX = startX;
+        this.startY = startY;
+        this.color = color;
+        this.endX = startX;
+        this.endY = startY;
+      }
+
+      get minX() {
+        return Math.min(this.startX, this.endX);
+      }
+      get minY() {
+        return Math.min(this.startY, this.endY);
+      }
+      get maxX() {
+        return Math.max(this.startX, this.endX);
+      }
+      get maxY() {
+        return Math.max(this.startY, this.endY);
+      }
+      draw() {
+        // console.log(this.minX, this.minY, this.maxX, this.maxY);
+        ctx.fillStyle = this.color;
+        ctx.fillRect(
+          this.minX * devicePixelRatio,
+          this.minY * devicePixelRatio,
+          (this.maxX - this.minX) * devicePixelRatio,
+          (this.maxY - this.minY) * devicePixelRatio
+        );
+        // 加上边框
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(
+          this.minX * devicePixelRatio,
+          this.minY * devicePixelRatio,
+          (this.maxX - this.minX) * devicePixelRatio,
+          (this.maxY - this.minY) * devicePixelRatio
+        );
+      }
+      // 判断点是否在图形内
+      isInside(x , y) {
+
+        return x >= this.startX && x <= this.endX && y >= this.startY && y <= this.endY;
+
+      }
+    }
+
+
+    init();
+
+    canvas.onmousedown = function(e) {
+      // e 相对于 canvas 元素起始点
+      const startX = e.offsetX;
+      const startY = e.offsetY;
+      const color = colorInput.value;
+      const cvsrect = canvas.getBoundingClientRect();
+      let shape = getShapes(startX, startY);
+
+
+      // 如果已有图形 则是拖拽
+      if( shape ) {
+        // console.log('拖动')
+        // 拖动起点
+        const sx = e.offsetX, sy = e.offsetY;
+        const { startX, startY, endX, endY } = shape;
+
+        window.onmousemove = function(e) {
+          // x,y 移动后 鼠标在 canvas 中的坐标点
+          const x = e.clientX - cvsrect.left;
+          const y = e.clientY - cvsrect.top;
+
+          //  拖动的坐标 的长度 值
+          const dx = x - sx, dy = y - sy;
+
+          shape.startX = startX + dx;
+          shape.startY = startY + dy;
+
+          shape.endX = endX + dx;
+          shape.endY = endY + dy;
+
+
+
+        }
+
+
+        
+      }else {
+        // 新增图形逻辑
+        shape = new Rectangle(startX, startY, color);
+        shapes.push(shape);
+
+              // 移动时绘制图形 event 现对于 窗口
+        window.onmousemove = function(e) {
+          // 转换成 canvas 坐标 内部坐标  clientX clientY cvsrect.left cvsrect.top 都是相对于窗口的 作差 得出 内部坐标
+          shape.endX = e.clientX - cvsrect.left;
+          shape.endY = e.clientY - cvsrect.top;
+          // shape.draw();
+        }
+
+      }
+      
+
+      
+      
+
+
+      
+      // 清除事件
+      window.onmouseup = function() {
+        window.onmousemove = null;
+        window.onmouseup = null;
+        // shapes.push(shape);
+      }
+ 
+    }
+
+    function getShapes(x, y) {
+      // 判断图形是否存在 需要倒过来循环 shapes
+      for(let i = shapes.length -1 ; i >= 0; i--) {
+        const shape = shapes[i];
+        // 下面判断 写死了 限定为矩形了 ，可以将图形判断运算 放入 图形的方法
+        if(shape.isInside(x, y)) {
+          return shape;
+        }
+
+      }
+
+      return null;
+      
+    }
+
+    function draw() {
+      requestAnimationFrame(draw);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      shapes.forEach(shape => shape.draw());
+    }
+
+    // 启动循环绘制
+    draw();
+    
+
+
+    // const rect = new Rectangle(10, 10, 'red');
+    // rect.endX = 100;
+    // rect.endY = 100;
+    // rect.draw();
+    
+  </script>
+</body>
+</html>
