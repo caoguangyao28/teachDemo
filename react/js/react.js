@@ -126,7 +126,7 @@ function workLoop(deadline) {
     commitRoot();
   }
 
-  // 重复循环
+  // 重复循环 这里直接使用的 requestIdleCallback 存在兼容性问题 执行时机 颗粒度控制 等问题
   requestIdleCallback(workLoop);
 
 }
