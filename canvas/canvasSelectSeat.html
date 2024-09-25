@@ -12,6 +12,9 @@
 </head>
 <body>
   <canvas id="cinemaCanvas" width="800" height="600"></canvas>
+  <div>
+    <strong>清晰度有些问题！</strong> 尤其高dpr情况下
+  </div>
   <script>
     // canvas 实现电影选票
     const cinemaCanvas = document.getElementById('cinemaCanvas');
@@ -19,19 +22,20 @@
     const w = 800, h = 600;
 
     // 需要保证 高清设备下 canvas 的清晰度
-    // const dpr = window.devicePixelRatio;
-    cinemaCanvas.width = w;
-    cinemaCanvas.height = h;
-    // 导致真实分辨率变动 大小不一致
-    // cinemaCanvas.style.width = w + 'px';
-    // cinemaCanvas.style.width = h + 'px';
+    const dpr = window.devicePixelRatio || 1;
+    cinemaCanvas.width = w * dpr;
+    cinemaCanvas.height = h * dpr;
+    // 起到类似缩放的作用 使得 canvas 内外 坐标像素取值相差 dpr 倍
+    cinemaCanvas.style.width = w + 'px';
+    cinemaCanvas.style.height = h + 'px';
 
-    const seatWidth = 39; //* dpr; // 座位宽度
-    const seatSpacing = 5.1; //* dpr; // 座位间距
+    const seatWidth = 39 * dpr;// 座位宽度
+    const seatSpacing = 5.1 * dpr; // 座位间距
     const numRows = 13; // 行数
     const numCols = 18;
     const seats = []; // 座位数组
     
+    //  单个作为 封装为class 
     class Seat {
       constructor(row, col) {
         this.row = row;
@@ -61,7 +65,7 @@
       }
     }
     
-    // 初始化座位
+    // 初始化座位 根据 row col 生成座位数 并放入 seats
     for (let row = 0; row < numRows; row++) {
       for (let col = 0; col < numCols; col++) {
         const seat = new Seat(row, col);
@@ -77,13 +81,7 @@
     }
     // 监听点击事件
     cinemaCanvas.addEventListener('click', (e) => {
-      const rect = cinemaCanvas.getBoundingClientRect();
-      // console.log(rect)
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const clickedSeat = seats.find(seat => {
-        return x >= seat.x && x <= seat.x + seatWidth && y >= seat.y && y <= seat.y + seatWidth;
-      });
+      const clickedSeat = isInside(e.clientX, e.clientY)
       if (clickedSeat) {
         clickedSeat.selected = !clickedSeat.selected;
         clickedSeat.status = clickedSeat.selected ? 'selected' : 'available';
@@ -93,13 +91,9 @@
 
     // 加上鼠标移入 移出 样式
     cinemaCanvas.addEventListener('mousemove', (e) => {
-      const rect = cinemaCanvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      // const rect = cinemaCanvas.getBoundingClientRect();
       let tooltip = '';
-      const overseat = seats.find(seat => {
-        return x >= seat.x && x <= seat.x + seatWidth && y >= seat.y && y <= seat.y + seatWidth;
-      });
+      const overseat = isInside(e.clientX, e.clientY);
       if(overseat) {
         tooltip = overseat.status === 'available'? '点击选中' : '不可选';
       }
@@ -107,6 +101,22 @@
       cinemaCanvas.title = tooltip;
 
     })
+    
+    /**
+     * 判断鼠标是否在座位 canvas内
+     * @param {number} x 鼠标相对window x 坐标
+     * @param {number} y 鼠标相对window y 坐标
+     */
+    function isInside(ex, ey) {
+     const rect = cinemaCanvas.getBoundingClientRect();
+     // 转换为canvas 内坐标
+     const x = (ex - rect.left) * dpr;
+     const y = (ey - rect.top) * dpr;
+     const seat = seats.find(seat => {
+      return x >= seat.x && x <= seat.x + seatWidth && y >= seat.y && y <= seat.y + seatWidth;
+     })
+     return seat || null;
+    } 
     
     // 绘制座位
     drawSeats();
