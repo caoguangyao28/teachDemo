@@ -7,11 +7,11 @@
   <title>分时函数</title>
 </head>
 <body>
-  <button class="btn">添加 100000 个元素</button>
+  <button class="btn">添加 1000000 个元素</button>
 </body>
 <script>
   const btn = document.querySelector(".btn");
-  const datas = new Array(100000).fill(0).map((_, i) => i);
+  const datas = new Array(1000000).fill(0).map((_, i) => i);
 
   btn.onclick = () => {
     // 同一时间的任务太多了 阻塞了渲染进程（渲染延后）
@@ -21,21 +21,25 @@
     //   document.body.appendChild(div)
     // }
 
-    // 不能减少总时间 但可以避免卡顿
+    
+    // dom 插入任务
     const consumer = (item, i) => {
       const div = document.createElement('div');
       div.textContent = i;
       document.body.appendChild(div)
     }
+    // requestIdleCallback 为做兼容性处理
     // performchunk(datas, consumer)
     // performchunk(100000, consumer)
 
+    // 兼容性处理 兜底 settimeout
     const chunkSplitor = (task) => {
       setTimeout(()=>{
         task((time) => time < 16)
-      },30)
+      },0)
     }
-    performchunk3(100000, consumer, chunkSplitor)
+    // performchunk3(datas, consumer, chunkSplitor)
+    performchunk3(datas, consumer)
   }
 
   // 将任务分段
@@ -93,6 +97,7 @@
       }
       // 渲染 帧都会执行的函数n
       // 兼容性处理 node 环境 老的浏览器等
+      // hastime 判断 是否还有时间 交给调用者决定
       chunkSplitor((hastime)=>{
         // idle.timeRemaining 空闲时间
         const now = Date.now() // 一组内 循环启动开始时间
