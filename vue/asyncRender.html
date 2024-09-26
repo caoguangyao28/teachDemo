@@ -8,7 +8,7 @@
 <h1>vue 的响应式数据变动，导致的渲染是 异步</h1>
 <p>
   <strong>原因：</strong> 在一个函数中或者 effect 中可能存在多个响应数据变动，即多个依赖项变动，每个依赖项的变动
-  都会导致dom重新渲染，规避不必要的渲染 采用异步机制（有类似防抖的作用）
+  都会导致dom重新渲染，规避不必要的渲染 采用异步机制（有类似防抖的作用 这个下面的示列代码利用的示set 集合去重的原理做到的）
 </p>
 <h2>Demo:</h2>
 <div id="app">
@@ -34,7 +34,10 @@
   //   执行tasks 中的任务
   function  runTasks() {
     // 模拟异步 放入 promise
+    // 这里每次运行时 都是取的最新的 tasks set，运行完之后被清空, set 默认时去重复的
+    console.log('runtasks', tasks.size);
     Promise.resolve().then(()=>{
+      console.log('这里也应该执行2次才对', tasks)
       tasks.forEach((task) => task())
       // 执行完后清除
       tasks.clear()
@@ -55,32 +58,36 @@
       // 修改值时模拟 所有 订阅回调执行
       // set.forEach(cb => cb())
       // 优化放入异步
+      console.log('第几次执行 task add runtasks', val)
       set.forEach((cb) => tasks.add(cb))
       runTasks()
     }
   }
 
   effect(()=>{
-    // 这里操作 响应式数据 存在死循环 风险
+    // 这里操作 响应式数据 存在死循环 风险 鼠标切换了 但颜色没有变动
     el.innerText = count.value
     console.log('effect', count.value)
   })
 
   effect(()=>{
     el2.innerText = '这是第二个订阅'+ count.value
+    console.log('effect2', count.value)
   })
 
   function nextTick(cb) {
-    Promise.resolve().then(cb)
+    Promise.resolve().then(cb) // 放入微任务队列
   }
 
   btn.addEventListener('click', ()=>{
+    // 连续多次设置值
     count.value++
     // 等效收集到其他依赖
     count.value++
-    console.log(set.size, '依赖回调 数量')
+    // 查看输出次数
+    // console.log(set.size, '依赖回调 数量')
     // 放入异步后 这里的 el 存在滞后不同步 放入 nextTick - 新起一个微任务 其在 effect 形成的 微任务后面
-    // console.log(el.innerText)
+    console.log(el.innerText, '滞后的dom数据')
     nextTick(()=>{
       console.log(el.innerText)
     })
