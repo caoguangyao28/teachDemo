@@ -41,6 +41,7 @@
 - mutationObserver 元素突变监听 [mutationObserver.html](./mutationObserver.html)
 - ResizeObserver 边界变化 [resizeObserver.html](./resizeObserver.html)
 - intersectionObserver 边界变化 [intersectionObserver.html](./intersectionObserver.html)
+- 动态规划问题 [dynicPlan.html](./dynicPlan.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 数组相关
