@@ -43,6 +43,9 @@
 - intersectionObserver 边界变化 [intersectionObserver.html](./intersectionObserver.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
+## 数组相关
+- 数组常见计算封装 [ArrayDemo.html](./ArrayDemo.html)
+
 ## canvas
 - 画布实现电影票选票 [canvasSelectSeat.html](./canvas/canvasSelectSeat.html)
 - canvas 绘制和拖动 [canvasDrawDrag.html](./canvas/canvasDrawDrag.html)
