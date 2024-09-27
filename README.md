@@ -24,10 +24,8 @@
 
 ## 实用代码
 - 利用RTCPeerConnection获取用户ip [getRealIpWithRTC.html](./getRealIpWithRTC.html)
-- 字符串截取导致的BUG-特殊字符 [specialString.html](./specialString.html)
 - DNS 解析及其优化 [dnsparseperf.html](./dnsparseperf.html)
 - 文件夹文件操作api [showdirectorypicker.html](./showdirectorypicker.html)
-- 字符串异步替换封装 [stringAsyncReplace.html](./stringAsyncReplace.html)
 - 金额转中文 [money.html](./money.html)
 - 函数科里化 [functionkeli.html](functionkeli.html)
 - 单列实现-代理方式 [singleton.html](./singleton.html)
@@ -46,6 +44,10 @@
 
 ## 数组相关
 - 数组常见计算封装 [ArrayDemo.html](./ArrayDemo.html)
+
+## 字符串相关
+- 字符串截取导致的BUG-特殊字符 [specialString.html](./specialString.html)
+- 字符串异步替换封装-弥补repalce的不足 [stringAsyncReplace.html](./stringAsyncReplace.html)
 
 ## canvas
 - 画布实现电影票选票 [canvasSelectSeat.html](./canvas/canvasSelectSeat.html)
