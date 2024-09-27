@@ -7,6 +7,7 @@
         // 按字节数排序
         var arrSortByByte = ['你好','hello','ok','程序员'];
 
+        // 获取真实的字符字节数量
         function getBytes(str){
             var bytes = str.length;
             for(var i = 0;i<str.length;i++){
@@ -63,9 +64,35 @@
         console.log(res);
         console.log(arrTest);
 
+        // ES6 数组 交集 差集 并集
+        const arr1 = [33,22,22,55,33,11,33,5];
+        const arr2 = [22,22,55,77,88,88,99,99];
+        
+        // 并集 去重
+        // const union = [...new Set([...arr1,...arr2])];
+        const union = Array.from(new Set([...arr1,...arr2]));
+        console.log(union, '并集');
+        
+        // 交集
+        const intersection = Array.from(new Set(arr1.filter(x => arr2.includes(x))));
+        console.log(intersection, '交集');
+        
+        // 差集 == 并集 - 交集 
+        const difference = Array.from(new Set(union.filter((item) => !intersection.includes(item))));
+        console.log(difference, '差集');
+
     </script>
 </head>
 <body>
+  <ul>
+    <li>按字节数排序(存在中文情况下)</li>
+    <li>利用对象key 去重数组</li>
+    <li>利用set 去重</li>
+    <li>重写 unshift</li>
+    <li>自己的 myunshift</li>
+    <li>ES6 数组 交集 差集 并集</li>
+    
+  </ul>
 
 </body>
 </html>
