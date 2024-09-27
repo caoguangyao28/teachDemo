@@ -48,7 +48,6 @@
     // 检查 iframe 的页面是否正常加载 或者 dns 异常 页面丢失
     console.log("iframe 加载完成,但可能异常")
     // 如果出现 chorme-error: 则代表网络或者DNS出现问题 
-    // todo 了解sentry 主动上报该错误，用于分析 dns 异常时 特殊性分析
     try {
       console.log(iframe.contentDocument, iframe.contentWindow)
       if(!iframe.contentDocument){

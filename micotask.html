@@ -8,6 +8,11 @@
 </head>
 <body>
   <button id="btn">click me</button>
+  <ul>
+    <li>queueMicrotask 创建微任务 - 存在兼容性问题 生产不要使用</li>
+    <li>Promise.resolve().then(()=>{}) 创建微任务</li>
+    <li>利用 MutationObserver API 创建微任务</li>
+  </ul>
   <script>
     let btn = document.querySelector('#btn');
     // dom 事件是宏任务（任务）
@@ -25,6 +30,7 @@
       })
       console.log(2)
     })
+  // TODO: 模拟微任务
   </script>
 </body>
 </html>
