@@ -1,111 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>程序类面试题</title>
+    <meta charset="UTF-8">
+    <title>程序类面试题</title>
 </head>
 <body>
 <h2>输出结果类：</h2>
 <xml>
-  // case 1
-  function showCase(value) {
-  switch(value) {
-  case 'A':
-  console.log('Case A');
-  break;
-  case 'B':
-  console.log('Case B');
-  break;
-  case undefined:
-  console.log('Case undefined');
-  break;
-  default:
-  console.log('Case default');
-  }
-  }
-  showCase(new String('A'));
+    // case 1
+    function showCase(value) {
+    switch(value) {
+    case 'A':
+    console.log('Case A');
+    break;
+    case 'B':
+    console.log('Case B');
+    break;
+    case undefined:
+    console.log('Case undefined');
+    break;
+    default:
+    console.log('Case default');
+    }
+    }
+    showCase(new String('A'));
 </xml>
 <p id="demo"></p>
-<script>
-  // case 1
-  function showCase(value) {
-    switch(value) {
-      case 'A':
-        console.log('Case A');
-        break;
-      case 'B':
-        console.log('Case B');
-        break;
-      case undefined:
-        console.log('Case undefined');
-        break;
-      default:
-        console.log('Case default');
-    }
-  }
-  // new String() 返回的是一个对象
-  showCase(new String('A'));
-  // 依次类推 new 构造的返回都应该是对象了 new Number()
-
-  // case 2
-  function showCase2(value) {
-    switch(value) {
-      case 'A':
-        console.log('Case A');
-        break;
-      case 'B':
-        console.log('Case B');
-        break;
-      case undefined:
-        console.log('Case undefined');
-        break;
-      default:
-        console.log('Case default');
-    }
-  }
-  // String('A') 普通函数用法 返回字符串
-  showCase2(String('A'));
-  // p标签里内容 true
-  var x = 10;
-  var y = "10";
-  document.getElementById("demo").innerHTML = Boolean(x == y);
-
-  // 先 ++ 后++ 区别 左右
-  function funcA(x){
-    var temp = 4;
-
-    function funcB(y){
-      var n1 = ++x;
-      var n2 = temp--;
-      console.log(n1, n2)
-      document.write( n1 + y + n2);
-    }
-
-    funcB(5);
-  }
-
-  funcA(6) // 输出16
-
-  // 倒叙 拼接成字符串
-  var varArr = function(i,j,str) {
-    return j == 0 ? str : varArr(i,--j,(str+= " " + i[j]));
-  }
-  var arr = new Array('apple','orange','peach','lime');
-  var str = varArr(arr,arr.length,"");
-  console.log(str);
-
-  function greetingMaker(greeting) {
-    function addName(name) {
-      greeting  = greeting.split(' ').reverse().join("-");
-      return greeting + " " + name;
-    }
-
-    return addName;
-  }
-
-  var daytimeGreeting = greetingMaker("Good Day to you");
-  console.log(name, 'window.name') // name 为全局变量 默认值为空‘’
-  console.log(daytimeGreeting(name)); // name 为全局变量
-</script>
+<!--<script src="./jsbase.js"></script>-->
+<script src="./jsThis.js"></script>
+<script></script>
 </body>
 </html>
