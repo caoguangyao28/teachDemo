@@ -23,7 +23,7 @@ class SimpleScheduler {
     this.taskQueue = []; // 任务队列
     this.isPerformingWork = false;// 当前是否执行任务
 
-    // 实用 MessageChannel 处理任务调度
+    // 实用 MessageChannel 处理任务调度 优点相比于 定时器 时间间隔更短 更精确
     const channel = new MessageChannel();
     this.port = channel.port2; // 用于发送
     // 接收信息 将任务 推入 队列 这是一个宏任务 下一次执行
