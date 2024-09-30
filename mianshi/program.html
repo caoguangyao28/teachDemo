@@ -35,9 +35,15 @@
     <li>3</li>
     <li>4</li>
 </ul>
+<div id="box1">
+    <div id="box2">
+        content
+    </div>
+</div>
 <p id="demo"></p>
 <!--<script src="./jsbase.js"></script>-->
 <script src="./jsThis.js"></script>
+<script type="module" src="./index.js"></script>
 <script>
     // var outer = document.querySelector('.outer');
     // var inner = document.querySelector('.inner');
@@ -67,6 +73,27 @@
             alert(i);
         };
     }
+    // 复用 querySelector 但必须bind document 否则 直接 赋值 改变了 this成了window  导致不可用
+    const $ = document.querySelector.bind(document);
+    console.log($)
+    const box1 = $('#box1');
+    const box2 = $('#box2');
+    // 事件执行阶段 捕获 还是 冒泡 现在已经不是单一参数了 而是optins {}
+    box1.addEventListener('click', () =>{
+        console.log('box1 true');
+    }, true);// 捕获执行
+
+    box1.addEventListener('click', () =>{
+        console.log('box1 false');
+    }, false); // 冒泡执行
+
+    box2.addEventListener('click', () =>{
+        console.log('box2 true');
+    }, true); // 捕获执行
+
+    box2.addEventListener('click', () =>{
+        console.log('box2 false');
+    }, false); // 冒泡执行
 </script>
 </body>
 </html>

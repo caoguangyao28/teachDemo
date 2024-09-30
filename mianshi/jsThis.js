@@ -288,7 +288,9 @@ console.log(test);
 
 // promise
 
-
+Promise.reject(0)
+  .catch(e => e)
+  .catch(e => console.log(e))
 
 
 
@@ -300,6 +302,24 @@ console.log(test);
 
 // class
 
+
+
+
+// 标签模板 函数结构 字符串 的一个重要应用，就是过滤 HTML 字符串，防止用户输入恶意内容。
+/**
+ * one []
+ * 你甚至可以使用标签模板，在 JavaScript 语言之中嵌入其他语言
+ * */
+function getPersonInfo (one, two, three) {
+  console.log(one) // 非变量部分的一个字符串数组
+  console.log(two) // 第一个变量替换的值
+  console.log(three) // 第二个变量替换的值
+}
+const person = 'Lydia'
+const age = 21
+
+getPersonInfo `${person} is ${age} years old`
+// 输出 ['', ' is', 'years old'] Lydia  21
 
 
 
