@@ -17,10 +17,11 @@ var a = 5;
 function test() {
   a = 0; // 赋值 语句在 变量提升合并之后执行
   console.log(a); // 0
-  console.log(this.a, this); // this 为 {} undefined
+  console.log(this.a, this); // new 调用时 this 为 {} undefined
   var a; // 变量提升
   console.log(a); // 0
 }
+
 new test(); // 变量提升，合并 new 构造this 问题
 
 //
