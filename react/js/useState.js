@@ -10,7 +10,7 @@ let debouced;
 
 // 模拟react 上下文环境
 const fiber = {
-  stateNode: App,
+  stateNode: App,// 根页面组件
   memorizedState: null,// 存储 hook 链表 这是一个 普通的链表
   props: {},
   alternate: {
@@ -19,7 +19,7 @@ const fiber = {
 }
 // 调度器
 function schedule(){
-  const app = fiber.stateNode(); // 首次构建组件渲染
+  const app = fiber.stateNode(); // 首次构建组件渲染 内部使用了 useState
   // 首次渲染之后就是更新逻辑了
   isFirstMonted = false;
   // app 初始化之后或者更新之后 重置了 workInProgressHook
@@ -32,6 +32,7 @@ function schedule(){
 function useState(initialState){
   let hook;
   if(isFirstMonted){
+    // 创建时形成 hooks 链表
     hook = {
       memorizedState: initialState,
       next: null,
