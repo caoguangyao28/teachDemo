@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现js的深拷贝</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<h2>实现js的深拷贝</h2>
+<pre>
+  <code class="javascript">
+    // 实现js的深拷贝
+    function deepClone(obj, map = new WeakMap()) {
+      // 处理 null 和基本类型
+      if (obj === null || typeof obj !== 'object') {
+        return obj;
+      }
+
+      // 判断是否为数组
+      let objClone = Array.isArray(obj) ? [] : {};
+
+      // 检查是否已经克隆过该对象
+      if (map.has(obj)) {
+        return map.get(obj);
+      }
+
+      // 将当前对象加入已克隆对象列表 缓存以拷贝的对象 解决循环引用问题
+      map.set(obj, objClone);
+
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          // 判断子元素是否为对象，如果是，递归复制
+          if (typeof obj[key] === 'object') {
+            objClone[key] = deepClone(obj[key], map);
+          } else {
+            // 如果不是，简单复制
+            objClone[key] = obj[key];
+          }
+        }
+      }
+
+        return objClone;
+    }
+  </code>
+</pre>
+<script>
+    // 实现js的深拷贝
+    function deepClone(obj, map = new WeakMap()) {
+        // 处理 null 和基本类型
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
+        }
+
+        // 判断是否为数组
+        let objClone = Array.isArray(obj) ? [] : {};
+
+        // 检查是否已经克隆过该对象
+        if (map.has(obj)) {
+            return map.get(obj);
+        }
+
+        // 将当前对象加入已克隆对象列表 缓存以拷贝的对象 解决循环引用问题
+        map.set(obj, objClone);
+
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                // 判断子元素是否为对象，如果是，递归复制
+                if (typeof obj[key] === 'object') {
+                    objClone[key] = deepClone(obj[key], map);
+                } else {
+                    // 如果不是，简单复制
+                    objClone[key] = obj[key];
+                }
+            }
+        }
+
+        return objClone;
+    }
+
+    // deepClone(obj) 测试用列
+    const obj = {
+        name: '张三',
+        age: 18,
+        address: {
+            city: '深圳',
+            country: '中国'
+        },
+        hobby: ['读书', '看电影'],
+        sayHello: function () {
+            console.log('hello');
+        }
+    };
+    obj.myself = obj; // 循环引用
+    const obj2 = deepClone(obj);
+    console.log(obj2);
+
+  // 数组测试
+  const arr = [1, obj, 3, 4, 5];
+  const arr2 = deepClone(arr);
+  console.log(arr2, arr === arr2, arr[1] === arr2[1]);
+  arr2[1].age = 20;
+  console.log(arr[1], arr2[1]);
+
+</script>
+</body>
+</html>

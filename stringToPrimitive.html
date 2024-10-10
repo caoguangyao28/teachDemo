@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>等号运算符的运算和转换问题</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<h2>等号运算规则</h2>
+<ul>
+    <li>两端都是NaN，返回false</li>
+    <li>undefined 和 null 只与自身比较 或者相互比较时才返回 true，和 其他原始类型比较时返回false</li>
+    <li>两端类型相同时，比较值</li>
+    <li>两端都是原始类型，转换成数字重新比较</li>
+    <li>一端是原始类型，一端是对象类型，转换为原始类型，再比较</li>
+</ul>
+<h2>对象如何转原始类型</h2>
+<ul>
+    <li>1，ES6之后，对象有[Symbol.toPrimitive]方法，调用toPrimitive方法，若返回原始值则使用该值，得不到 则会抛出异常</li>
+    <li>2，对象有valueOf方法，调用valueOf方法，返回值转换为原始类型，再比较, 得不到 进入下一步 toSting</li>
+    <li>3，对象有toString方法，调用toString方法，返回值转换为原始类型，再比较</li>
+</ul>
+<p> 利用此原理 让下面不可能等式成立 </p>
+<pre>
+    <code class="javascript">
+    let count = 1;
+    const a = {
+        [Symbol.toPrimitive]() {
+            return count++; // 每访问一次 count+1，1、2、3
+        }
+    }
+    if( a == 1 && a == 2 && a == 3) {
+        console.log('不可能成立的等式成立了');
+    }
+    </code>
+</pre>
+<script>
+    let count = 1;
+    const a = {
+        [Symbol.toPrimitive]() {
+            return count++; // 每访问一次 count+1，1、2、3
+        },
+        // valueOf() {
+        //     return count++;
+        // },
+        // toString() {
+        //     return count++;
+        // }
+    }
+    if (a == 1 && a == 2 && a == 3) {
+        console.log('不可能成立的等式成立了');
+    }
+</script>
+</body>
+</html>

@@ -40,14 +40,17 @@
 - ResizeObserver 边界变化 [resizeObserver.html](./resizeObserver.html)
 - intersectionObserver 边界变化 [intersectionObserver.html](./intersectionObserver.html)
 - 动态规划问题 [dynicPlan.html](./dynicPlan.html)
+- 深度拷贝[deepClone.html](./deepClone.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 数组相关
 - 数组常见计算封装 [ArrayDemo.html](./ArrayDemo.html)
 
 ## 字符串相关
-- 字符串截取导致的BUG-特殊字符 [specialString.html](./specialString.html)
+- 字符串截取导致的BUG-特殊字符处理 [specialString.html](./specialString.html)
 - 字符串异步替换封装-弥补repalce的不足 [stringAsyncReplace.html](./stringAsyncReplace.html)
+- 中文字符串排序问题[sortChinese.html](./sortChinese.html)
+- 双等运算符，对象如何转原始的数据类型 [stringToPrimitive.html](./stringToPrimitive.html)
 
 ## canvas
 - 画布实现电影票选票 [canvasSelectSeat.html](./canvas/canvasSelectSeat.html)

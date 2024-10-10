@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中文字符串排序</title>
+</head>
+<body>
+<h2>字符常见的排序都是根据字符的码来排序的，但是中文字符的编码是乱的，所以中文排序需要特殊处理。</h2>
+<h4>排序方式</h4>
+<ul>
+    <li>字典排序 <span></span></li>
+    <li>编码排序</li>
+</ul>
+<h4>中文排序 方案</h4>
+<ul>
+    <li>转拼音排序</li>
+    <li>使用 localeCompare 排序 按字典排序 且对多音字存在不准确问题</li>
+</ul>
+<script>
+    const names = ['张三', '李四', '王五', '赵六', '钱七', '孙八', '周九', '吴十', '郑十一', '王二', '王五', '王五'];
+    names.sort();
+    console.log(names);
+    // 常见的处理方法 ： 1，中文转拼音 后 按拼音排序， 2， 如何时字典顺序 要求不高的情况下可以 使用浏览器api localCompare
+    names.sort((a, b) => a.localeCompare(b));
+    console.log(names); // 基本就是字典顺序
+
+</script>
+</script>
+</body>
+</html>
