@@ -104,6 +104,24 @@ wfunc(); // '' name 比较特殊 换成 普通的 cgy 此时是 undifined
 var cgy = "lisi";
 obj4.sayName();
 wfunc();
+
+var testname = "王五";
+function  outerFunction() {
+  this.testname = '李四';
+  console.log(this === window)
+  return () => {
+    console.log(this.testname, this, '就是window')
+  }
+}
+
+const obj5 = {
+  testname: "张三",
+  innerFunction: () => {
+    console.log(this.testname, this === window, '定义时上下文处于 window')
+  }
+}
+
+obj5.innerFunction()
 // 事件循环相关问题
 
 // const promiseA = Promise.resolve('a')

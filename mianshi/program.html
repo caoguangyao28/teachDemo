@@ -42,9 +42,9 @@
 </div>
 <p id="demo"></p>
 <!--<script src="./jsbase.js"></script>-->
-<!--<script src="./jsThis.js"></script>-->
+<script src="./jsThis.js"></script>
 <!--<script type="module" src="./index.js"></script>-->
-<script src="./alimianshi.js"></script>
+<!--<script src="./alimianshi.js"></script>-->
 <script>
     // var outer = document.querySelector('.outer');
     // var inner = document.querySelector('.inner');
@@ -76,7 +76,7 @@
     }
     // 复用 querySelector 但必须bind document 否则 直接 赋值 改变了 this成了window  导致不可用
     const $ = document.querySelector.bind(document);
-    console.log($)
+    // console.log($)
     const box1 = $('#box1');
     const box2 = $('#box2');
     // 事件执行阶段 捕获 还是 冒泡 现在已经不是单一参数了 而是optins {}
