@@ -66,6 +66,8 @@
 ## CSS 较新的特性（实验性）
 - css 滚动驱动动画-顶部滚动进度条[top-progress-scroll.html](./css-study/animation-scroller/top-progress-scroll.html)
 - css content-visibility [content-visibility.html](./css-study/content-visibility.html)
+- hudini css 实现渐变背景 [hudini.html](./css-study/hudini.html)
+- css 好用的选择器 [css-selector.html](./css-study/css-selector.html)
 
 ## 开脑洞的方式
 - 利用sass实现星空动画效果

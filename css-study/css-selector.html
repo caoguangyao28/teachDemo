@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css 好用的选择器</title>
+  <style>
+    .middle {
+      width: 500px;
+      margin: 0 auto;
+    }
+    /* div 无法聚焦 */
+    .form-block:focus {
+      background: #409eff;
+    }
+    .form-block:focus-within {
+      background: #409eff;
+    }
+
+    input.txt:focus {
+      outline: 0;
+      border-color: #409eff;
+    }
+    /* 全部加上了 如何 有条件的加*/
+    /*.label span::after {*/
+    /*  content: '*';*/
+    /*  color: red;*/
+    /*}*/
+
+    .label span:has(+input[required])::after {
+      content: '*';
+      color: red;
+    }
+
+    p::selection {
+      background: red;
+    }
+
+    p::first-letter {
+      font-weight: bold;
+      font-size: 4em;
+      text-transform: uppercase;
+      float: left;
+      line-height: 1;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="middle">
+  <form action="#">
+    <div class="form-block">
+      <label class="label">
+        <span>账号</span>
+        <input required type="text" class="txt" />
+      </label>
+    </div>
+    <div class="form-block">
+      <label class="label">
+        <span>密码</span>
+        <input required type="password" class="txt" />
+      </label>
+    </div>
+    <div class="form-block">
+      <label class="label">
+        <span>邮箱</span>
+        <input type="email" class="txt" />
+      </label>
+    </div>
+    <div>
+      <button class="btn">提交</button>
+    </div>
+  </form>
+  <p>
+    文本内容，水机器，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机，打字机
+  </p>
+</div>
+</body>
+</html>
