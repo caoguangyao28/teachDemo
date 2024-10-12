@@ -72,6 +72,7 @@
 ## 开脑洞的方式
 - 利用sass实现星空动画效果
   - [sass-star.html](./sass-star.html)
+- 文字擦除效果[text-cachu.html](./text-cachu.html)
 
 ## typescript 
 - 从字段推导类型 [从字段推导类型.ts](./ts/从字段推导类型.ts)
