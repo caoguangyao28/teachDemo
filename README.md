@@ -83,3 +83,8 @@
 
 ## 一些面试题
 - 程序类 [program.html](./mianshi/program.html)
+
+## vite 打包优化
+notion 中有记录
+
+[//]: # (- 打包分包[vite-split.html]&#40;./vite-split.html&#41;)
