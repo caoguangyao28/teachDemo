@@ -20,6 +20,7 @@
 
 ## vue 原理
 - vue的nextick&异步渲染机制 [./vue/asyncRender.html](./vue/asyncRender.html)
+- vue 模版的本质-渲染函数-可以通过h函数来构建视图[./vue/templateFn.html](./vue/templateFn.html)
 
 
 ## 实用代码
@@ -41,6 +42,7 @@
 - intersectionObserver 边界变化 [intersectionObserver.html](./intersectionObserver.html)
 - 动态规划问题 [dynicPlan.html](./dynicPlan.html)
 - 深度拷贝[deepClone.html](./deepClone.html)
+- 利用Object.freeze 冻结，优化性能，冻结数据
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 数组相关
@@ -85,6 +87,5 @@
 - 程序类 [program.html](./mianshi/program.html)
 
 ## vite 打包优化
-notion 中有记录
+notion 中有记录[notion链接](https://zany-scabiosa-6d7.notion.site/vite-11bac92b6e6980f18dabce196584c297?pvs=74)
 
-[//]: # (- 打包分包[vite-split.html]&#40;./vite-split.html&#41;)
