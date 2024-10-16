@@ -43,6 +43,7 @@
 - 动态规划问题 [dynicPlan.html](./dynicPlan.html)
 - 深度拷贝[deepClone.html](./deepClone.html)
 - 利用Object.freeze 冻结，优化性能，冻结数据
+- js 实现函数重载 [./js/jsreload.js](./js/jsreload.js)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 数组相关
