@@ -33,6 +33,7 @@
 - 给fetch添加超时 [fetchTimeout.html](./fetchTimeout.html)
 - 发布订阅者模式实现 [pubsub.html](./pubsub.html)
 - 首尾连接无缝轮播图组建实现 [carousel.html](./carousel.html)
+- 3D 图片轮播 [carousel3d.html](./carousel3d.html)
 - 不要使用计时器做动画 [animate.html](./animate.html)
 - ajax进度监控 [ajaxProgress.html](./ajaxProgress.html)
 - 手写promise，彻底理解promise机制[promise.html](./promise.html)
