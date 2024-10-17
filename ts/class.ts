@@ -53,7 +53,7 @@ class Cat extends Animal {
 
 const cat = new Cat('小花', 2, '女', '白色');
 
-console.log(cat.sex);
+console.log(cat.sex);// 报错
 console.log(cat['sex']);// 下标反问绕过检测
 
 export {};
