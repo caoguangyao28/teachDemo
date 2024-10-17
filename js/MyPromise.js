@@ -67,7 +67,7 @@ class MyPromise {
       setTimeout(func, 0);
     }
   }
-  #runone(callback, resolve, reject){
+  #runOne(callback, resolve, reject){
     this.#runMicroTask(() => {
       // 如果不是函数 默认调用 resolve 或者 reject
       if(typeof callback !== 'function') {
@@ -112,9 +112,9 @@ class MyPromise {
       if(this.#state === FULFILLED){
         // 获取 then 方法的参数
         // debugger        
-        this.#runone(onFulfilled, resolve, reject)
+        this.#runOne(onFulfilled, resolve, reject)
       }else{
-        this.#runone(onRejected, resolve, reject)
+        this.#runOne(onRejected, resolve, reject)
       }
     }
     // console.log(this.handlers.length, 'run 开始后')
@@ -166,7 +166,7 @@ class MyPromise {
     })
   }
   static resolve(value){
-    return new MyPromise((resolve, reject) => {
+    return new MyPromise((resolve) => {
       resolve(value)
     })
   }
