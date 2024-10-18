@@ -39,8 +39,8 @@
 - 手写promise，彻底理解promise机制[promise.html](./promise.html)
 - 元素平滑上升-自定义vue指令+视口监听观察元素-代码已移动到vite4+vue3+demo
 - mutationObserver 元素突变监听 [mutationObserver.html](./mutationObserver.html)
-- ResizeObserver 边界变化 [resizeObserver.html](./resizeObserver.html)
-- intersectionObserver 边界变化 [intersectionObserver.html](./intersectionObserver.html)
+- ResizeObserver 尺寸变化 [resizeObserver.html](./resizeObserver.html)
+- intersectionObserver 交叉边界变化 [intersectionObserver.html](./intersectionObserver.html)
 - 动态规划问题 [dynicPlan.html](./dynicPlan.html)
 - 深度拷贝[deepClone.html](./deepClone.html)
 - 利用Object.freeze 冻结，优化性能，冻结数据
