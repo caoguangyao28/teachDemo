@@ -17,17 +17,19 @@
             line-height: 2;
             position: relative;
         }
-        .earser {
+        .eraser {
             position: absolute;
             top: 0;
             left: 0;
         }
+        /*自定义属性，只有自定义属性 才能响应渲染帧变化*/
         @property --progress {
             syntax: "<percentage>";
             inherits: false;
             initial-value: 0%;
         }
         .text{
+            /*透明到不透明 区间*/
             background: linear-gradient(to right, #0000 var(--progress), #000 calc(var(--progress) + 100px));
             color: transparent;
             animation: erase 5s forwards;
@@ -41,14 +43,12 @@
 </head>
 <body>
 <h1>文字擦除效果实现</h1>
-<p>
-    利用 css 自定义属性 和 动画 实现文字擦除效果。
-    <ul>
-        <li>复制一个相同的标签 覆盖在文本上</li>
-        <li>将文本内容包裹在内联盒子里，并且设置背景渐变，背景渐变宽度为 100%，颜色为透明，实现遮罩效果</li>
-        <li>设置动画，将自定义属性设置为 100%，实现擦除效果</li>
-    </ul>
-</p>
+利用 css 自定义属性 和 动画 实现文字擦除效果。
+<ul>
+    <li>复制一个相同的标签 覆盖在文本上</li>
+    <li>将文本内容包裹在内联盒子里，并且设置背景渐变，背景渐变宽度为 100%，颜色为透明，实现遮罩效果</li>
+    <li>设置动画，将自定义属性设置为 100%，实现擦除效果</li>
+</ul>
 <div class="container">
     <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam asperiores atque autem
@@ -60,7 +60,7 @@
         praesentium provident quae quas quia quibusdam quis quisquam quos rem repellat repudiandae rerum saepe sapiente
         sed sequi similique sint sit sunt tempora tempore tenetur totam ullam unde ut vel velit veniam vero
     </p>
-    <p class="earser">
+    <p class="eraser">
         <span class="text">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam asperiores atque autem
         blanditiis consectetur consequatur consequuntur cumque delectus dicta distinctio
