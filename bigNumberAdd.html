@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>大数相加</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+<body>
+  <h1>大数相加</h1>
+  <ul>
+    <li>取巧到方式有，使用 Bigint</li>
+    <li>传统做法 字符串按位求合</li>
+  </ul>
+  <span>使用 传统做法</span>
+  <pre>
+    <code>
+      const a = '123456789012345678901234567890';
+      const b = '12345678901234567';
+      function bigNumberAdd(a, b) {
+      const len = Math.max(a.length, b.length);
+      // 对齐数字长度
+      a = a.padStart(len, '0');
+      b = b.padStart(len, '0');
+      // const res = [];
+      let result = '';
+      // 进位数
+      let carry = 0;
+      for (let i = len-1; i >= 0; i--) {
+          // 转成数字求和
+          const sum = +a[i] + +b[i] + carry;
+          const r = sum % 10;
+          carry = Math.floor(sum / 10);
+          result = r + result;
+        }
+
+        return result;
+      }
+      console.log(bigNumberAdd(a, b));
+
+      /**
+     * 使用 Bigint
+     * @param {String} a
+     * @param {String} b
+     * @returns {string}
+     */
+      function bigNumberAddBigint(a, b) {
+        const aB = BigInt(a);
+        const bB = BigInt(b);
+        return (aB + bB).toString();
+      }
+      console.log(bigNumberAddBigint(a, b) === bigNumberAdd(a, b))
+    </code>
+  </pre>
+  <pre>
+  </pre>
+  <script>
+    /**
+     * 大数相加
+     * @param {String} a
+     * @param {String} b
+     * @returns {string}
+     */
+    function bigNumberAdd(a, b) {
+      const len = Math.max(a.length, b.length);
+      // 对齐数字长度
+      a = a.padStart(len, '0');
+      b = b.padStart(len, '0');
+      // const res = [];
+      let result = '';
+      // 进位数
+      let carry = 0;
+      for (let i = len-1; i >= 0; i--) {
+        // 转成数字求和
+        const sum = +a[i] + +b[i] + carry;
+        const r = sum % 10;
+        carry = Math.floor(sum / 10);
+        result = r + result;
+      }
+
+      return result;
+    }
+    const a = '123456789012345678901234567890';
+    const b = '12345678901234567';
+    console.log(bigNumberAdd(a, b));
+
+    /**
+     * 使用 Bigint
+     * @param {String} a
+     * @param {String} b
+     * @returns {string}
+     */
+    function bigNumberAddBigint(a, b) {
+      const aB = BigInt(a);
+      const bB = BigInt(b);
+      return (aB + bB).toString();
+    }
+
+    console.log(bigNumberAddBigint(a, b) === bigNumberAdd(a, b))
+  </script>
+  </script>
+</body>
+</html>

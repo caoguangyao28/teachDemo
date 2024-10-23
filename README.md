@@ -55,6 +55,7 @@
 - 字符串异步替换封装-弥补repalce的不足 [stringAsyncReplace.html](./stringAsyncReplace.html)
 - 中文字符串排序问题[sortChinese.html](./sortChinese.html)
 - 双等运算符，对象如何转原始的数据类型 [stringToPrimitive.html](./stringToPrimitive.html)
+- 大数相加函数[bigNumberAdd.html](./bigNumberAdd.html)
 
 ## canvas
 - 画布实现电影票选票 [canvasSelectSeat.html](./canvas/canvasSelectSeat.html)
