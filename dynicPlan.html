@@ -135,8 +135,52 @@
    * 输入：n = 3, H = 4, A = 5, h = [1,2,3], a = [3,2,1]
    * 输出： 1
    *
+   * 输入：n = 5, H = 10, A = 10, h = [6, 9, 12, 4, 7], a = [8, 9, 10, 2, 5]
+   * 输出：3
    *
+   * 输入：n = 4, H = 20, A = 25, h = [10, 15, 18, 22], a = [12, 18, 20, 26]
+   * 输出：3
    */
+  function maxMonstersDefeated(n, H, A, h, a) {
+    // 输入验证
+    if (typeof n !== 'number' || n <= 0 || !Array.isArray(h) || !Array.isArray(a) || h.length !== a.length) {
+      throw new Error('Invalid input parameters');
+    }
+
+    let currentHealth = H;
+    let currentAttack = A;
+    // 将怪物按照攻击力降序(按一个纬度进行排序 降序 这样 才能 形成 大鱼 吃小鱼 的效果 )
+    //  一维度相同 在按 2维度排序 降序，这样形成的 有序集合 可以保证 后者 无法 击败前者
+    let monsters = h.map((health, index) => ({ health, attack: a[index] }));
+    // monsters.sort((a, b) => b.attack - a.attack || b.health - a.health);
+    monsters.sort((a, b) => b.health - a.health || b.attack - a.attack);
+
+    console.log(monsters)
+
+    let defeatedCount = 0;
+
+    for (let i = 0; i < n; i++) {
+      const { health, attack } = monsters[i];
+
+      // 如果小E的当前血量和攻击力都大于等于怪物的相应值
+      if (currentHealth >= health && currentAttack >= attack) {
+        // 击败怪物并更新小E的状态
+        currentHealth = health;
+        currentAttack = attack;
+        defeatedCount++;
+      } else if(i === n - 1){
+        // 如果不能击败当前怪物，则停止循环
+        break;
+      }
+    }
+
+    return defeatedCount;
+  }
+
+  // 测试样例
+  console.log(maxMonstersDefeated(3, 4, 5, [1, 2, 3], [3, 2, 1]));  // 应输出 1
+  console.log(maxMonstersDefeated(5, 10, 10, [6, 9, 12, 4, 7], [8, 9, 10, 2, 5]));  // 应输出 4
+  console.log(maxMonstersDefeated(4, 20, 25, [10, 15, 18, 22], [12, 18, 20, 26]));  // 应输出 3
 </script>
 </body>
 </html>
