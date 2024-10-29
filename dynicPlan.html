@@ -184,6 +184,50 @@
   console.log(maxMonstersDefeated(3, 4, 5, [1, 2, 3], [3, 2, 1]));  // 应输出 1
   console.log(maxMonstersDefeated(5, 10, 10, [6, 9, 12, 4, 7], [8, 9, 10, 2, 5]));  // 应输出 3
   console.log(maxMonstersDefeated(4, 20, 25, [10, 15, 18, 22], [12, 18, 20, 26]));  // 应输出 3
+
+  /**
+   * 问题描述
+   * 小U和小R有两个字符串，分别是 S 和 T 现在小U需要通过对S进行若干次操作，使其变成
+   * T的一个前缀。操作可以是修改S的某一个字符，或者删除S末尾的字符。现在你需要帮助小U计算出，
+   * 最少需要多少次操作才能让S变成T的前缀。
+   *
+   * 测试样例
+   * 输入：S = "abcde", T = "abcd"
+   * 输出：1
+   *
+   * 输入：S = "aba", T = "abb"
+   * 输出：1
+   *
+   * 输入：S = "xyz", T = "xy"
+   * 输出：1
+   *
+   * 输入：S = "abcd" T = "efg"
+   * 输出：4
+   *
+   */
+  // 步骤1：定义一个函数`minOperations`，接收两个参数`S`和`T`，返回一个整数。
+  function minOperations(S, T) {
+    let operations = 0;
+    let minLength = Math.min(S.length, T.length);
+    // 步骤2：使用一个循环，迭代字符串S的前minLength个字符。
+    for (let i = 0; i < minLength; i++) {
+      // 步骤3：如果当前字符在S和T中不相等，则需要执行一次操作。
+      if (S[i] !== T[i]) {
+        operations++;
+      }
+    }
+    // 步骤4：如果S的长度大于T的长度，则还需要删除S末尾的字符，直到S的长度等于T的长度。
+    while (S.length > T.length) {
+      operations++;
+      S = S.slice(0, -1);
+    }
+
+    return operations;
+  }
+  console.log(minOperations("abcde", "abcd") === 1);
+  console.log(minOperations("ababb", "abb") === 3);
+  console.log(minOperations("xyz", "xy") === 1);
+  console.log(minOperations("abcd", "efg") === 4);
 </script>
 </body>
 </html>
