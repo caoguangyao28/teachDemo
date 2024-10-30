@@ -11,7 +11,8 @@
   <li>🐸跳台阶 n个台阶有多少种跳法</li>
   <li>寻找最大的葫芦 扑克游戏 findHulu</li>
   <li>小E 的怪物挑战 maxMonstersDefeated</li>
-
+  <li>最少前缀操作问题</li>
+  <li>数组元素和最小和</li>
 </ul>
 <script>
   // 实现 斐波那契数列 - 递归函数
@@ -121,6 +122,7 @@
     return [0, 0];
   }
 
+  console.log('寻找最大葫芦问题')
   console.log(findHulu(9, 34, [6, 6, 6, 8, 8, 8, 5, 5, 1])); // [8, 5]
   console.log(findHulu(9, 37, [9, 9, 9, 9, 6, 6, 6, 6, 13])); // [6, 9]
   console.log(findHulu(9, 40, [1, 11, 13, 12, 7, 8, 11, 5, 6])); // [0, 0]
@@ -181,6 +183,7 @@
   }
 
   // 测试样例
+  console.log('最多消灭多少怪兽游戏')
   console.log(maxMonstersDefeated(3, 4, 5, [1, 2, 3], [3, 2, 1]));  // 应输出 1
   console.log(maxMonstersDefeated(5, 10, 10, [6, 9, 12, 4, 7], [8, 9, 10, 2, 5]));  // 应输出 3
   console.log(maxMonstersDefeated(4, 20, 25, [10, 15, 18, 22], [12, 18, 20, 26]));  // 应输出 3
@@ -224,10 +227,45 @@
 
     return operations;
   }
+  console.log('最少前缀操作问题');
   console.log(minOperations("abcde", "abcd") === 1);
   console.log(minOperations("ababb", "abb") === 3);
   console.log(minOperations("xyz", "xy") === 1);
   console.log(minOperations("abcd", "efg") === 4);
+
+//   数组元素之和最小
+  /**
+   * 构造一个数组包含 n 个元素，且满足以下条件
+   * 数组中所有元素两两不同
+   * 数组所有元素的最大公约数 为 K
+   * 数组所有元素之和尽可能的小
+   *
+   * 输出该数组元素之和的最小值
+   *
+   * 测试用例
+   * 输入: n = 3, k = 1
+   * 输出: 6
+   *
+   * 输入: n = 2, k = 2
+   * 输出: 6
+   *
+   * 输入: n = 4, k = 3
+   * 输出: 30
+   */
+  function minSum(n, k) {
+    let elements = [];
+    for(let i = 0; i < n; i++) {
+      let candidate = k * (i + 1);
+      if(!elements.includes(candidate)) {
+        elements.push(candidate);
+      }
+    }
+    return elements.reduce((a, b) => a + b, 0);
+  }
+  console.log('数组元素之和最小问题')
+  console.log(minSum(3, 1) === 6);
+  console.log(minSum(2, 2) === 6);
+  console.log(minSum(4, 3) === 30);
 </script>
 </body>
 </html>
