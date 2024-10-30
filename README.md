@@ -36,7 +36,7 @@
 - 3D 图片轮播 [carousel3d.html](./carousel3d.html)
 - 不要使用计时器做动画 [animate.html](./animate.html)
 - ajax进度监控 [ajaxProgress.html](./ajaxProgress.html)
-- 手写promise，彻底理解promise机制[promise.html](./promise.html)
+
 - 元素平滑上升-自定义vue指令+视口监听观察元素-代码已移动到vite4+vue3+demo
 - mutationObserver 元素突变监听 [mutationObserver.html](./mutationObserver.html)
 - ResizeObserver 尺寸变化 [resizeObserver.html](./resizeObserver.html)
@@ -91,4 +91,8 @@
 
 ## vite 打包优化
 notion 中有记录[notion链接](https://zany-scabiosa-6d7.notion.site/vite-11bac92b6e6980f18dabce196584c297?pvs=74)
+
+## 编码训练
+- 手写promise，彻底理解promise机制[promise.html](./promise.html)
+- 手写bind, call 、apply [bindCallApply.html](./bindCallApply.html)
 
