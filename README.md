@@ -95,4 +95,5 @@ notion 中有记录[notion链接](https://zany-scabiosa-6d7.notion.site/vite-11b
 ## 编码训练
 - 手写promise，彻底理解promise机制[promise.html](./promise.html)
 - 手写bind, call 、apply [bindCallApply.html](./bindCallApply.html)
+- 目录结构到对象结构 [./md/dirToObj.md](./md/dirToObj.md)
 
