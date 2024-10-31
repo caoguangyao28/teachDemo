@@ -41,7 +41,6 @@
 - mutationObserver 元素突变监听 [mutationObserver.html](./mutationObserver.html)
 - ResizeObserver 尺寸变化 [resizeObserver.html](./resizeObserver.html)
 - intersectionObserver 交叉边界变化 [intersectionObserver.html](./intersectionObserver.html)
-- 动态规划问题 [dynicPlan.html](./dynicPlan.html)
 - 深度拷贝[deepClone.html](./deepClone.html)
 - 利用Object.freeze 冻结，优化性能，冻结数据
 - js 实现函数重载 [./js/jsreload.js](./js/jsreload.js)
@@ -96,4 +95,6 @@ notion 中有记录[notion链接](https://zany-scabiosa-6d7.notion.site/vite-11b
 - 手写promise，彻底理解promise机制[promise.html](./promise.html)
 - 手写bind, call 、apply [bindCallApply.html](./bindCallApply.html)
 - 目录结构到对象结构 [./md/dirToObj.md](./md/dirToObj.md)
+- 动态规划问题 [dynicPlan.html](./dynicPlan.html)
+- 一些算法题目备忘 [./md/algorithm.md](./md/algorithm.md)
 
