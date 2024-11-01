@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>storageEvent</title>
+</head>
+<body>
+<h1> storage event 触发问题</h1>
+<p> 必须是其他标签页 才会触发</p>
+<button onclick="setStorage()">set</button>
+<script>
+  window.addEventListener('storage', (event) => {
+    console.log(event);
+  });
+  function setStorage() {
+    localStorage.setItem('test', 'test');
+    // 手动触发 本页签才会响应 当这个触发的 evnet 并没有 setItem 的信息
+    window.dispatchEvent(new StorageEvent('storage'));
+  }
+</script>
+</body>
+</html>
