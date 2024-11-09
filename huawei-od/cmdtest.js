@@ -62,7 +62,7 @@ function transformCmds(cmds, index) {
     const char = cmdsarr[i];
 
     // 如果当前字符为双引号且命令字中已经包含了一个双引号
-    if ( char == '"' && cmdstr.includes('"')) { // 此时为一个 双引号包裹的 命令
+    if ( char === '"' && cmdstr.includes('"')) { // 此时为一个 双引号包裹的 命令
       cmdstr += char;
       // cmdstr !== '""' && result.push(cmdstr); // 示例 输出结果需要保留 ""
       result.push(cmdstr);
