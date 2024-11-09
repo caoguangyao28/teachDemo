@@ -79,15 +79,6 @@ function transformCmds(cmds, index) {
     } else {
       cmdstr += char;
     }
-
-    // if (char === '_' || i == cmdsarr.length-1) { // 需要 分割
-    //   // 遇到下划线，判断是否是命令符
-    //   result.push(cmdstr);
-    //   cmdstr = ''; // 重置
-    // } else {
-    //   // 否则，将字符添加到命令符中
-    //   cmdstr += char;
-    // }
   }
 
   // 根据index 进行 加密 置换
