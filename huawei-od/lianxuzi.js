@@ -68,9 +68,7 @@
  * 需要注意的是，如果某个字母的子串出现多个，且这些子串的长度不同，则只取最长的那个。
  * 若字串数量不足 k 个，则返回 -1。
  */
-const { listeners } = require("process"); // 引入 process 模块
 const readline = require('readline'); // 引入 readline 模块
-// const { isNumber } = require("util");
 
 const rl = readline.createInterface({
   input: process.stdin, // 指定输入源为 stdin（默认）
