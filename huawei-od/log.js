@@ -57,7 +57,7 @@ function logMaxScore(logs) {
         score += parseInt(logs[j]) - (i - j ) * parseInt(logs[j]);
       }
     }
-    cores.push(score);
+    // cores.push(score);
     if (score > maxCore) {
       maxCore = score;
     }
