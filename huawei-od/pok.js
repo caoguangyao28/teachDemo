@@ -129,19 +129,17 @@ function findAllStraight(arr) {
         isAdd = true;
         break;
       }
-      // 如果当前元素不是顺子，则新建一个顺子
     }
+    // 如果当前元素不是顺子，则新建一个顺子
     if (!isAdd) {
       let newStraight = [];
-      newStraight.push(newarr[i]);
-      straightArr.push(newStraight);// 这里更改了 循环数组长度 node 里死循环了
+      newStraight.push(newarr[i]); // 添加当前元素 为顺子起点
+      straightArr.push(newStraight);// 顺子数量可能行增加
     }
   }
 
   // 筛选出 长度大于等于 5的
-  const resArr = straightArr.filter(item => item.length >= 5)
-  // console.log(resArr);
-  return resArr;
+  return straightArr.filter(item => item.length >= 5);
 }
 
 // findAllStraight(['2','9','J','2', '3', '4', 'K', 'A', '7', '9', 'A', '5', '6']);
