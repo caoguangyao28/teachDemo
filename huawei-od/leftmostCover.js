@@ -27,6 +27,15 @@
  *
  */
 
+/**
+ * 找到s2中满足条件的子串，返回其下标，如果没有返回-1
+ * @param { string } s1
+ * @param { string } s2
+ * @param { number } k
+ * @returns {number}
+ *
+ * 难点在于 如何 想到 对比 2个字符串的覆盖情况 利用 字母表 映射 数组下标，数组值为 字母出现次数
+ */
 function leftmostCover(s1, s2, k) {
   // 先处理边界
   if (s1.length > s2.length || (s1.length + k) > s2.length) return -1;
@@ -46,13 +55,14 @@ function leftmostCover(s1, s2, k) {
   let right = len - 1;
   while (right < s2.length) {
     // 统计当前窗口中每个字符的出现次数
-    const window = new Array(26).fill(0);
+    const subCount = new Array(26).fill(0);
     const subs = s2.slice(left, right + 1);
+    // 将子串 中每个字母 以及出现次数 填入 subCount 中
     for (const c of subs) {
-      window[c.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+      subCount[c.charCodeAt(0) - 'a'.charCodeAt(0)]++;
     }
     // 判断 当前窗口是否满足条件
-    if(computerSub(s1Count, window)) {
+    if(computerSub(s1Count, subCount)) {
       res = left;
       break;
     }
@@ -65,6 +75,7 @@ function leftmostCover(s1, s2, k) {
 
 /**
  * 比对2个字符串，是否存在 子母完全包含覆盖的情况，字母本身以及次数
+ * window 是否覆盖 s1Count
  * @param s1Count
  * @param window
  * @returns {boolean}
@@ -80,7 +91,7 @@ function computerSub(s1Count, window) {
   return res;
 }
 
-// console.log(leftmostCover('ab', 'aabcd', 1));
-// console.log(leftmostCover('abc', 'dfs', 10));
+console.log(leftmostCover('ad', 'aabcd', 3));
+console.log(leftmostCover('abc', 'dfs', 10));
 // s1 = abcdefg s2 = aaabcdefghijklmnopqrstuvwxyz k = 1
-console.log(leftmostCover('bcdefgh', 'aaabcdefghijklmnopqrstuvwxyz', 1));
+console.log(leftmostCover('bcdefgh', 'aaabcdefghijklmnopqrstuvwxyz', 3));
