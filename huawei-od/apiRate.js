@@ -32,11 +32,11 @@
  * 0 0 10 2 2 0 0 2 0 0
  *
  */
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+// const readline = require('readline');
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout
+// });
 
 /**
  * 查找最优的时间段
@@ -45,7 +45,6 @@ const rl = readline.createInterface({
  * @return { string }
  */
 function findTimePeriod(num, timeRates) {
-  // 使用滑动算法， 找出平均数小于等于 num 的所有 连续子段 取最长的 多个则 空格分开
   let periods;// 存放 匹配的子段的 start-end 数组
   let periodsMap = {}; // 存放 periods 数组，key 为 start-end，value 为 子串的长度
   let maxLength = 0;
@@ -55,8 +54,6 @@ function findTimePeriod(num, timeRates) {
   for (let i = 1; i < timeRates.length; i++) {
     comulativeSum[i] = comulativeSum[i - 1] + timeRates[i];
   }
-
-  // console.log(comulativeSum);
   //  双层循环 确保 筛选了所有符合 均值小于num 子段组合
   for ( let start = 0; start < timeRates.length; start++ ) {
     for ( let end = start; end < timeRates.length; end++ ) {
@@ -96,23 +93,91 @@ function findTimePeriod(num, timeRates) {
 
 }
 
+// 用 弹性窗口滑动算法 - 双指针变动 重新实现 findTimePeriod - 其实和穷举一样
+function findTimePeriod2(num, timeRates) {
+  let start = 0;
+  let end = 0;
+  let maxLength = 0;
+  let periodsMap = {};
+  // 创建一个累积和数组， 用于快速计算任意时间段的失败率总和
+  const comulativeSum = new Array(timeRates.length);
+  comulativeSum[0] = timeRates[0];
+  for (let i = 1; i < timeRates.length; i++) {
+    comulativeSum[i] = comulativeSum[i - 1] + timeRates[i];
+  }
+  // 用一个循环模拟了 嵌套循环 可变动双指针
+  while(end < timeRates.length) {
+    // 求当前 start - end 的 失败率总和
+    const tatesSum = comulativeSum[end] - (comulativeSum[start] || 0);// 这个可以抽离优化
+    const length = end - start + 1;
+    const toleratedLoss = num * length;
+    if (toleratedLoss >= tatesSum) {
+      // 尽可能放入 长的数据 忽略短的
+      if( maxLength < length) {
+        // 可以先把之前存的 置空 periodsMap
+        periodsMap = {};
+        periodsMap[start + '-' + end] = length;
+        maxLength = length;
+      }
+      if(maxLength === length) {// 长度相等的需要记录
+        periodsMap[start + '-' + end] = length;
+      }
+    }
+
+    // 如果 end 已经到数组末尾，则移动 start，并重新计算 start 到 end 的失败率总和
+    if ((end === timeRates.length && start <timeRates.length) || toleratedLoss < tatesSum ){
+      start++;
+      end = start;
+    }
+    // 移动右边 end
+    end++;
+  }
+  let periods = Object.keys(periodsMap);
+  if(periods.length === 0) {
+    return null;
+  }
+  // console.log(periodsMap);
+  return periods.join(' ');
+}
+
+// const rest = findTimePeriod2(1, [0, 1, 2, 3, 4]);
+// console.log(rest);
+
+// const rest2 = findTimePeriod2(2, [0, 0, 100, 2, 2, 99, 0, 2]);
+// console.log(rest2);
 // const rest = findTimePeriod(1, [0, 1, 2, 3, 4]);
 // console.log(rest);
 // //
-// findTimePeriod(2, [0, 0, 100, 2, 2, 99, 0, 2]);
+// const res = findTimePeriod(2, [0, 0, 100, 2, 2, 99, 0, 2]);
+// console.log(res);
+
+// 对比 findTimePeriod 和 findTimePeriod2 的运行时间
+const startTime = Date.now();
+for (let i = 0; i < 10000; i++) {
+  findTimePeriod2(2, [0, 0, 10, 2, 2, 0, 0, 2, 0, 0]);
+}
+const endTime = Date.now();
+console.log(`findTimePeriod2 运行时间：${endTime - startTime}ms`);
+const startTime2 = Date.now();
+for (let i = 0; i < 10000; i++) {
+  findTimePeriod(2, [0, 0, 10, 2, 2, 0, 0, 2, 0, 0]);
+}
+const endTime2 = Date.now();
+console.log(`findTimePeriod 运行时间：${endTime2 - startTime2}ms`);
+
 //
 // findTimePeriod(2, [0, 0, 10, 2, 2, 0, 0, 2, 0, 0]);
 //
 // findTimePeriod(1, [2, 3, 2, 3, 4, 5, 6, 7, 8, 9]);
 // 分 2行输入
-let maxAverageLost;
-rl.on('line', function (line){
-  if(!maxAverageLost){
-    maxAverageLost = parseInt(line);
-  } else {
-    let timeRates = line.split(' ').map(item => parseFloat(item));
-    const res = findTimePeriod(maxAverageLost, timeRates);
-    console.log(res);
-    rl.close();
-  }
-})
+// let maxAverageLost;
+// rl.on('line', function (line){
+//   if(!maxAverageLost){
+//     maxAverageLost = parseInt(line);
+//   } else {
+//     let timeRates = line.split(' ').map(item => parseFloat(item));
+//     const res = findTimePeriod(maxAverageLost, timeRates);
+//     console.log(res);
+//     rl.close();
+//   }
+// })
