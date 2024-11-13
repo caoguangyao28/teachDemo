@@ -86,7 +86,7 @@ function transformCmds(cmds, index) {
   if (index >= result.length || index < 0) {
     return 'ERROR';
   }else {
-    // 不能使用join 会有多余的 _ ""
+    // 不能使用join 会有多余的 _""
     result = result.map((item, idx) => {
       if (idx === index) {
         return '******';
