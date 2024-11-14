@@ -51,8 +51,12 @@ function dfs(matrix, visited, x, y) {
     let newX = x + direction[0];  // 计算新的行坐标
     let newY = y + direction[1];  // 计算新的列坐标
     // 检查新坐标是否在网格内部，且未访问过，并且满足编号差值绝对值小于等于1的条件
-    if (newX >= 0 && newX < matrix.length && newY >= 0 && newY < matrix[0].length
-      && !visited[newX][newY] && Math.abs(matrix[newX][newY] - matrix[x][y]) <= 1) {
+    if (
+      newX >= 0 && newX < matrix.length &&
+      newY >= 0 && newY < matrix[0].length &&
+      !visited[newX][newY] &&
+      Math.abs(matrix[newX][newY] - matrix[x][y]) <= 1
+    ) {
       range += dfs(matrix, visited, newX, newY);  // 递归地继续探索并累加可活动的网格点数目
     }
   }
@@ -70,7 +74,10 @@ function solution(m, n, matrix) {
   let maxRange = 0;
   for(let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
-      let visited = Array.from({length: m}, () => Array(n).fill(false));
+      let visited = Array.from(
+        {length: m},
+        () => Array(n).fill(false)
+      );
       // 每个点位都 带了一张地图 标记自己可以到达的点，这样 才能计算 范围 range
       let range = dfs(matrix, visited, i, j);
       maxRange = Math.max(maxRange, range);
