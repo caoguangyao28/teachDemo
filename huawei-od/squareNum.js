@@ -37,6 +37,12 @@
  *
  */
 
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
 /**
  *
  * @param { [] } points 坐标点位数组
@@ -77,10 +83,23 @@ function squareNum(points) {
 
     }
   }
-
   // 每条边都被重复了四次，所以要除以4
-  console.log('result/4', result/4)
+  // console.log('result/4', result/4)
   return result / 4;
 }
 
-squareNum(['0 0', '1 2', '3 1', '2 -1']);
+// squareNum(['0 0', '1 2', '3 1', '2 -1']);
+let n; // 记录输入行数
+let coordinates = []; // 记录输入点位
+rl.on('line', (line) => {
+  if (n === undefined) {
+    n = parseInt(line);
+  } else {
+    coordinates.push(line);
+    if (coordinates.length === n) rl.close();
+  }
+});
+rl.on('close', () => {
+  // 组装数据
+  console.log(squareNum(coordinates));
+})
