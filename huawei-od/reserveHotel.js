@@ -22,23 +22,24 @@ function findHotels(arr, k, x) {
     resMap[abs].push(arr[i])
   }
 
-  console.log(resMap);
-
   Object.keys(resMap).map(item => {
     res.push(...resMap[item]);
   });
 
   res.splice(k);
   res.sort();
-  // for (let obj of resMap) {
-  //  res.push(...obj);
-  // }
 
-  // 返回 前 k 个
-  console.log(res);
   return res;
-  // console.log(temp);
 
+}
+
+// 解法2
+function findHotelsTwo(arr, k, x) {
+  const sortedPrices = arr.sort((a, b) => a - b);
+  console.log(sortedPrices)
+  const priceRating = sortedPrices.map(price => [price, Math.abs(price - x)]).sort((a, b) => a[1] - b[1]);
+  console.log(priceRating);
+  return priceRating.slice(0, k).map(item => item[0]).sort();
 }
 
 function solution(string, stringN) {
@@ -46,13 +47,16 @@ function solution(string, stringN) {
   let [n, k, price] = string.split(' ');
   const hotels = stringN.split(' ').map(Number);
 
-  const res = findHotels(hotels, parseInt(k), Number(price));
+  // const res = findHotels(hotels, parseInt(k), Number(price));
+  const res = findHotelsTwo(hotels, parseInt(k), Number(price));
 
 
   console.log(res.join(' '));
 
 }
 
-solution('10 5 6', '1 2 3 4 5 6 7 8 9 10');
+// solution('10 5 6', '1 2 3 4 5 6 7 8 9 10');
 
-solution('10 4 6', '10 9 8 7 6 5 4 3 2 1');
+// solution('10 4 6', '10 9 8 7 6 5 4 3 2 1');
+
+solution('6 3 1000', '30 30 200 500 70 300');
