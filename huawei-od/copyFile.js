@@ -14,25 +14,26 @@
 function copyFile(num, filebytes) {
   // 软盘可以分配的存储块
   const blockNum = 1474560 / 512;
-  // 将 filebytes 转换为 需要的存储块
+  // 将 filebytes 转换为 需要的存储块 即每项在 blockNum 中的位置占有的块数
   const needBlock = filebytes.map(item => Math.ceil(item / 512));
 
-  console.log(needBlock);
+  // console.log(needBlock);
 
   const dp = new Array(blockNum + 1).fill(0);
   // console.log(dp);
 
-  filebytes.forEach((item, index) => {
-    const width = needBlock[index];
-    const worth = item;
+  filebytes.forEach((fileSize, index) => {
+    const width = needBlock[index];// 文件需要的存储块数
+    // 代表文件大小 对应背包问题中 可放入物的价值
     for (let j = blockNum; j >= width; j--) {
-      dp[j] = Math.max(dp[j], dp[j - width] + worth );
+      dp[j] = Math.max(dp[j], dp[j - width] + fileSize );
     }
-    console.log(`${worth}-${width}`,dp[390],dp[391], dp[782],dp[1173],dp[1440], dp[1442],dp[2000 ],dp[2880]);
   })
-  console.log(blockNum, 'blockNum')
+  // console.log(blockNum, 'blockNum')
   console.log(dp[blockNum]);
 }
 
-// copyFile(3, [737270, 737272, 737288]);
+copyFile(3, [737270, 737272, 737288]);
 copyFile(6, [400000, 200000, 200000, 200000, 400000, 400000,400000]);
+
+// 简化问题 呈现背包问题
