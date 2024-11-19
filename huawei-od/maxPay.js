@@ -27,11 +27,11 @@
 
 
 function maxPay(workTime, n, works) {
-  // 先按 工时少的 工钱多 进行排序
-  // works.sort((a, b) => a[0] - b[0] || b[1] - a[1]);
+  // 先按 工时少的 进行排序
+  works.sort((a, b) => a[0] - b[0]);
   // console.log(works)
   // 最小耗时工作
-  let minTime = 4;
+  let minTime = works[0][0];
   const dp = new Array(n + 1).fill().map(() => new Array(workTime + 1).fill(0));
   // 遍历所有工作，计算在不同时间下的最大报酬
   for (let i = 1; i <= n; i++) {
