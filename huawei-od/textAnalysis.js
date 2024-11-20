@@ -8,8 +8,7 @@ const readline = require('readline');
 // 创建readline接口实例
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout,
-  terminal: false
+  output: process.stdout
 });
 
 // 使用字符串来构建整个输入文本
@@ -24,6 +23,7 @@ rl.on('line', function(line) {
 // 监听流的结束事件
 rl.on('close', function() {
   // 输出文本统计结果
+  // console.log(input);
   console.log(countTexts(input));
 });
 
