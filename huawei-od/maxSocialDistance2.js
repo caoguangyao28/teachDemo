@@ -32,7 +32,7 @@ rl.on('line', (input) => {
           }
         }
       }
-      console.log("Maximum social distance: ", dp);
+      // console.log("Maximum social distance: ", dp);
       console.log(max_res);
       rl.close(); // 关闭读取接口
     }
