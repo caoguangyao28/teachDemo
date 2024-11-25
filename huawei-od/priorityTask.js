@@ -18,30 +18,6 @@
 // void (async function () {
 //   // 所有任务 及其 依赖项目
 //   const inputs = (await readline()).trim().split(" ");
-//   // string [A->B, C->B]
-//   // 依赖其他任务的集合
-//   const set1 = new Set(); // 依赖他人的集合
-//   const set2 = new Set(); // 被他人依赖的集合
-//   for (let i = 0; i < inputs.length; i++) {
-//     const item = inputs[i];
-//     const [yilai, beiyilai] = item.split("->");
-//     set1.add(yilai);
-//     set2.add(beiyilai);
-//   }
-//   // 只存在 set2 不存在 set1 中的元素 可以立即执行的任务
-//   const valueSet = new Set([...set2].filter(item => !set1.has(item)));
-//   // valueSet 转数组并 排序，这个也是 最优先执行的任务
-//   const res = [...valueSet].sort();
-//
-//   // 同时 存在 set1 set2 中的元素
-//   const valueSet2 = new Set([...set1].filter(item => set2.has(item)));
-//   res.push(...[...valueSet2].sort());
-//
-//   // 只存在 set1 不在 set2 中的
-//   const valueSet3 = new Set([...set1].filter(item => !set2.has(item)));
-//   res.push(...[...valueSet3].sort());
-//
-//   // console.log(resMap, valueSet, res);
 //   console.log(res.join(' '));
 //   process.exit()
 // })();
@@ -58,19 +34,20 @@ function getSets(inputs) {
   }
   // 只存在 set2 不存在 set1 中的元素 可以立即执行的任务
   const valueSet = new Set([...set2].filter(item => !set1.has(item)));
-  // valueSet 转数组并 排序，这个也是 最优先执行的任务
+  // valueSet 转数组并 排序，这个也是 最优先执行的任务 即不存在依赖的任务
   const startPoints = [...valueSet].sort();
   return [startPoints];
 }
 
 // 循环逐一追加法
 function appendTo(inputs) {
+  // 先排序保证同等优先级的task 按 字典排序执行
   inputs.sort((a, b) => a.localeCompare(b));
   const res = [];
-  // set1 有依赖其他的 任务 set2 被其他依赖的 任务
   const [startPoints] = getSets(inputs);
   // 首先将 开头的元素加入 res
   res.push(...startPoints);
+  // 循环 依次追加
   for (let i = 0; i < inputs.length; i++) {
     const [next, prev] = inputs[i].split("->");
     if (res.includes(next) && !res.includes(prev)) {
@@ -81,6 +58,7 @@ function appendTo(inputs) {
       // 直接追加到 尾部
       res.push(next);
     } else {
+      // 要么都存在则 无需处理，要么都不存在 先追加 prev 后 next
       !res.includes(prev) && res.push(prev);
       !res.includes(next) && res.push(next);
     }
