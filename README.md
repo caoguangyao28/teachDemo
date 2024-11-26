@@ -21,7 +21,7 @@
 ## vue 原理
 - vue的nextick&异步渲染机制 [./vue/asyncRender.html](./vue/asyncRender.html)
 - vue 模版的本质-渲染函数-可以通过h函数来构建视图[./vue/templateFn.html](./vue/templateFn.html)
-- vue3 自定义响应数据实现数据变化防抖 [./vue3DeboundRef.md](./vue3DeboundRef.md)
+- vue3 自定义响应数据实现数据变化防抖 [./vue3DeboundRef.md](md/vue3DeboundRef.md)
 
 ## 实用代码
 - 利用RTCPeerConnection获取用户ip [getRealIpWithRTC.html](./getRealIpWithRTC.html)
