@@ -2,7 +2,7 @@
 import { ref } from 'vue';
  * 自己实现 promise
  * @param {Function} executor
- * 
+ *
  */
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
@@ -11,7 +11,7 @@ class MyPromise {
   // 私有属性
   #state = PENDING;
   #result = undefined;
-  
+
   handlers = [];
   constructor(executor, isThen = false){
     this.onlykey = Symbol('MyPromise');
@@ -51,7 +51,7 @@ class MyPromise {
     // 应该放入微任务 通用写法
     // if( process && process.nextTick ) { // 兼容 node 环境
     //   process.nextTick(func);
-    // }else 
+    // }else
     if(typeof MutationObserver !== 'undefined'){
       // 创建一个dom 节点
       const textNode = document.createTextNode(1);
@@ -87,12 +87,11 @@ class MyPromise {
           data.then().then(resolve,reject)
         }else {
           // 默认调用 触发订阅者的（即then 创建的promise） resolve
-          //  data 可能为 undefined ,因为 callback 不一定有返回值
-          //  且无论 当前的状态是fulfilled 还是 rejected 下一个 promise 的状态 都是 fulfilled （通过 resolve(data) 触发的）
+          // data 可能为 undefined ,因为 callback 不一定有返回值
+          // 且无论 当前的状态是fulfilled 还是 rejected
+          // 下一个 promise 的状态 都是 fulfilled （通过 resolve(data) 触发的）
           resolve(data)
-          // console.log('返回值情况完全看回掉函数自己是否 return', data)
         }
-        //  这里resolve 其实是 then 产生的 promise 的 状态切换  相当于 结束自己 data 相当于 把 data 出入后续的 promise
       } catch (error) {
         reject(error);
       }
@@ -104,14 +103,14 @@ class MyPromise {
     if(this.#state === PENDING){
       return;
     }
-    // 查看 #handlers 队列 是否有需要执行的 this.#handlers 
+    // 查看 #handlers 队列 是否有需要执行的 this.#handlers
     while(this.handlers.length > 0){
       // console.log(this.handlers)
       // 一个一个依次执行
       const {onFulfilled, onRejected, resolve, reject} = this.handlers.shift();
       if(this.#state === FULFILLED){
         // 获取 then 方法的参数
-        // debugger        
+        // debugger
         this.#runOne(onFulfilled, resolve, reject)
       }else{
         this.#runOne(onRejected, resolve, reject)
@@ -120,7 +119,7 @@ class MyPromise {
     // console.log(this.handlers.length, 'run 开始后')
   }
 
-  then(onFulfilled, onRejected){  
+  then(onFulfilled, onRejected){
     // then 方法的返回值是一个promise
     // console.log(this.handlers, 'then 订阅产生 新的 promise')
     return new MyPromise((resolve, reject) => {
@@ -135,9 +134,9 @@ class MyPromise {
       this.#run();
     }, true)
   }
-  // Promise.all 
+  // Promise.all
   all(promises){
-    return new MyPromise((resolve, reject) => { 
+    return new MyPromise((resolve, reject) => {
       let count = 0;
       let results = [];
       promises.forEach((promise, index) => {

@@ -17,4 +17,10 @@
 })();
 
 // 利用iife 提炼 环境判断 不同环境 执行不同函数
-// todo iife
+//
+const palatform = (function () {
+  if (navigator.userAgent.includes('Win32')) {
+    return 'windows'
+  }
+
+})();
