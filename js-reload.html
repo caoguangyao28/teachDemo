@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js-reload</title>
+  <script>
+    // domain 模拟多域备选
+    const domain = [
+      'localhost:8080',
+      'localhost:8081',
+      'localhost:8088',
+      'localhost:63342'
+    ]
+    const retryObj = {}; // 错误的脚步尝试到第几个 备选域名
+    // 脚本加载失败监听
+    window.addEventListener('error', function (e) {
+      // 排除非脚本加载的错误
+      if(e instanceof ErrorEvent || e.target.tagName !== 'SCRIPT') {
+        return;
+      }
+      // 剩下的都需要处理
+      const url = new URL(e.target.src);
+      const pathname = url.pathname;
+      if(retryObj[pathname] === undefined) {
+        retryObj[pathname] = 0;
+      }
+      const index = retryObj[pathname];
+      if(index >= domain.length) {
+        return;
+      }
+      url.host = domain[index]; // 修改为新的domain
+      // 重新加载url 的js
+      // console.log('url', url.toString())
+      // 非阻塞
+      // const newScript = document.createElement('script');
+      // newScript.src = url.toString();
+      // e.target.parentElement.insertBefore(newScript, e.target);
+      document.write(`<script src="${url.toString()}"><\/script>`); // 阻塞保证 文件加载顺序同原来
+      retryObj[pathname]++; // 尝试次数+1 下标移动
+      // 添加后移除旧的
+      e.target.remove();
+      // e.target.parentElement.removeChild(e.target);
+    }, true); // 捕获阶段才能捕获到 脚本错误不存在冒泡
+  </script>
+</head>
+<body>
+  <h1>js file load error and reload</h1>
+
+<!-- 模拟加载不存在的js error -->
+<script src="http://localhost:8088/teachDemo/js/error.js"></script>
+</body>
+</html>

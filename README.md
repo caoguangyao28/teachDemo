@@ -40,10 +40,11 @@
 - ResizeObserver 尺寸变化 [resizeObserver.html](./resizeObserver.html)
 - intersectionObserver 交叉边界变化 [intersectionObserver.html](./intersectionObserver.html)
 - 深度拷贝[deepClone.html](./deepClone.html)
+- 利用Object.freeze 冻结，优化性能，冻结数据
 - js 实现函数重载 [./js/jsreload.js](./js/jsreload.js)
 - 深度判断对象是否相等 [isEqual.html](./js/objectIsEqual.js)
-- 利用Object.freeze 冻结，优化性能，冻结数据
 - 利用IIFE 立即执行函数优化函数执行 [iife.html](./js/iife.js)
+- js文件加载错误捕获重试 [./js-reload.html](./js-reload.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 数组相关

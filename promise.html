@@ -109,6 +109,27 @@
     // }).then(() => {
     //   console.log("外部第三个then")
     // })
+
+    //  catch 和 then 的区别
+    Promise.resolve().then(() => {
+      console.log('cgy1')
+      throw  new Error('cgy-error')
+    }).then(()=>{
+      console.log('cgy2')
+    }, err => {
+      console.log('cgy-catch2', err)
+    }).catch(err => {
+      console.log('cgy-catch', err)
+    })
+
+    // try catch 是否能部分异步任务 - 不能
+    try {
+      setTimeout(()=>{
+        throw Error('cgy-error');
+      })
+    } catch (err) {
+      console.log('catch-myerror', err)
+    }
     
 
 
@@ -118,144 +139,144 @@
     //   resolve(4)
     // })
     
-    Promise.resolve().then(() => {
-        console.log(0)
-        // 这里是关键 如何理解
-        // return Promise.resolve('4') 等效下面
-        const Pnew = new Promise((resolve, reject) => {
-          resolve(4)
-          // console.log('P0 内部Promise resolve 只是完成了状态变动')
-        })
-
-        // 状态塌陷，v8 引擎 分为 准备， 吸收 两部，且 都是放在微任务中执行
-        return Pnew // 这里的promise 是一个 pending 状态的 promise 且自动调用 then 函数 -> 又产生一个 promise
-    })
-    .then((res) => {
-      console.log(res)
-    })
-      
-    Promise.resolve().then(() => {
-        console.log(1)
-      })
-      .then(() => {
-        console.log(2)
-      })
-      .then(() => {
-        console.log(3)
-      })
-      .then(() => {
-        console.log(5)
-      })
-      .then(() => {
-        console.log(6)
-      })
+    // Promise.resolve().then(() => {
+    //     console.log(0)
+    //     // 这里是关键 如何理解
+    //     // return Promise.resolve('4') 等效下面
+    //     const Pnew = new Promise((resolve, reject) => {
+    //       resolve(4)
+    //       // console.log('P0 内部Promise resolve 只是完成了状态变动')
+    //     })
+    //
+    //     // 状态塌陷，v8 引擎 分为 准备， 吸收 两部，且 都是放在微任务中执行
+    //     return Pnew // 这里的promise 是一个 pending 状态的 promise 且自动调用 then 函数 -> 又产生一个 promise
+    // })
+    // .then((res) => {
+    //   console.log(res)
+    // })
+    //
+    // Promise.resolve().then(() => {
+    //     console.log(1)
+    //   })
+    //   .then(() => {
+    //     console.log(2)
+    //   })
+    //   .then(() => {
+    //     console.log(3)
+    //   })
+    //   .then(() => {
+    //     console.log(5)
+    //   })
+    //   .then(() => {
+    //     console.log(6)
+    //   })
 
     console.log("主线程执行结束")
 
       // 另一个例子
-      setTimeout(function(){
-        console.log(1)
-      }, 0)
-      
-      Promise.resolve(1).then(function(){
-        console.log(2)
-      }).then(()=>{
-        Promise.resolve(3).then(function(data){
-          console.log(data)
-          // return data
-        }).then(res => console.log(res))
-        return 'd'
-      }).then((data) => {
-        console.log(data)
-      })
+      // setTimeout(function(){
+      //   console.log(1)
+      // }, 0)
+      //
+      // Promise.resolve(1).then(function(){
+      //   console.log(2)
+      // }).then(()=>{
+      //   Promise.resolve(3).then(function(data){
+      //     console.log(data)
+      //     // return data
+      //   }).then(res => console.log(res))
+      //   return 'd'
+      // }).then((data) => {
+      //   console.log(data)
+      // })
 
       //输出顺序  2,3,d, undefined,1
 
   </script>
-  <script>
-    console.log("mypromise demo start")
-    // 自定义的 promise 测试
-    // PROMISE 异步的异常是捕获不到的，无法影响 promis 的状态
+<!--  <script>-->
+<!--    console.log("mypromise demo start")-->
+<!--    // 自定义的 promise 测试-->
+<!--    // PROMISE 异步的异常是捕获不到的，无法影响 promis 的状态-->
 
-    const p = new MyPromise((resolve, reject) => {
-      // setTimeout(() => {
-      //   reject(222);
-      // }, 1000);
-      resolve(111)
-    })
+<!--    const p = new MyPromise((resolve, reject) => {-->
+<!--      // setTimeout(() => {-->
+<!--      //   reject(222);-->
+<!--      // }, 1000);-->
+<!--      resolve(111)-->
+<!--    })-->
 
 
-    p.then(123, (err)=>{
-      console.log('promise 失败1', err);
-      return err
-    }).then(res => {
-      console.log('最后一个 promise 结果 来自第一个 透传而来',res)
-      console.log('promise 完成1',res)
-      return res
-    })
-    // 二次 订阅
-    p.then(res => {
-      console.log('promise 成功2',res)
-      return res // 这里是否return 不影响流程 但 子then 的返回值是 undefined
-    }, (err) => {
-      console.log('promise 失败2 订阅二', err);
-      return err // 这里是否return 不影响流程 但 子then 的返回值是 undefined
-    }).then(res => {  
-      console.log('then2-2 ',res) // undefined
-      return res // 尾部不返回 将有一个 undefined
-    })
-    // let p = new MyPromise((resolve, reject) => {
-    //   console.log("最外侧 promise")
-    //   resolve()
-    // })
-    // p.then(() => { // 外部第一个then
-    //   let p = new MyPromise((resolve, reject ) => {
-    //     console.log("内部 promise");
-    //     resolve()
-    //   })
-    //   p.then(() =>{})
-    // })
-    // p.then((res) => {
-    //   console.log(p.handlers, 'res', res)
-    //   return new Promise((ref, rej) => {
-    //     console.log('我的插入promise 但一直未完成')
-    //     console.log(p.handlers, 'aaa')
-    //     setTimeout(() => {
-    //       console.log('我的插入promise 马上结束')
-    //       ref(res)
-    //     }, 1000);
-    //   })
-    // }, (err) => {
-    //   console.log('promise 失败1', err);
-    //   // return 456
-    // })
-    //   .then((res) => {
-    //     console.log('插入的 promise 成功', res)
-    //     return res
-    //   }, (err) => { })
-    // p 多次调用 then 此时 应该出现 多个 #handles？？
-    // p.then((res) => {
-    //   console.log('promise 完成1-2',res)
-    // },(err) => {
-    //   console.log('promise 失败1-2', err);
-    // })
-    // p.then((res) => {
-    //   console.log('promise 完成2',res);
-    // }, (err) => {
-    //   console.log('promise 失败2', err);
-    // })
-    // p.then((res) => {
-    //   console.log('promise 完成3',res);
-    // }, (err) => {
-    //   console.log('promise 失败3', err);
-    // })
-    // p.then((res) => {
-    //   console.log('promise 完成4',res);
-    // }, (err) => {
-    //   console.log('promise 失败4', err);
-    // })
+<!--    p.then(123, (err)=>{-->
+<!--      console.log('promise 失败1', err);-->
+<!--      return err-->
+<!--    }).then(res => {-->
+<!--      console.log('最后一个 promise 结果 来自第一个 透传而来',res)-->
+<!--      console.log('promise 完成1',res)-->
+<!--      return res-->
+<!--    })-->
+<!--    // 二次 订阅-->
+<!--    p.then(res => {-->
+<!--      console.log('promise 成功2',res)-->
+<!--      return res // 这里是否return 不影响流程 但 子then 的返回值是 undefined-->
+<!--    }, (err) => {-->
+<!--      console.log('promise 失败2 订阅二', err);-->
+<!--      return err // 这里是否return 不影响流程 但 子then 的返回值是 undefined-->
+<!--    }).then(res => {  -->
+<!--      console.log('then2-2 ',res) // undefined-->
+<!--      return res // 尾部不返回 将有一个 undefined-->
+<!--    })-->
+<!--    // let p = new MyPromise((resolve, reject) => {-->
+<!--    //   console.log("最外侧 promise")-->
+<!--    //   resolve()-->
+<!--    // })-->
+<!--    // p.then(() => { // 外部第一个then-->
+<!--    //   let p = new MyPromise((resolve, reject ) => {-->
+<!--    //     console.log("内部 promise");-->
+<!--    //     resolve()-->
+<!--    //   })-->
+<!--    //   p.then(() =>{})-->
+<!--    // })-->
+<!--    // p.then((res) => {-->
+<!--    //   console.log(p.handlers, 'res', res)-->
+<!--    //   return new Promise((ref, rej) => {-->
+<!--    //     console.log('我的插入promise 但一直未完成')-->
+<!--    //     console.log(p.handlers, 'aaa')-->
+<!--    //     setTimeout(() => {-->
+<!--    //       console.log('我的插入promise 马上结束')-->
+<!--    //       ref(res)-->
+<!--    //     }, 1000);-->
+<!--    //   })-->
+<!--    // }, (err) => {-->
+<!--    //   console.log('promise 失败1', err);-->
+<!--    //   // return 456-->
+<!--    // })-->
+<!--    //   .then((res) => {-->
+<!--    //     console.log('插入的 promise 成功', res)-->
+<!--    //     return res-->
+<!--    //   }, (err) => { })-->
+<!--    // p 多次调用 then 此时 应该出现 多个 #handles？？-->
+<!--    // p.then((res) => {-->
+<!--    //   console.log('promise 完成1-2',res)-->
+<!--    // },(err) => {-->
+<!--    //   console.log('promise 失败1-2', err);-->
+<!--    // })-->
+<!--    // p.then((res) => {-->
+<!--    //   console.log('promise 完成2',res);-->
+<!--    // }, (err) => {-->
+<!--    //   console.log('promise 失败2', err);-->
+<!--    // })-->
+<!--    // p.then((res) => {-->
+<!--    //   console.log('promise 完成3',res);-->
+<!--    // }, (err) => {-->
+<!--    //   console.log('promise 失败3', err);-->
+<!--    // })-->
+<!--    // p.then((res) => {-->
+<!--    //   console.log('promise 完成4',res);-->
+<!--    // }, (err) => {-->
+<!--    //   console.log('promise 失败4', err);-->
+<!--    // })-->
 
-  </script>
+<!--  </script>-->
 </head>
 
 <body>
