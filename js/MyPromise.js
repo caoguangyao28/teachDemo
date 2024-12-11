@@ -134,6 +134,10 @@ class MyPromise {
       this.#run();
     }, true)
   }
+  // catch 方法内部调用 then(null, onRejected) 只接受 rejected
+  catch(onRejected){
+    return this.then(null, onRejected)
+  }
   // Promise.all
   all(promises){
     return new MyPromise((resolve, reject) => {
