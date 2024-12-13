@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>闭包内存持有情况</title>
+</head>
+<body>
+<h1>闭包内存持有情况</h1>
+<p>多闭包函数，小心导致无用的闭包造成内存泄露</p>
+
+<script>
+  function outer(str) {
+    const largeStr = 'x'.repeat(1000000).toLowerCase();
+    const age = 18;
+    function getName(){
+      return largeStr;
+    }
+    function getAge(){
+      return age;
+    }
+
+    // name 以及其内部函数没对外暴露，理论上 浏览器引擎 会有优化回收相关 内存
+    return getAge();
+  }
+  outer('outer');
+</script>
+</body>
+</html>
