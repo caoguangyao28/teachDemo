@@ -45,6 +45,7 @@
 - 深度判断对象是否相等 [isEqual.html](./js/objectIsEqual.js)
 - 利用IIFE 立即执行函数优化函数执行 [iife.html](./js/iife.js)
 - js文件加载错误捕获重试 [./js-reload.html](./js-reload.html)
+- 将worker写在当前文件中 [worker.html](./worker.html)
 <!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
 
 ## 数组相关

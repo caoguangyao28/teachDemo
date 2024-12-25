@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Worker</title>
+</head>
+<body>
+<h1>Worker 代码写在当前页面中</h1>
+<script>
+  // worker 代码写在当前页面中
+  console.log('worker 代码写在当前页面中');
+  // 模拟 worker 脚本字符串
+  const workerScript = `
+    self.onmessage = function (e) {
+      console.log('worker 接收到消息', e.data);
+      self.postMessage('worker 回复消息');
+    };
+    console.log('hello worker');
+  `;
+  // const blob = new Blob([workerScript], {type: 'text/javascript'});
+  // // objectURL 是临时性的 URL
+  // const workerUrl = URL.createObjectURL(blob);
+  // const wk = new Worker(workerUrl);
+  // 使用 base64 方式 处理 workerScript
+
+  // console.log('workerScriptBase64', workerScriptBase64);
+  // console.log('workerUrl', workerUrl);
+  // const wk = new Worker(workerUrl);
+  const worker = new Worker(
+  'data:application/javascript,' + encodeURIComponent(workerScript)
+  );
+
+</script>
+</body>
+</html>
