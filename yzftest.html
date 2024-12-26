@@ -7,25 +7,61 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>模板引擎 问题验证</h1>
+  <h1>验证死循环问题</h1>
   <h1>F5 刷新页面防抖</h1>
-  <!-- <div id="exports">我的id 是 exports</div> -->
-  <script src="./js/template.js"></script>
+  <button> 点我 </button>
   <script>
-    const deboundF5 = _.debounce(() => {
-      console.log('防抖')
-      window.location.reload(true)
-    }, 500)
-    // console.log(exports)
-    // 监听 键盘 输入F5
-    window.addEventListener('keydown', (e) => {
-      if(e.keyCode === 116){
-        // e.preventDefault();
-        console.log('F5')
-        // 刷新页面加防抖 
-        deboundF5()
-      }
-    })
+    // 页面将卡死
+    // while(1) {
+    //
+    // }
+    // while (1) {
+    //   await 1;
+    // }
+
+
+    // 递归 直接栈溢出 抛出错误，主线程 结束当前执行
+    // function m(){
+    //   m();
+    // }
+    // m();
+    // console.log(1)
+
+    function delay(number = 1000) {
+      return new Promise(resolve => {
+        setTimeout(resolve, number);
+      });
+      // setTimeout(()=>{console.log(1)}, number)
+    }
+
+    // 崩溃
+    // while (1) {
+    //   delay();
+    // }
+    // 页面正常
+    // async function m(){
+    //   await delay();
+    //   m();
+    // }
+
+    // 递归 微任务时 崩溃 但不爆栈
+    // async function m(){
+    //   await 1;
+    //   m();
+    // }
+
+    // async function m(){
+    //   await 1;
+    //   m();
+    // }
+    //
+    // m();
+
+    // 不崩溃 edge 但行为不同 不崩溃 - chorme 但有存在问题
+    // while (1) {
+    //   await 1;
+    // }
+
   </script>
 </body>
 </html>
