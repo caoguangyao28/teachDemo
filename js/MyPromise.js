@@ -1,9 +1,9 @@
 /**
-import { ref } from 'vue';
- * 自己实现 promise
+ * 自己实现 promise Mypromise
  * @param {Function} executor
  *
  */
+
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
@@ -49,9 +49,6 @@ class MyPromise {
   }
   #runMicroTask(func) {
     // 应该放入微任务 通用写法
-    // if( process && process.nextTick ) { // 兼容 node 环境
-    //   process.nextTick(func);
-    // }else
     if(typeof MutationObserver !== 'undefined'){
       // 创建一个dom 节点
       const textNode = document.createTextNode(1);
@@ -172,9 +169,5 @@ class MyPromise {
     return new MyPromise((resolve) => {
       resolve(value)
     })
-  }
-  getStates(){
-    console.log(this.#state)
-    return this.#state;
   }
 }
