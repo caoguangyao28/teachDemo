@@ -1,4 +1,4 @@
-// TODO 整个文件待重构
+
 // this 指向问题
 var x = 1;
 var obj = {
