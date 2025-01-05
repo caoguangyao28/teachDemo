@@ -30,7 +30,23 @@
       })
       console.log(2)
     })
-  // TODO: 模拟微任务
+  // 利用 MutationObserver API 创建微任务
+  function createMicroTask(fn){
+    const textNode = document.createTextNode(1);
+    const observer = new MutationObserver(fn);
+    observer.observe(textNode,{
+      characterData: true
+    })
+    // 触发
+    textNode.data = 2;
+  }
+
+  btn.addEventListener('click', ()=>{
+    createMicroTask(()=>{
+      console.log("microtask 3")
+    })
+    console.log(3)
+  });
   </script>
 </body>
 </html>
