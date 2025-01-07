@@ -46,7 +46,7 @@
 - 利用IIFE 立即执行函数优化函数执行 [iife.html](./js/iife.js)
 - js文件加载错误捕获重试 [./js-reload.html](./js-reload.html)
 - 将worker写在当前文件中 [worker.html](./worker.html)
-<!-- - 利用位运算实现权限控制 [permission.html](./permission.html) -->
+- 位运算的一些妙用-权限、权限管理、高效的奇偶判断 [permission.html](./js/permission.js)
 
 ## 数组相关
 - 数组常见计算封装 [ArrayDemo.html](./ArrayDemo.html)
