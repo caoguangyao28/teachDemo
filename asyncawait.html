@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async & await 原理</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+  <h1>async & await 原理</h1>
+  <p>有三个异步函数如下，则控制台依次输出是什么？</p>
+  <pre class="javascript">
+      <code>
+          // 输出顺序是什么
+          const async1 = async () => {
+            console.log('1');
+            await async2();
+            console.log(2);
+          }
+          const async2 = async () => {
+            console.log('async2')
+            await setTimeout(()=>{
+              Promise.resolve().then(() => {
+                console.log(3);
+              })
+            }, 0);
+            console.log(4);
+          }
+          const asy3 = async () => {
+            Promise.resolve().then(() => {
+              console.log(6)
+            })
+          }
+          // 开始调用
+          async1();
+          console.log(7);
+          asy3();
+      </code>
+  </pre>
+  <h2>过程分析：</h2>
+  <ul>
+      <li>执行async1(), 输出 1</li>
+      <li>进入到 await async2(), 将定时任务放入宏任务队列 宏[task]</li>
+      <li>setTimeout 是一个普通函数所以隐藏的包裹一层 promise 且状态为 完成，将 console.log(4) 放入 微任务队列 微[log4]
+      </li>
+      <li>执行 console.log(7), 控制太已打印出 1 7</li>
+      <li>执行到 asy3() ， 将log6 放入微任务队列 微[log4,log6]</li>
+      <li>
+          主线程执行结束，查看 微任务队列待执行 微任务队列 微[log4,log6]，输出1 7 4。
+          执行log4 时 async2 完成，promise 状态结束，asyn1 完成 log2 放入微队列 微[log6，log2]
+          继续执行 控制台 输出 1 7 4 6 2
+      </li>
+      <li>
+          微任务执行完成，执行宏任务队列任务 宏[task] 控制它输出 174623
+      </li>
+  </ul>
+  <p>
+
+  </p>
+  <h2>答案：1 7 4 6 2 3</h2>
+  <script>
+    const  async1 = async () => {
+      console.log('1');
+      await async2();
+      console.log(2);
+    }
+
+    const async2 = async () => {
+      await setTimeout(()=>{
+        Promise.resolve().then(() => {
+          console.log(3);
+        })
+      }, 0);
+      console.log(4);
+    }
+
+    const asy3 = async () => {
+      Promise.resolve().then(() => {
+        console.log(6)
+      })
+    }
+    // 开始调用
+    async1(); // 输出 1
+    console.log(7);
+    asy3();
+  //
+  </script>
+</body>
+</html>
