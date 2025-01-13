@@ -101,3 +101,7 @@ notion 中有记录[notion链接](https://zany-scabiosa-6d7.notion.site/vite-11b
 - 动态规划问题 [dynicPlan.html](./dynicPlan.html)
 - 一些算法题目备忘 [./md/algorithm.md](./md/algorithm.md)
 
+## 测试项目代码备忘
+- react18 特性测试以及常用封装gitee链接: git@gitee.com:caoguangyao/umi-react-demo
+- vue3 的一些常用封装以及测试代码： git@gitee.com:caoguangyao/vite-vue3-demo.git
+
