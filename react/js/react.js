@@ -268,8 +268,21 @@ function commitWork(fiber) {
 // render(React.createElement('div', { id: 1 }, React.createElement('span', null, 'hello 11')), document.getElementById('root'));
 // render(React.createElement('div', { id: 1 }, React.createElement('span', null, 'hello 22')), document.getElementById('root'));
 
-render(React.createElement('div', { id: 'ceshi', title: 'hello' }, React.createElement('span', null, '初始化元素')), document.getElementById('root'));
+render(
+    React.createElement(
+        'div',
+        { id: 'ceshi', title: 'hello' },
+        React.createElement('span', null, '初始化元素')
+    ),
+    document.getElementById('root')
+);
 
 setTimeout(() => {
-  render(React.createElement('div', { id: 'ceshi', title: 'hello2' }, React.createElement('p', null, '新元素')), document.getElementById('root'));
+  render(
+      React.createElement(
+          'div',
+          { id: 'ceshi', title: 'hello2' },
+          React.createElement('p', null, '新元素')),
+      document.getElementById('root')
+  );
 }, 2000)
