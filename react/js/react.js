@@ -1,4 +1,10 @@
-// 虚拟dom 大致的结构
+/**
+ * 模拟 React对象方法
+ * 创建 vdom 方法 createElement
+ * 创建文本节点方法 createTextElement
+ * 
+ * fiber 节点对象 ｛ type， props: {...props, children }｝
+ */
 const React = {
   createElement(type, props = {}, ...children) {
     return {
@@ -106,7 +112,7 @@ function updateDom(dom, prevProps, nextProps) {
   // console.log(dom, 'dom', '更新dom', prevProps, nextProps)
 }
 
-// Fiber 调度器
+// Fiber 渲染器单元 调度器
 // 实现将耗时任务拆分成多个小的工作单元
 function workLoop(deadline) {
 
