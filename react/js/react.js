@@ -28,13 +28,13 @@ const React = {
   }
 }
 
-console.log('start: 虚拟dom结构 demo')
-const vdom = React.createElement('div', { id: 'a' }, 'hello world');
-console.log(vdom, 'vdom1');
-// 嵌套
-const vdom2 = React.createElement('div', { id: 'b' }, React.createElement('span', null, 'hello world'));
-console.log(vdom2, 'vdom2');
-console.log('end: 虚拟dom结构 demo')
+// console.log('start: 虚拟dom结构 demo')
+// const vdom = React.createElement('div', { id: 'a' }, 'hello world');
+// console.log(vdom, 'vdom1');
+// // 嵌套
+// const vdom2 = React.createElement('div', { id: 'b' }, React.createElement('span', null, 'hello world'));
+// console.log(vdom2, 'vdom2');
+// console.log('end: 虚拟dom结构 demo')
 
 
 // 调度器 Fiber
@@ -152,9 +152,11 @@ requestIdleCallback(workLoop);
 
 // 执行一个单元
 function performUnitOfWork(fiber) {
+  // debugger
+  console.log(fiber, 'fiber', '执行一个单元');
   if (!fiber.dom) {
     fiber.dom = createDom(fiber);
-    console.log(fiber.dom, 'fiber.dom', 'vdom 与 dom 进行初次绑定');
+    console.log(fiber.dom, 'fiber.dom', '创建dom与fiber节点');
   }
 
   // const vdom = React.createElement('div', { id: 1 }, React.createElement('span', null, '小满zs'));
@@ -168,6 +170,7 @@ function performUnitOfWork(fiber) {
     return fiber.child
   }
   // 遍历 fiber 相邻的 fiber 树
+  console.log('遍历 fiber 相邻的 fiber 树', fiber)
   let nextFiber = fiber;
   while (nextFiber) {
     if (nextFiber.sibling) {
@@ -239,6 +242,7 @@ function reconcileChildren(wipFiber, elements) {
 
 // 提交更新
 function commitRoot() {
+  // debugger;
   deletions.forEach(commitWork);
   commitWork(wipRoot.child);
   currentRoot = wipRoot;
@@ -259,6 +263,7 @@ function commitWork(fiber) {
     updateDom(fiber.dom, fiber.alternate.props, fiber.props);
   } else if (fiber.effectTag === 'DELETION') {
     domParent.removeChild(fiber.dom);
+    return; // 删除了不应该继续递归 否则会出现重复删除
   }
 
   commitWork(fiber.child);
@@ -278,7 +283,8 @@ render(
     React.createElement(
         'div',
         { id: 'ceshi', title: 'hello' },
-        React.createElement('span', null, '初始化元素')
+        React.createElement('span', null, '初始化元素'),
+        React.createElement('span', null, '  初始化内容2')
     ),
     document.getElementById('root')
 );
