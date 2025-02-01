@@ -77,10 +77,10 @@
   function fn(a, b, c) {
     console.log(this.name, a, b, c);
   }
-  fn.myCall(obj, 1, 2, 3);
-  fn.myApply(obj, [1, 2, 3]);
+  fn.myCall(obj, 1, 2, 'call');
+  fn.myApply(obj, [1, 2, 'apply']);
   const newFn = fn.myBind(obj, 1, 2);
-  newFn(4);
+  newFn(4, 'bind');
 
 </script>
 </body>
