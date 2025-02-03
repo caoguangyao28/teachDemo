@@ -1,9 +1,3 @@
-/**
- * @param {*} initialState
- * @returns {[state, setState]}
- * 
- * 
- */
 let isFirstMonted = true; // 是否首次渲染
 let workInProgressHook = null;// 当前正在工作的hook
 let debouced;
