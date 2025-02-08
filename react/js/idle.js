@@ -63,7 +63,7 @@ class SimpleScheduler {
         timeout = 5000
         break;
     }
-    // 没给任务对象记录
+    // 每个任务对象记录
     const task = {
       callback,
       priortyLevel,
@@ -134,23 +134,23 @@ class SimpleScheduler {
 const scheduler = new SimpleScheduler();
 
 scheduler.scheduleCallback(LowPriority, () => {
-  console.log('Task 1: Low Priority');
+  console.log('Task 1: Low Priority', LowPriority);
 });
 
 scheduler.scheduleCallback(ImmediatePriority, () => {
-  console.log('Task 2: Immediate Priority');
+  console.log('Task 2: Immediate Priority', ImmediatePriority);
 });
 
 scheduler.scheduleCallback(IdlePriority, () => {
-  console.log('Task 3: Idle Priority');
+  console.log('Task 3: Idle Priority', IdlePriority);
 });
 
 scheduler.scheduleCallback(UserBlockingPriority, () => {
-  console.log('Task 4: User Blocking Priority');
+  console.log('Task 4: User Blocking Priority', UserBlockingPriority);
 });
 
 scheduler.scheduleCallback(NormalPriority, () => {
-  console.log('Task 5: Normal Priority');
+  console.log('Task 5: Normal Priority', NormalPriority);
 });
 
 
