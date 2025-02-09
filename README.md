@@ -13,6 +13,7 @@
 - async & await 实现原理 [asyncawait.html](./asyncawait.html)
 - 动态执行 js 的常用方法 [dongtaijs.html](./dongtaijs.html)
 - 利用代理实现动态属性拦截 [proxy.html](./proxy.html)
+- 浏览器事件循环机制 [eventloop.md](./md/eventloop.md)
 ## react 原理
 - react的vdom、fiber、render的实现原理 [react/react.html](./react/react.html)
 - react 中实现的任务调度替换requestIdlecallback [react/reqidle.html](./react/reqidle.html)
