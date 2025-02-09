@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实用代理拦截动态属性</title>
+</head>
+<body>
+  <h1>实用代理拦截动态属性</h1>
+  <script>
+    // const r1 = add[1][2][3] + 4 // 期望结果：10 ，累计和
+    // const r2 = add[10][20] + 30 // 期望结果：60
+
+    function createProxy(value = 0) {
+      const valueGetter = () => value
+      console.log(value) // 对应的是最外层 add 对象层能访问的内部变量
+      return new Proxy({}, {
+        get(target, prop) {
+          if (prop === Symbol.toPrimitive) { // 数据默认转换
+            return valueGetter
+          }
+          console.log(`value: ${value}, prop: ${prop}`)
+          return createProxy(value + Number(prop))
+        }
+      })
+    }
+
+    const add = createProxy()
+    console.log(add[1][2][3] + 8)// 14
+
+    console.log(add[10][20] + 30)// 60
+  </script>
+</body>
+</html>

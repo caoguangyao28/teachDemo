@@ -11,6 +11,8 @@
 - 浏览器内存泄漏之游离节点 [freeNodeMemoryLeak.html](./freeNodeMemoryLeak.html)
 - 大文件分割[ cutfile.html](./cutfile/cutfile.html)
 - async & await 实现原理 [asyncawait.html](./asyncawait.html)
+- 动态执行 js 的常用方法 [dongtaijs.html](./dongtaijs.html)
+- 利用代理实现动态属性拦截 [proxy.html](./proxy.html)
 ## react 原理
 - react的vdom、fiber、render的实现原理 [react/react.html](./react/react.html)
 - react 中实现的任务调度替换requestIdlecallback [react/reqidle.html](./react/reqidle.html)
@@ -75,6 +77,7 @@
 - css content-visibility [content-visibility.html](./css-study/content-visibility.html)
 - hudini css 实现渐变背景 [hudini.html](./css-study/hudini.html)
 - css 好用的选择器 [css-selector.html](./css-study/css-selector.html)
+<!-- - 方便实用的横向滚动 [horizontal-scroll.html](./css-study/horizontal-scroll.html) -->
 
 ## 开脑洞的方式
 - 利用sass实现星空动画效果
