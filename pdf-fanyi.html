@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Upload and Translate</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+    <h1>Upload PDF and Translate</h1>
+    <input type="file" id="pdf-file" accept="application/pdf">
+    <button id="translate-btn">Translate</button>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('translate-btn').addEventListener('click', async () => {
+            const fileInput = document.getElementById('pdf-file');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please upload a PDF file first.');
+                return;
+            }
+
+            const pdf = await pdfjsLib.getDocument(file).promise;
+            let textContent = '';
+
+            for (let num = 1; num <= pdf.numPages; num++) {
+                const page = await pdf.getPage(num);
+                const content = await page.getTextContent();
+                content.items.forEach(item => {
+                    textContent += item.str + ' ';
+                });
+            }
+
+            // Call DeepSeek API for translation
+            const response = await fetch('https://api.deepseek.com/translate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer YOUR_API_KEY' // Replace with your DeepSeek API key
+                },
+                body: JSON.stringify({ text: textContent })
+            });
+
+            const result = await response.json();
+            document.getElementById('output').innerText = result.translatedText;
+        });
+    </script>
+</body>
+</html>
