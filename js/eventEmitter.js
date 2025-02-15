@@ -1,6 +1,6 @@
 /**
  * EventEmitter
- * @author: caogy
+ * @autor: caogy
  * 
  */
 class EventEmitter {
@@ -14,6 +14,12 @@ class EventEmitter {
    * @param {Function} callback 
    */
   on(eventName, callback) {
+    if (typeof eventName !== 'string') {
+      throw new Error('Event name must be a string');
+    }
+    if (typeof callback !== 'function') {
+      throw new Error('Callback must be a function');
+    }
     if (!this.events[eventName]) {
       this.events[eventName] = [];
     }
@@ -28,8 +34,8 @@ class EventEmitter {
   emit(eventName, ...args) {
     if (this.events[eventName]) {
       // 浅拷贝防止 在移除监听时 影响当前事件触发顺序
-      const handers = [...this.events[eventName]];
-      handers.forEach(callback => callback(...args));
+      const handlers = [...this.events[eventName]];
+      handlers.forEach(callback => callback(...args));
     }
   }
 
@@ -55,5 +61,27 @@ class EventEmitter {
       this.off(eventName, onceCallback);
     };
     this.on(eventName, onceCallback);
+  }
+
+  /**
+   * 移除某个事件的所有监听器
+   * @param {string} eventName 
+   */
+  removeAllListeners(eventName) {
+    if (this.events[eventName]) {
+      delete this.events[eventName];
+    }
+  }
+
+  /**
+   * 获取某个事件的监听器数量
+   * @param {string} eventName 
+   * @returns {number}
+   */
+  listenerCount(eventName) {
+    if (this.events[eventName]) {
+      return this.events[eventName].length;
+    }
+    return 0;
   }
 }

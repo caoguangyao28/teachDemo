@@ -9,7 +9,7 @@
 - 跨窗口标签页通信-BroadCast chanel[broadCastChanel.html](./broadCastChanel.html)
 - 层叠规则[cascadeRule.html](./cascadeRule.html)
 - 浏览器内存泄漏之游离节点 [freeNodeMemoryLeak.html](./freeNodeMemoryLeak.html)
-- 大文件分割[ cutfile.html](./cutfile/cutfile.html)
+- 大文件分割[cutfile.html](./cutfile/cutfile.html)
 - async & await 实现原理 [asyncawait.html](./asyncawait.html)
 - 动态执行 js 的常用方法 [dongtaijs.html](./dongtaijs.html)
 - 利用代理实现动态属性拦截 [proxy.html](./proxy.html)
@@ -22,14 +22,14 @@
 ## vue 原理
 - vue的nextick&异步渲染机制 [./vue/asyncRender.html](./vue/asyncRender.html)
 - vue 模版的本质-渲染函数-可以通过h函数来构建视图[./vue/templateFn.html](./vue/templateFn.html)
-- vue3 自定义响应数据实现数据变化防抖 [./vue3DeboundRef.md](md/vue3DeboundRef.md)
+- vue3 自定义响应数据实现数据变化防抖 [./vue3DeboundRef.md](./md/vue3DeboundRef.md)
 
 ## 实用代码
 - 利用RTCPeerConnection获取用户ip [getRealIpWithRTC.html](./getRealIpWithRTC.html)
 - DNS 解析及其优化 [dnsparseperf.html](./dnsparseperf.html)
 - 文件夹文件操作api [showdirectorypicker.html](./showdirectorypicker.html)
 - 金额转中文 [money.html](./money.html)
-- 函数科里化 [functionkeli.html](functionkeli.html)
+- 函数科里化 [functionkeli.html](./functionkeli.html)
 - 单列实现-代理方式 [singleton.html](./singleton.html)
 - 给fetch添加超时 [fetchTimeout.html](./fetchTimeout.html)
 - 发布订阅者模式实现 [pubsub.html](./pubsub.html)
@@ -37,13 +37,11 @@
 - 3D 图片轮播 [carousel3d.html](./carousel3d.html)
 - 不要使用计时器做动画 [animate.html](./animate.html)
 - ajax进度监控 [ajaxProgress.html](./ajaxProgress.html)
-
-- 元素平滑上升-自定义vue指令+视口监听观察元素-代码已移动到vite4+vue3+demo
 - mutationObserver 元素突变监听 [mutationObserver.html](./mutationObserver.html)
 - ResizeObserver 尺寸变化 [resizeObserver.html](./resizeObserver.html)
 - intersectionObserver 交叉边界变化 [intersectionObserver.html](./intersectionObserver.html)
 - 深度拷贝[deepClone.html](./deepClone.html)
-- 利用Object.freeze 冻结，优化性能，冻结数据
+- 利用Object.freeze 冻结，优化性能，冻结数据[./js/deepFreeze.js](./js/deepFreeze.js)
 - js 实现函数重载 [./js/jsreload.js](./js/jsreload.js)
 - 深度判断对象是否相等 [isEqual.html](./js/objectIsEqual.js)
 - 利用IIFE 立即执行函数优化函数执行 [iife.html](./js/iife.js)
@@ -56,7 +54,7 @@
 
 ## 字符串相关
 - 字符串截取导致的BUG-特殊字符处理 [specialString.html](./specialString.html)
-- 字符串异步替换封装-弥补repalce的不足 [stringAsyncReplace.html](./stringAsyncReplace.html)
+- 字符串异步替换封装-弥补replace的不足 [stringAsyncReplace.html](./stringAsyncReplace.html)
 - 中文字符串排序问题[sortChinese.html](./sortChinese.html)
 - 双等运算符，对象如何转原始的数据类型 [stringToPrimitive.html](./stringToPrimitive.html) [stringToPrimitive.md](./md/stringToPrimitive.md)
 - 大数相加函数 [bigNumberAdd.html](./bigNumberAdd.html) [bigNumberAdd.md](./md/bigNumberAdd.md)
@@ -108,4 +106,5 @@ notion 中有记录[notion链接](https://zany-scabiosa-6d7.notion.site/vite-11b
 ## 测试项目代码备忘
 - react18 特性测试以及常用封装gitee链接: git@gitee.com:caoguangyao/umi-react-demo
 - vue3 的一些常用封装以及测试代码： git@gitee.com:caoguangyao/vite-vue3-demo.git
+- 元素平滑上升-自定义vue指令+视口监听观察元素-代码已移动到vite4+vue3+demo
 
