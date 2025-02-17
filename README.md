@@ -10,7 +10,7 @@
 - 层叠规则[cascadeRule.html](./cascadeRule.html)
 - 浏览器内存泄漏之游离节点 [freeNodeMemoryLeak.html](./freeNodeMemoryLeak.html)
 - 大文件分割[cutfile.html](./cutfile/cutfile.html)
-- async & await 实现原理 [asyncawait.html](./asyncawait.html)
+- async & await 实现原理 [asyncawait.html](./asyncawait.html).[asyncawait.md](./md/asynawait.md)
 - 动态执行 js 的常用方法 [dongtaijs.html](./dongtaijs.html)
 - 利用代理实现动态属性拦截 [proxy.html](./proxy.html)
 - 浏览器事件循环机制 [eventloop.md](./md/eventloop.md) 更新 [知识点更新event-loop-new.md](./md/event-loop-new.md)
