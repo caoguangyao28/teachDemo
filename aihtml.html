@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端技术探索 | CodeFront</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--primary-color);
+        }
+
+        /* 导航样式 */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 主内容区 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 5%;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 3fr 1fr;
+        }
+
+        /* 文章卡片 */
+        .article-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--light-bg);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .category-list {
+            list-style: none;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .category-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>CodeFront</h1>
+        <div class="nav-links">
+            <a href="#">首页</a>
+            <a href="#">教程</a>
+            <a href="#">案例</a>
+            <a href="#">关于</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <section class="featured-article fade-in">
+                <div class="article-card">
+                    <img src="https://picsum.photos/800/400" alt="Featured Article" class="article-image">
+                    <div class="tag">Vue3</div>
+                    <div class="tag">性能优化</div>
+                    <h2>Vue3 组合式API深度实践指南</h2>
+                    <p>探索Vue3最新特性在实际项目中的最佳实践方案，提升开发效率和代码可维护性...</p>
+                    <button class="read-more" onclick="showArticle(1)">阅读全文</button>
+                </div>
+            </section>
+
+            <div class="article-list" id="articleList"></div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="category-list fade-in">
+                <h3>文章分类</h3>
+                <ul id="categories"></ul>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // 模拟文章数据
+        const articles = [
+            {
+                title: "CSS Grid布局完全指南",
+                category: "CSS",
+                tags: ["布局", "响应式"],
+                image: "https://picsum.photos/400/300",
+                excerpt: "掌握现代CSS布局方案，构建复杂响应式布局的最佳实践..."
+            },
+            {
+                title: "TypeScript类型体操实战",
+                category: "TypeScript",
+                tags: ["类型系统", "进阶"],
+                image: "https://picsum.photos/401/300",
+                excerpt: "深入TypeScript类型系统，提升类型编程能力..."
+            },
+            {
+                title: "Webpack5配置优化指南",
+                category: "构建工具",
+                tags: ["性能优化", "配置"],
+                image: "https://picsum.photos/402/300",
+                excerpt: "从入门到精通，全面解析Webpack5最新配置方案..."
+            }
+        ];
+
+        // 分类数据
+        const categories = [
+            { name: "JavaScript", count: 12 },
+            { name: "CSS", count: 8 },
+            { name: "框架生态", count: 15 },
+            { name: "构建工具", count: 5 }
+        ];
+
+        // 动态生成文章列表
+        function renderArticles() {
+            const container = document.getElementById('articleList');
+            container.innerHTML = articles.map(article => `
+                <article class="article-card fade-in">
+                    <img src="${article.image}" alt="${article.title}" class="article-image">
+                    <div class="tag">${article.category}</div>
+                    ${article.tags.map(tag => `<div class="tag">${tag}</div>`).join('')}
+                    <h2>${article.title}</h2>
+                    <p>${article.excerpt}</p>
+                    <button class="read-more" onclick="showArticle(${articles.indexOf(article)})">阅读全文</button>
+                </article>
+            `).join('');
+        }
+
+        // 动态生成分类列表
+        function renderCategories() {
+            const container = document.getElementById('categories');
+            container.innerHTML = categories.map(cat => `
+                <li class="category-item">
+                    ${cat.name} <span>(${cat.count})</span>
+                </li>
+            `).join('');
+        }
+
+        // 模拟文章查看功能
+        function showArticle(id) {
+            alert('即将展示文章：' + articles[id].title);
+            // 实际项目中这里应跳转到文章详情页
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            renderArticles();
+            renderCategories();
+            
+            // 滚动动画触发
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.article-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // 响应式菜单切换（可扩展）
+        function toggleMenu() {
+            // 移动端菜单切换逻辑
+        }
+    </script>
+</body>
+</html>
