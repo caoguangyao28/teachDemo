@@ -1,2 +1,4 @@
 {
+  "window.autoDetectColorScheme": false,
+  "terminal.integrated.allowChords": false
 }

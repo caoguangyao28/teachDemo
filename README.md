@@ -77,7 +77,7 @@
 - css content-visibility [content-visibility.html](./css-study/content-visibility.html)
 - hudini css 实现渐变背景 [hudini.html](./css-study/hudini.html)
 - css 好用的选择器 [css-selector.html](./css-study/css-selector.html)
-<!-- - 方便实用的横向滚动 [horizontal-scroll.html](./css-study/horizontal-scroll.html) -->
+- 方便实用的横向滚动 [horizontal-scroll.html](./css-study/horizontal-scroll.html)
 
 ## 开脑洞的方式
 - 利用sass实现星空动画效果

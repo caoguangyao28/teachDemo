@@ -4,6 +4,16 @@ date: "2025-02-17"
 description: "js 模块化演进过程，常见模块化定义说明以及其基本运行原理说明"
 ---
 
+随着前端应用的日益复杂，JavaScript 模块化编程变得越来越重要。本文将介绍 JavaScript 模块化的发展历程,包括:
+
+- 早期全局变量和命名空间方式
+- AMD/CMD 异步模块定义规范
+- CommonJS 同步模块规范
+- ES6 Module 官方标准
+- UMD 通用模块定义
+
+通过了解这些模块化方案的演进过程,可以更好地理解现代 JavaScript 开发中模块化的重要性和实现原理。
+
 ## js 常见的模块化定义
 
 1. **AMD** 适用于浏览器端，异步模块化，本质上通过script标签引入，然后通过define函数定义模块，通过require函数引入模块。最佳实现者：`requirejs`.
@@ -21,7 +31,6 @@ AMD（Asynchronous Module Definition）是一种异步模块定义规范，用�
 //AMD设计出一个简洁的写模块API：
 // id: 模块标识，dependencies: 模块依赖 [], factory: 实例化函数 或对象
 define(id?, dependencies?, factory)
-
 // 模块加载
 // module 要加载的模块， callback
 require([module], callback)
