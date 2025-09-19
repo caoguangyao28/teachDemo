@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XTextDocument xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EditorVersionString="1.2023.3.6">
+   <Attributes>
+      <Attribute>
+         <Name>isOldOrNew</Name>
+         <Value>new</Value>
+      </Attribute>
+   </Attributes>
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <InnerID>980</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>986</InnerID>
+               <AutoCreate>true</AutoCreate>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <InnerID>981</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString" StyleIndex="6">
+               <InnerID>893</InnerID>
+               <Text>XXX医院检验报告</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>39</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>894</InnerID>
+               <Text>姓名：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>43</InnerID>
+               <ID>LHSD0016023</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>922</InnerID>
+                     <Text>谢谢小星星</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>PatientName</Name>
+               <DisplayFormat />
+               <InnerValue>谢谢小星星</InnerValue>
+               <BackgroundText>患者姓名</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>895</InnerID>
+               <Text>		条码号：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>57</InnerID>
+               <ID>LHSD0002012</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>923</InnerID>
+                     <Text>10029000</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>BarCode</Name>
+               <DisplayFormat />
+               <InnerValue>10029000</InnerValue>
+               <BackgroundText>条形码</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>896</InnerID>
+               <Text>		送检科室：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>99</InnerID>
+               <ID>LHSD0004016</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>924</InnerID>
+                     <Text>消化内科住院</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>DeliveryDeptName</Name>
+               <DisplayFormat />
+               <InnerValue>消化内科住院</InnerValue>
+               <BackgroundText>送检科室</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>897</InnerID>
+               <Text>		样本编号：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>110</InnerID>
+               <ID>LHSD0019082</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>925</InnerID>
+                     <Text>22585984</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>SpecimenNo</Name>
+               <DisplayFormat />
+               <InnerValue>22585984</InnerValue>
+               <BackgroundText>样本号</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>130</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>898</InnerID>
+               <Text>年龄：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>134</InnerID>
+               <ID>LHSD0001047</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>926</InnerID>
+                     <Text>44</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>AgeYear</Name>
+               <DisplayFormat />
+               <InnerValue>44</InnerValue>
+               <BackgroundText>年龄-岁</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>899</InnerID>
+               <Text>			     诊疗号：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>144</InnerID>
+               <ID>LHSD0005022</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>927</InnerID>
+                     <Text>1016</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>EmpiID</Name>
+               <DisplayFormat />
+               <InnerValue>1016</InnerValue>
+               <BackgroundText>患者主索引</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>900</InnerID>
+               <Text>	         标本类别：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>155</InnerID>
+               <ID>LHSD0019085</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>928</InnerID>
+                     <Text>尿液</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>SpecimenTypeName</Name>
+               <DisplayFormat />
+               <InnerValue>尿液</InnerValue>
+               <BackgroundText>标本类型</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>901</InnerID>
+               <Text>		     标本状态：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>166</InnerID>
+               <ID>LHDE0000001</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>929</InnerID>
+                     <Text>正常</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>SpecimenStatusName</Name>
+               <DisplayFormat />
+               <InnerValue>正常</InnerValue>
+               <BackgroundText>标本状态</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>170</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>902</InnerID>
+               <Text>性别：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>178</InnerID>
+               <ID>LHSD0007004</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>930</InnerID>
+                     <Text>男</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>GenderName</Name>
+               <DisplayFormat />
+               <InnerValue>男</InnerValue>
+               <BackgroundText>性别</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DropdownList</EditStyle>
+                  <ListSource>
+                     <Items>
+                        <Item>
+                           <Text>未知的性别</Text>
+                           <Value>0</Value>
+                        </Item>
+                        <Item>
+                           <Text>男性</Text>
+                           <Value>1</Value>
+                        </Item>
+                        <Item>
+                           <Text>女性</Text>
+                           <Value>2</Value>
+                        </Item>
+                        <Item>
+                           <Text>未说明的性别</Text>
+                           <Value>9</Value>
+                        </Item>
+                     </Items>
+                  </ListSource>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>903</InnerID>
+               <Text>			     床号：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>193</InnerID>
+               <ID>LHSD0002016</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>931</InnerID>
+                     <Text>391</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>BedNo</Name>
+               <DisplayFormat />
+               <InnerValue>391</InnerValue>
+               <BackgroundText>床号</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>904</InnerID>
+               <Text>			病人类型：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <Attributes>
+                  <Attribute>
+                     <Name>门诊</Name>
+                     <Value>1</Value>
+                  </Attribute>
+                  <Attribute>
+                     <Name>急诊</Name>
+                     <Value>2</Value>
+                  </Attribute>
+                  <Attribute>
+                     <Name>住院</Name>
+                     <Value>3</Value>
+                  </Attribute>
+                  <Attribute>
+                     <Name>体检</Name>
+                     <Value>4</Value>
+                  </Attribute>
+                  <Attribute>
+                     <Name>其他</Name>
+                     <Value>9</Value>
+                  </Attribute>
+               </Attributes>
+               <InnerID>209</InnerID>
+               <ID>LHSD0005032</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>932</InnerID>
+                     <Text>住院</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>EncounterTypeName</Name>
+               <DisplayFormat />
+               <InnerValue>住院</InnerValue>
+               <BackgroundText>患者类型</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DropdownList</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>905</InnerID>
+               <Text>		     临床诊断：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>220</InnerID>
+               <ID>LHSD0004052</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="2">
+                     <InnerID>933</InnerID>
+                     <Text>结肠息肉</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>DiagName</Name>
+               <DisplayFormat />
+               <InnerValue>结肠息肉</InnerValue>
+               <BackgroundText>诊断名称</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>444</InnerID>
+            </Element>
+            <Element xsi:type="HorizontalLine" StyleIndex="2">
+               <InnerID>445</InnerID>
+               <ID>hr1</ID>
+               <LineLengthInCM>100</LineLengthInCM>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>169</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>906</InnerID>
+               <Text> 检验项目							结果		提示		          单位	  参考区间	 实验方法</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>474</InnerID>
+            </Element>
+            <Element xsi:type="HorizontalLine" StyleIndex="2">
+               <InnerID>476</InnerID>
+               <ID>hr1_0</ID>
+               <LineLengthInCM>100</LineLengthInCM>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>475</InnerID>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="4">
+               <InnerID>477</InnerID>
+               <ID>LHSD0012013</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <XElements>
+                  <Element xsi:type="XString" StyleIndex="4">
+                     <InnerID>934</InnerID>
+                     <Text>尿液常规</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>LabItemName</Name>
+               <DisplayFormat />
+               <InnerValue>尿液常规</InnerValue>
+               <BackgroundText>检验项目标准名称</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>907</InnerID>
+               <Text>					</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>828</InnerID>
+            </Element>
+            <Element xsi:type="XTextTable" NumOfRows="1" NumOfColumns="8">
+               <InnerID>829</InnerID>
+               <ID>table1</ID>
+               <XElements>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>838</InnerID>
+                     <ValueBinding>
+                        <DataSource>LabResultDetails</DataSource>
+                     </ValueBinding>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>839</InnerID>
+                           <ValueBinding>
+                              <BindingPath>ObservationName</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>840</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>841</InnerID>
+                           <ValueBinding>
+                              <BindingPath>ObservationDesc</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>842</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>843</InnerID>
+                           <ValueBinding>
+                              <BindingPath>RecognitionFlag</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>844</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>845</InnerID>
+                           <ValueBinding>
+                              <BindingPath>ObservationValue</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>846</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>847</InnerID>
+                           <ValueBinding>
+                              <BindingPath>AbnormalFlagName</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>848</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>849</InnerID>
+                           <ValueBinding>
+                              <BindingPath>UnitName</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>850</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>851</InnerID>
+                           <ValueBinding>
+                              <BindingPath>ReferencesRangeDesc</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>852</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="5">
+                           <InnerID>853</InnerID>
+                           <ValueBinding>
+                              <BindingPath>LabMethodName</BindingPath>
+                           </ValueBinding>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>854</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                     <SpecifyHeight>70</SpecifyHeight>
+                  </Element>
+               </XElements>
+               <Columns>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>830</InnerID>
+                     <Width>272.59375</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>831</InnerID>
+                     <Width>178.59375</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>832</InnerID>
+                     <Width>366.59375</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>833</InnerID>
+                     <Width>272.59375</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>834</InnerID>
+                     <Width>272.59375</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>835</InnerID>
+                     <Width>187.59375</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>836</InnerID>
+                     <Width>357.59375</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>837</InnerID>
+                     <Width>272.59375</Width>
+                  </Element>
+               </Columns>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>482</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>1064</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>1065</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>483</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>908</InnerID>
+               <Text>备注：带【深圳HR】标识项目为深圳市检验结果可互认项目。</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>576</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>480</InnerID>
+            </Element>
+            <Element xsi:type="HorizontalLine" StyleIndex="2">
+               <InnerID>578</InnerID>
+               <ID>hr1_1</ID>
+               <LineLengthInCM>100</LineLengthInCM>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>577</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>909</InnerID>
+               <Text>申请时间：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>584</InnerID>
+               <ID>LHSD0001078</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ApplyDateTime</Name>
+               <DisplayFormat />
+               <BackgroundText>申请日期</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>910</InnerID>
+               <Text>		接收时间：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>594</InnerID>
+               <ID>LHSD0018024</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ReceiveDateTime</Name>
+               <DisplayFormat />
+               <BackgroundText>接收日期</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>911</InnerID>
+               <Text>	检验时间：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>605</InnerID>
+               <ID>LHSD0005073</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ExecDateTime</Name>
+               <DisplayFormat />
+               <BackgroundText>执行日期</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>912</InnerID>
+               <Text>		审核时间：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>663</InnerID>
+               <ID>LHSD0018128</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ReviewDateTime</Name>
+               <DisplayFormat />
+               <BackgroundText>复审日期</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>2273</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>913</InnerID>
+               <Text>申请医生：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>2284</InnerID>
+               <ID>LHSD0001082</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ApplyDoctorName</Name>
+               <DisplayFormat />
+               <BackgroundText>申请医师</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>914</InnerID>
+               <Text>		接收者：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>2297</InnerID>
+               <ID>LHSD0018029</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ReceiveOperaName</Name>
+               <DisplayFormat />
+               <BackgroundText>接收医师</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>915</InnerID>
+               <Text>		检验者：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>2309</InnerID>
+               <ID>LHSD0005082</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ExecOperaName</Name>
+               <DisplayFormat />
+               <BackgroundText>执行人</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>916</InnerID>
+               <Text>			审核者：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>2328</InnerID>
+               <ID>LHSD0018131</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>ReviewOperaName</Name>
+               <DisplayFormat />
+               <BackgroundText>复审人</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>2560</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>917</InnerID>
+               <Text>采集者：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>460</InnerID>
+               <ID>LHSD0003072</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>CollectOperaName</Name>
+               <DisplayFormat />
+               <BackgroundText>采样医师</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>918</InnerID>
+               <Text>		采集时间：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>475</InnerID>
+               <ID>LHSD0003066</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>CollectDateTime</Name>
+               <DisplayFormat />
+               <BackgroundText>采样日期</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>919</InnerID>
+               <Text>	检测仪器：</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <InnerID>494</InnerID>
+               <ID>LHSD0005044</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValidateStyle>
+                  <CheckMaxValue>true</CheckMaxValue>
+                  <CheckMinValue>true</CheckMinValue>
+               </ValidateStyle>
+               <ValueBinding />
+               <BorderElementColor />
+               <MoveFocusHotKey>None</MoveFocusHotKey>
+               <Name>EquipmentName</Name>
+               <DisplayFormat />
+               <BackgroundText>设备</BackgroundText>
+               <EnableHighlight>Default</EnableHighlight>
+               <EditorActiveMode>None</EditorActiveMode>
+               <FieldSettings />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>920</InnerID>
+               <Text>			</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>455</InnerID>
+            </Element>
+            <Element xsi:type="HorizontalLine" StyleIndex="2">
+               <InnerID>499</InnerID>
+               <ID>hr1_0</ID>
+               <LineLengthInCM>100</LineLengthInCM>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2">
+               <InnerID>500</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>921</InnerID>
+               <Text>注：本报告仅对本次送检标本负责，结果仅供临床参考。</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="1">
+               <InnerID>985</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <InnerID>982</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>987</InnerID>
+               <AutoCreate>true</AutoCreate>
+            </Element>
+         </XElements>
+      </Element>
+   </XElements>
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <FileName>测试表格数据源绑定.xml</FileName>
+   <FileFormat>XML</FileFormat>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="5">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <PaddingLeft>15</PaddingLeft>
+            <PaddingTop>10</PaddingTop>
+            <PaddingRight>15</PaddingRight>
+            <PaddingBottom>10</PaddingBottom>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>16</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="7">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <Info>
+      <LicenseText>未注册|Unregister</LicenseText>
+      <CreationTime>1980-01-01T00:00:00+08:00</CreationTime>
+      <LastModifiedTime>2024-04-12T09:50:24.4939959+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00+08:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.0.0.0</Operator>
+      <NumOfPage>1</NumOfPage>
+   </Info>
+   <BodyText>XXX医院检验报告
+姓名：谢谢小星星		条码号：10029000		送检科室：消化内科住院		样本编号：22585984
+年龄：44			     诊疗号：1016	         标本类别：尿液		     标本状态：正常
+性别：男			     床号：391			病人类型：住院		     临床诊断：结肠息肉
+
+ 检验项目							结果		提示		          单位	  参考区间	 实验方法
+
+尿液常规					
+
+                
+
+
+
+备注：带【深圳HR】标识项目为深圳市检验结果可互认项目。
+
+
+申请时间：		接收时间：	检验时间：		审核时间：
+申请医生：		接收者：		检验者：			审核者：
+采集者：		采集时间：	检测仪器：			
+
+注：本报告仅对本次送检标本负责，结果仅供临床参考。</BodyText>
+   <LocalConfig />
+   <PageSettings>
+      <GutterStyle>Top</GutterStyle>
+      <ShowGutterLine>true</ShowGutterLine>
+      <LeftMargin>59</LeftMargin>
+      <RightMargin>39</RightMargin>
+      <BottomMargin>78</BottomMargin>
+      <StrictUsePageSize>false</StrictUsePageSize>
+   </PageSettings>
+</XTextDocument>
